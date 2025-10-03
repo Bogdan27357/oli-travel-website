@@ -9,6 +9,7 @@ export interface Tour {
   dates: string;
   price: number;
   image: string;
+  gallery_images?: string[];
   includes: string[];
   category: 'beach' | 'excursion' | 'ski' | 'exotic';
   fromSpb: 'direct' | 'transfer';
@@ -28,6 +29,13 @@ export const allTours: Tour[] = [
     dates: '5-12 октября 2025',
     price: 95000,
     image: 'https://images.unsplash.com/photo-1618767689160-da3fb810aad7?w=800&auto=format&fit=crop&q=80',
+    gallery_images: [
+      '/img/d6aee9c8-d587-44cb-8417-1122d3c6ae83.jpg',
+      '/img/7d898576-ea3f-4ba9-8c2b-36e80be9cbc5.jpg',
+      '/img/1c024df3-2ee8-4b43-9528-33526262a529.jpg',
+      '/img/50038d85-a120-4a0c-bc35-b2c48fb0e1af.jpg',
+      '/img/55ecbade-801f-4e7f-af4d-eda85c348d92.jpg'
+    ],
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct',

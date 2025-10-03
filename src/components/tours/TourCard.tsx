@@ -4,6 +4,7 @@ import Icon from '@/components/ui/icon';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tour } from '@/data/tours';
+import { useState } from 'react';
 
 interface TourCardProps {
   tour: Tour;
@@ -22,6 +23,21 @@ export default function TourCard({
   onBooking,
   onToggleCompare
 }: TourCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const galleryImages = tour.gallery_images && tour.gallery_images.length > 0 
+    ? [tour.image, ...tour.gallery_images]
+    : [tour.image];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
   return (
     <Card 
       key={tour.id}
@@ -31,11 +47,38 @@ export default function TourCard({
     >
       <div className="relative h-40 overflow-hidden">
         <img 
-          src={tour.image} 
+          src={galleryImages[currentImageIndex]} 
           alt={tour.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        
+        {galleryImages.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all opacity-0 group-hover:opacity-100 z-10"
+            >
+              <Icon name="ChevronLeft" size={16} />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all opacity-0 group-hover:opacity-100 z-10"
+            >
+              <Icon name="ChevronRight" size={16} />
+            </button>
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+              {galleryImages.map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    i === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
         
         <div className="absolute top-3 right-3 flex gap-2">
           {tour.fromSpb === 'direct' ? (

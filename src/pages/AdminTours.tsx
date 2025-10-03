@@ -21,6 +21,7 @@ interface Tour {
   price: number;
   old_price: number;
   image_url: string;
+  gallery_images?: string[];
   description: string;
   included: string[];
   is_hot: boolean;
@@ -40,6 +41,7 @@ const emptyTour: Tour = {
   price: 0,
   old_price: 0,
   image_url: '',
+  gallery_images: [],
   description: '',
   included: [],
   is_hot: false,
@@ -135,6 +137,11 @@ export default function AdminTours() {
   const handleIncludedChange = (value: string) => {
     const included = value.split(',').map((item) => item.trim()).filter(Boolean);
     setFormData({ ...formData, included });
+  };
+
+  const handleGalleryChange = (value: string) => {
+    const gallery_images = value.split(',').map((item) => item.trim()).filter(Boolean);
+    setFormData({ ...formData, gallery_images });
   };
 
   const handleSubmit = async () => {
@@ -255,6 +262,7 @@ export default function AdminTours() {
         onCheckboxChange={handleCheckboxChange}
         onSelectChange={handleSelectChange}
         onIncludedChange={handleIncludedChange}
+        onGalleryChange={handleGalleryChange}
       />
     </div>
   );

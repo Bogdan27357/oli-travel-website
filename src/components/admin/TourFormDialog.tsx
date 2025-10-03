@@ -33,6 +33,7 @@ interface Tour {
   price: number;
   old_price: number;
   image_url: string;
+  gallery_images?: string[];
   description: string;
   included: string[];
   is_hot: boolean;
@@ -49,6 +50,7 @@ interface TourFormDialogProps {
   onCheckboxChange: (name: string, checked: boolean) => void;
   onSelectChange: (name: string, value: string) => void;
   onIncludedChange: (value: string) => void;
+  onGalleryChange: (value: string) => void;
 }
 
 export default function TourFormDialog({
@@ -61,6 +63,7 @@ export default function TourFormDialog({
   onCheckboxChange,
   onSelectChange,
   onIncludedChange,
+  onGalleryChange,
 }: TourFormDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -198,7 +201,7 @@ export default function TourFormDialog({
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="image_url">URL изображения</Label>
+            <Label htmlFor="image_url">URL главного изображения</Label>
             <Input
               id="image_url"
               name="image_url"
@@ -206,6 +209,20 @@ export default function TourFormDialog({
               onChange={onInputChange}
               placeholder="https://example.com/image.jpg"
             />
+          </div>
+
+          <div className="space-y-2 md:col-span-2">
+            <Label htmlFor="gallery_images">Галерея фото (URL через запятую)</Label>
+            <Textarea
+              id="gallery_images"
+              value={(formData.gallery_images || []).join(', ')}
+              onChange={(e) => onGalleryChange(e.target.value)}
+              placeholder="/img/hotel.jpg, /img/room.jpg, /img/pool.jpg, /img/beach.jpg"
+              rows={3}
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              💡 Рекомендуем добавить фото: фасад отеля, номер, бассейн, пляж, ресторан
+            </p>
           </div>
 
           <div className="space-y-2 md:col-span-2">
