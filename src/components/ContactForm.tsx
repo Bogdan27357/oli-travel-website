@@ -172,8 +172,8 @@ export default function ContactForm() {
                     <Icon name="Phone" size={24} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-1">Телефон</h3>
-                    <p className="text-gray-600">+7 (812) 123-45-67</p>
+                    <h3 className="font-bold text-lg mb-1">Телефон Ольга</h3>
+                    <a href="tel:+79819812990" className="text-gray-600 hover:text-primary transition-colors">+7 981 981-29-90</a>
                     <p className="text-sm text-gray-500 mt-1">Ежедневно с 9:00 до 21:00</p>
                   </div>
                 </div>
@@ -182,26 +182,38 @@ export default function ContactForm() {
               <Card className="shadow-xl border-0 p-6 hover:shadow-2xl transition-shadow">
                 <div className="flex items-start gap-4">
                   <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full">
-                    <Icon name="Mail" size={24} className="text-white" />
+                    <Icon name="Phone" size={24} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-1">Email</h3>
-                    <p className="text-gray-600">info@travel-spb.ru</p>
-                    <p className="text-sm text-gray-500 mt-1">Ответим в течение часа</p>
+                    <h3 className="font-bold text-lg mb-1">Телефон Вячеслав</h3>
+                    <a href="tel:+79219456735" className="text-gray-600 hover:text-primary transition-colors">+7 921 945-67-35</a>
+                    <p className="text-sm text-gray-500 mt-1">Ежедневно с 9:00 до 21:00</p>
                   </div>
                 </div>
               </Card>
 
               <Card className="shadow-xl border-0 p-6 hover:shadow-2xl transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full">
-                    <Icon name="MapPin" size={24} className="text-white" />
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-full">
+                    <Icon name="MessageCircle" size={24} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-1">Адрес</h3>
-                    <p className="text-gray-600">г. Санкт-Петербург</p>
-                    <p className="text-gray-600">Невский проспект, д. 1</p>
-                    <p className="text-sm text-gray-500 mt-1">Офис на 3 этаже</p>
+                    <h3 className="font-bold text-lg mb-1">WhatsApp</h3>
+                    <a href="https://wa.me/79819812990" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-green-600 transition-colors">+7 981 981-29-90</a>
+                    <p className="text-sm text-gray-500 mt-1">Быстрый ответ в мессенджере</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="shadow-xl border-0 p-6 hover:shadow-2xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-full">
+                    <Icon name="Send" size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Telegram</h3>
+                    <a href="https://t.me/+79819812990" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">@travel_spb</a>
+                    <p className="text-sm text-gray-500 mt-1">Пишите в любое время</p>
                   </div>
                 </div>
               </Card>

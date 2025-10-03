@@ -506,10 +506,11 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '10-18 октября 2025',
     price: 85000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Роскошный отдых на берегу Черного моря с полным спектром услуг'
   },
   {
     id: 32,
@@ -521,10 +522,11 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '12-19 октября 2025',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Семейный отдых в тихом уголке южного побережья Крыма'
   },
   {
     id: 33,
@@ -536,10 +538,11 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '14-23 октября 2025',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1602945405853-64a0e4a98232?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Исторический город с древней крепостью и прекрасными пляжами'
   },
 
   // РОССИЯ - КАЛИНИНГРАД (прямые рейсы)
@@ -570,10 +573,11 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '3-10 октября 2025',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Живописный курорт с субтропическим климатом и чистейшим морем'
   },
   {
     id: 36,
@@ -585,10 +589,11 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '5-15 октября 2025',
     price: 68000,
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Знаменитый курорт с реликтовой сосновой рощей у моря'
   },
 
   // АРМЕНИЯ (прямые рейсы)
@@ -602,10 +607,11 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '18-24 октября 2025',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1601815801234-b4a5fb7e5097?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1564089514214-edc789b8f9bb?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Древний город с богатой историей, монастыри, музеи и гастрономия'
   },
   {
     id: 38,
@@ -617,10 +623,11 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '20-27 октября 2025',
     price: 65000,
-    image: 'https://images.unsplash.com/photo-1607827447604-8757702c0e46?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Высокогорное озеро с кристально чистой водой и древними монастырями'
   },
 
   // УЗБЕКИСТАН (прямые рейсы)
@@ -700,10 +707,11 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '3-8 ноября 2025',
     price: 75000,
-    image: 'https://images.unsplash.com/photo-1581974206778-051a0b4fe1bc?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Современная столица с Пламенными башнями, Старым городом и набережной'
   },
 
   // ИРАН (с пересадкой)
@@ -986,9 +994,10 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '8-16 октября 2025',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'beach',
+    description: 'Город-герой с морскими памятниками и красивейшими бухтами',
     fromSpb: 'direct'
   },
   {
@@ -1001,10 +1010,11 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '10-20 октября 2025',
     price: 65000,
-    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Винный тур'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Знаменитый курорт с винными погребами Массандры и джаз-фестивалями'
   },
   {
     id: 63,
@@ -1063,10 +1073,11 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '7-15 октября 2025',
     price: 48000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Древние монастыри, карстовая пещера и целебный воздух горных лесов'
   },
   {
     id: 67,
@@ -1078,10 +1089,11 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '9-18 октября 2025',
     price: 55000,
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Столица Абхазии с ботаническим садом, набережной и историческими памятниками'
   },
 
   // ДОПОЛНИТЕЛЬНЫЕ ВЬЕТНАМ
@@ -1131,5 +1143,247 @@ export const allTours: Tour[] = [
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Рыбалка'],
     category: 'exotic',
     fromSpb: 'transfer'
+  },
+
+  // ДОПОЛНИТЕЛЬНЫЕ ТУРЫ ПО РОССИИ
+  {
+    id: 71,
+    title: 'Россия, Казань',
+    country: 'Россия',
+    city: 'Казань',
+    hotel: 'Корстон Тауэр',
+    stars: 5,
+    duration: '5 ночей',
+    dates: '12-17 октября 2025',
+    price: 42000,
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия в Кремль'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Столица Татарстана с белокаменным Кремлем, мечетью Кул-Шариф и национальной кухней'
+  },
+  {
+    id: 72,
+    title: 'Россия, Карелия (Петрозаводск)',
+    country: 'Россия',
+    city: 'Петрозаводск',
+    hotel: 'Фрегат',
+    stars: 4,
+    duration: '6 ночей',
+    dates: '14-20 октября 2025',
+    price: 38000,
+    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Кижи', 'Валаам'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Карельская природа, онежские шхеры, деревянное зодчество острова Кижи'
+  },
+  {
+    id: 73,
+    title: 'Россия, Кавказские Минеральные Воды',
+    country: 'Россия',
+    city: 'Кисловодск',
+    hotel: 'Гранд Отель Видгоф',
+    stars: 4,
+    duration: '10 ночей',
+    dates: '5-15 октября 2025',
+    price: 65000,
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
+    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Лечение'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Санаторно-курортное лечение, минеральные источники, горный воздух'
+  },
+  {
+    id: 74,
+    title: 'Россия, Алтай (Белокуриха)',
+    country: 'Россия',
+    city: 'Белокуриха',
+    hotel: 'Беловодье',
+    stars: 4,
+    duration: '8 ночей',
+    dates: '16-24 октября 2025',
+    price: 58000,
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
+    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Радоновые ванны'],
+    category: 'excursion',
+    fromSpb: 'transfer',
+    description: 'Алтайский курорт с целебным горным воздухом и радоновыми источниками'
+  },
+  {
+    id: 75,
+    title: 'Россия, Байкал (Иркутск)',
+    country: 'Россия',
+    city: 'Иркутск',
+    hotel: 'Courtyard by Marriott',
+    stars: 4,
+    duration: '7 ночей',
+    dates: '18-25 октября 2025',
+    price: 68000,
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия на Байкал'],
+    category: 'excursion',
+    fromSpb: 'transfer',
+    description: 'Священное озеро Байкал, остров Ольхон, шаманские места силы'
+  },
+  {
+    id: 76,
+    title: 'Россия, Владивосток',
+    country: 'Россия',
+    city: 'Владивосток',
+    hotel: 'Hyundai by Lotte Hotel',
+    stars: 5,
+    duration: '6 ночей',
+    dates: '20-26 октября 2025',
+    price: 72000,
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
+    category: 'excursion',
+    fromSpb: 'transfer',
+    description: 'Дальневосточная столица с видами на Японское море и вантовыми мостами'
+  },
+  {
+    id: 77,
+    title: 'Россия, Камчатка (Петропавловск-Камчатский)',
+    country: 'Россия',
+    city: 'Камчатка',
+    hotel: 'Петропавловск',
+    stars: 4,
+    duration: '8 ночей',
+    dates: '22-30 октября 2025',
+    price: 125000,
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Долина гейзеров'],
+    category: 'excursion',
+    fromSpb: 'transfer',
+    description: 'Вулканы, гейзеры, медведи, рыбалка на краю света'
+  },
+  {
+    id: 78,
+    title: 'Россия, Крым (Феодосия)',
+    country: 'Россия',
+    city: 'Крым',
+    hotel: 'Алые Паруса',
+    stars: 4,
+    duration: '8 ночей',
+    dates: '11-19 октября 2025',
+    price: 54000,
+    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
+    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Галерея Айвазовского'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Город-курорт с золотыми пляжами и картинной галереей Айвазовского'
+  },
+  {
+    id: 79,
+    title: 'Россия, Крым (Евпатория)',
+    country: 'Россия',
+    city: 'Крым',
+    hotel: 'Вилла Елена',
+    stars: 4,
+    duration: '10 ночей',
+    dates: '13-23 октября 2025',
+    price: 56000,
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Грязелечение'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Семейный курорт с мелководными пляжами и целебными грязями'
+  },
+  {
+    id: 80,
+    title: 'Россия, Анапа',
+    country: 'Россия',
+    city: 'Анапа',
+    hotel: 'Довиль',
+    stars: 4,
+    duration: '7 ночей',
+    dates: '4-11 октября 2025',
+    price: 48000,
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
+    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Детская здравница России с песчаными пляжами и винными турами'
+  },
+  {
+    id: 81,
+    title: 'Россия, Геленджик',
+    country: 'Россия',
+    city: 'Геленджик',
+    hotel: 'Приморье Grand Resort',
+    stars: 5,
+    duration: '9 ночей',
+    dates: '6-15 октября 2025',
+    price: 72000,
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
+    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Курорт в живописной бухте с набережной, аквапарками и сафари-парком'
+  },
+  {
+    id: 82,
+    title: 'Россия, Москва',
+    country: 'Россия',
+    city: 'Москва',
+    hotel: 'Хилтон Москва Ленинградская',
+    stars: 5,
+    duration: '4 ночи',
+    dates: '14-18 октября 2025',
+    price: 38000,
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия по Кремлю'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Столица России с Красной площадью, Кремлем, музеями мирового уровня'
+  },
+  {
+    id: 83,
+    title: 'Россия, Великий Новгород',
+    country: 'Россия',
+    city: 'Великий Новгород',
+    hotel: 'Интурист',
+    stars: 3,
+    duration: '3 ночи',
+    dates: '16-19 октября 2025',
+    price: 18000,
+    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Трансфер на автобусе', 'Экскурсия в Кремль'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Древнейший город Руси с новгородским Кремлем и Софийским собором'
+  },
+  {
+    id: 84,
+    title: 'Россия, Псков',
+    country: 'Россия',
+    city: 'Псков',
+    hotel: 'Рижская',
+    stars: 3,
+    duration: '3 ночи',
+    dates: '18-21 октября 2025',
+    price: 16000,
+    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Трансфер на автобусе', 'Изборск', 'Печоры'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Древний пограничный город с мощным Кремлем и Псково-Печерским монастырем'
+  },
+  {
+    id: 85,
+    title: 'Россия, Выборг',
+    country: 'Россия',
+    city: 'Выборг',
+    hotel: 'Атлантик',
+    stars: 3,
+    duration: '2 ночи',
+    dates: '20-22 октября 2025',
+    price: 12000,
+    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Трансфер на автобусе', 'Выборгский замок'],
+    category: 'excursion',
+    fromSpb: 'direct',
+    description: 'Средневековый город с шведским замком, брусчатыми улочками и кренделями'
   }
 ];
