@@ -9,7 +9,8 @@ import json
 import os
 import uuid
 from typing import Dict, Any
-from datetime import datetime
+from datetime import datetime, timedelta
+import requests
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
@@ -84,14 +85,95 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 
                 conn.commit()
                 
+                ai_message = None
+                
+                if sender_type == 'user':
+                    cur.execute(
+                        "SELECT created_at FROM chat_messages "
+                        "WHERE session_id = %s AND sender_type = 'manager' AND sender_name NOT LIKE '%%ИИ%%' "
+                        "ORDER BY created_at DESC LIMIT 1",
+                        (session_id,)
+                    )
+                    
+                    last_manager = cur.fetchone()
+                    managers_offline = True
+                    
+                    if last_manager:
+                        time_diff = datetime.now() - last_manager[0]
+                        if time_diff < timedelta(minutes=5):
+                            managers_offline = False
+                    
+                    if managers_offline:
+                        cur.execute(
+                            "SELECT message, sender_type, sender_name "
+                            "FROM chat_messages WHERE session_id = %s "
+                            "ORDER BY created_at DESC LIMIT 8",
+                            (session_id,)
+                        )
+                        
+                        history = cur.fetchall()
+                        context = ""
+                        for msg, s_type, s_name in reversed(history):
+                            role = "Клиент" if s_type == "user" else "Менеджер"
+                            context += f"{role}: {msg}\n"
+                        
+                        system_prompt = """Ты - ИИ помощник туристического агентства "Горящие Туры".
+Мы продаем туры в: Турцию, ОАЭ, Таиланд, Египет, Мальдивы, Вьетнам, Шри-Ланку, Индонезию, Марокко, Грецию, Испанию.
+Цены: 35,000₽ - 210,000₽. Все отели 5*.
+
+Правила:
+1. Отвечай КРАТКО (1-2 предложения)
+2. Если не знаешь точно - скажи что менеджер уточнит
+3. Предлагай оставить контакты
+4. НЕ называй конкретные даты и цены
+5. Используй 1 эмодзи на сообщение
+
+Ответь на последнее сообщение."""
+                        
+                        grok_key = os.environ.get('GSK_WJYJQNVWKDCFU5GXZDRLWGDYB3FYSSQ2ZUGWIXSIGXY8WSZ8NVJP')
+                        
+                        try:
+                            resp = requests.post(
+                                'https://api.groq.com/openai/v1/chat/completions',
+                                headers={'Authorization': f'Bearer {grok_key}', 'Content-Type': 'application/json'},
+                                json={
+                                    'model': 'mixtral-8x7b-32768',
+                                    'messages': [
+                                        {'role': 'system', 'content': system_prompt},
+                                        {'role': 'user', 'content': f"{context}\nОтветь кратко:"}
+                                    ],
+                                    'temperature': 0.7,
+                                    'max_tokens': 150
+                                },
+                                timeout=8
+                            )
+                            
+                            ai_message = resp.json()['choices'][0]['message']['content'].strip()
+                            
+                            cur.execute(
+                                "INSERT INTO chat_messages (session_id, sender_type, sender_name, message) "
+                                "VALUES (%s, %s, %s, %s)",
+                                (session_id, 'manager', '🤖 ИИ Помощник', ai_message)
+                            )
+                            
+                            conn.commit()
+                        except:
+                            pass
+                
+                response_data = {
+                    'success': True,
+                    'message_id': message_id,
+                    'created_at': str(created_at)
+                }
+                
+                if ai_message:
+                    response_data['ai_responded'] = True
+                    response_data['ai_message'] = ai_message
+                
                 return {
                     'statusCode': 201,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                    'body': json.dumps({
-                        'success': True,
-                        'message_id': message_id,
-                        'created_at': str(created_at)
-                    })
+                    'body': json.dumps(response_data)
                 }
         
         elif method == 'GET':
