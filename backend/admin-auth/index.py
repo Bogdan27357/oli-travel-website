@@ -1,5 +1,5 @@
 '''
-Business: Admin authentication with JWT tokens
+Business: Admin authentication with JWT tokens for OliTravel
 Args: event with httpMethod, body (password, action); context with request_id
 Returns: HTTP response with JWT token on success
 '''
