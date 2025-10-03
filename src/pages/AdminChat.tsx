@@ -92,6 +92,7 @@ export default function AdminChat() {
       
       if (data.success && data.messages) {
         setMessages(data.messages);
+        localStorage.setItem('manager_last_seen', Date.now().toString());
       }
     } catch (error) {
       console.error('Error loading messages:', error);
@@ -154,6 +155,7 @@ export default function AdminChat() {
   const saveManagerName = () => {
     if (managerName.trim()) {
       localStorage.setItem('manager_name', managerName.trim());
+      localStorage.setItem('manager_last_seen', Date.now().toString());
       toast({
         title: '✅ Имя сохранено',
         description: 'Вы можете начать отвечать клиентам'
