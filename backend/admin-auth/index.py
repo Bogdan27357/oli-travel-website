@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
-    Business: Авторизация менеджеров с JWT токенами
+    Business: Безопасная авторизация админов и менеджеров с JWT токенами
     Args: event dict с httpMethod и body, context object с request_id
     Returns: HTTP response dict с токеном или ошибкой
     '''
@@ -29,18 +29,26 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         password = body_data.get('password', '')
         action = body_data.get('action', 'login')
         
+        admin_password = os.environ.get('ADMIN_PASSWORD', '')
         manager_password = os.environ.get('MANAGER_PASSWORD', '')
         jwt_secret = os.environ.get('JWT_SECRET', '')
         
-        if not manager_password or not jwt_secret:
+        if not jwt_secret:
             return {
                 'statusCode': 500,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'body': json.dumps({'success': False, 'error': 'Пароль для менеджеров не установлен. Добавьте секрет MANAGER_PASSWORD в настройках проекта.'})
+                'body': json.dumps({'success': False, 'error': 'JWT_SECRET не настроен'})
             }
         
         if action == 'login':
-            if password != manager_password:
+            role = ''
+            
+            if password == admin_password:
+                role = 'admin'
+            elif password == manager_password:
+                role = 'manager'
+            
+            if not role:
                 return {
                     'statusCode': 401,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
@@ -48,7 +56,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             token = jwt.encode(
-                {'role': 'admin', 'timestamp': datetime.now().timestamp(), 'exp': datetime.now() + timedelta(hours=24)},
+                {'role': role, 'timestamp': datetime.now().timestamp(), 'exp': datetime.now() + timedelta(hours=24)},
                 jwt_secret,
                 algorithm='HS256'
             )
@@ -56,16 +64,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             return {
                 'statusCode': 200,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'body': json.dumps({'success': True, 'token': token, 'expiresIn': 86400})
+                'body': json.dumps({'success': True, 'token': token, 'role': role, 'expiresIn': 86400})
             }
         
         if action == 'verify':
+            token = body_data.get('token', password)
             try:
-                jwt.decode(password, jwt_secret, algorithms=['HS256'])
+                decoded = jwt.decode(token, jwt_secret, algorithms=['HS256'])
                 return {
                     'statusCode': 200,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                    'body': json.dumps({'success': True, 'valid': True})
+                    'body': json.dumps({'success': True, 'valid': True, 'role': decoded.get('role')})
                 }
             except:
                 return {

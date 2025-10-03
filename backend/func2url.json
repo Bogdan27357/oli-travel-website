@@ -1,7 +1,1 @@
-{
-  "chat-api": "https://functions.poehali.dev/bcc8f618-4702-4e8b-9aac-7ac6a7b988e6",
-  "send-contact": "https://functions.poehali.dev/dea48100-ddb2-4f0d-8e5f-770296090960",
-  "auth": "https://functions.poehali.dev/d070ee65-0be9-4e4a-93ce-7e8cc23830ef",
-  "admin-api": "https://functions.poehali.dev/2ebb973a-0dd8-4f3b-8168-e788b062dbef",
-  "admin-auth": "https://functions.poehali.dev/a5ac7b7d-d827-4215-869d-0bb5f5eb885f"
-}
+{}
