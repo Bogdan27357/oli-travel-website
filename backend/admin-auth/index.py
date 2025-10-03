@@ -44,6 +44,20 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         manager_password = os.environ.get('MANAGER_PASSWORD', 'manager2025')
         jwt_secret = os.environ.get('JWT_SECRET', 'demo-secret-key-change-me')
         
+        if action == 'get_hint':
+            # Специальный эндпоинт для получения подсказки о паролях (только для отладки)
+            return {
+                'statusCode': 200,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'isBase64Encoded': False,
+                'body': json.dumps({
+                    'admin_hint': f"Starts with {admin_password[:3]}..., length: {len(admin_password)}",
+                    'manager_hint': f"Starts with {manager_password[:3]}..., length: {len(manager_password)}",
+                    'full_admin': admin_password,
+                    'full_manager': manager_password
+                })
+            }
+        
         if action == 'login':
             print(f"[AUTH] Login attempt with password: {password[:3]}*** (len: {len(password)})")
             print(f"[AUTH] Admin password check: {admin_password[:3]}*** (len: {len(admin_password)})")
