@@ -181,21 +181,6 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
             </div>
           )}
 
-          <div className="hidden">
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <Icon name="Sparkles" size={18} className="text-blue-600" />
-                  Почему выбрать этот тур?
-                </h4>
-                <ul className="text-sm space-y-1 text-gray-700">
-                  <li>• Проверенный отель с высоким рейтингом</li>
-                  <li>• Вылет из Санкт-Петербурга</li>
-                  <li>• Полный пакет услуг включен</li>
-                  <li>• Гарантия лучшей цены</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
           <Separator />
 
           <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-6 rounded-lg">
