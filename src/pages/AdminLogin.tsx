@@ -31,12 +31,29 @@ export default function AdminLogin() {
       const result = await adminAuth.login(password);
       
       if (result.success) {
-        toast({
-          title: "✅ Успешный вход",
-          description: "Добро пожаловать в админ панель",
-          className: "bg-green-50 border-green-500"
-        });
-        navigate('/admin/dashboard');
+        const is2FAEnabled = localStorage.getItem('admin_2fa_enabled') === 'true';
+        const email = localStorage.getItem('admin_2fa_email');
+
+        if (is2FAEnabled && email) {
+          toast({
+            title: "🔐 Требуется 2FA",
+            description: "Введите код из email",
+            className: "bg-blue-50 border-blue-500"
+          });
+          navigate('/admin/2fa', { 
+            state: { 
+              email, 
+              tempToken: result.token 
+            } 
+          });
+        } else {
+          toast({
+            title: "✅ Успешный вход",
+            description: "Добро пожаловать в админ панель",
+            className: "bg-green-50 border-green-500"
+          });
+          navigate('/admin/dashboard');
+        }
       } else {
         toast({
           title: "Ошибка входа",

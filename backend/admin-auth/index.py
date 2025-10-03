@@ -1,8 +1,13 @@
 import json
 import os
+import random
+import string
 from typing import Dict, Any
 import jwt
 from datetime import datetime, timedelta
+
+# Временное хранилище кодов 2FA (в production использовать Redis)
+_2fa_codes = {}
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
@@ -88,6 +93,69 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'isBase64Encoded': False,
                     'body': json.dumps({'success': False, 'valid': False})
                 }
+        
+        if action == 'generate_2fa_code':
+            email = body_data.get('email', '')
+            if not email:
+                return {
+                    'statusCode': 400,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Email required'})
+                }
+            
+            code = ''.join(random.choices(string.digits, k=6))
+            _2fa_codes[email] = {'code': code, 'expires': datetime.now() + timedelta(minutes=10)}
+            
+            return {
+                'statusCode': 200,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'isBase64Encoded': False,
+                'body': json.dumps({
+                    'success': True, 
+                    'message': 'Code sent',
+                    'code': code  # В production отправлять на email, не возвращать в ответе
+                })
+            }
+        
+        if action == 'verify_2fa_code':
+            email = body_data.get('email', '')
+            code = body_data.get('code', '')
+            
+            if email not in _2fa_codes:
+                return {
+                    'statusCode': 401,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Invalid or expired code'})
+                }
+            
+            stored = _2fa_codes[email]
+            
+            if datetime.now() > stored['expires']:
+                del _2fa_codes[email]
+                return {
+                    'statusCode': 401,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Code expired'})
+                }
+            
+            if stored['code'] != code:
+                return {
+                    'statusCode': 401,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Invalid code'})
+                }
+            
+            del _2fa_codes[email]
+            return {
+                'statusCode': 200,
+                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'isBase64Encoded': False,
+                'body': json.dumps({'success': True, 'message': 'Code verified'})
+            }
     
     return {
         'statusCode': 405,

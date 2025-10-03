@@ -39,7 +39,8 @@ export default function AdminLayout() {
     { path: '/admin/dashboard', label: 'Главная', icon: 'LayoutDashboard' },
     { path: '/admin/submissions', label: 'Заявки', icon: 'Mail' },
     { path: '/admin/tours', label: 'Туры', icon: 'Plane' },
-    { path: '/admin/reviews', label: 'Отзывы', icon: 'Star' }
+    { path: '/admin/reviews', label: 'Отзывы', icon: 'Star' },
+    { path: '/admin/settings', label: 'Безопасность', icon: 'Settings' }
   ];
 
   return (
