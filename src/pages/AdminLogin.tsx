@@ -66,6 +66,22 @@ export default function AdminLogin() {
           <CardDescription>Введите пароль для доступа</CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <Icon name="Info" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+              <div className="text-sm">
+                <p className="font-semibold text-blue-900 mb-2">Демо-пароли</p>
+                <ul className="text-xs text-blue-700 space-y-1">
+                  <li>👤 <strong>Администратор:</strong> <code className="bg-blue-100 px-2 py-0.5 rounded font-mono">admin2025</code></li>
+                  <li>👔 <strong>Менеджер:</strong> <code className="bg-blue-100 px-2 py-0.5 rounded font-mono">manager2025</code></li>
+                </ul>
+                <p className="text-xs text-blue-600 mt-2">
+                  💡 Для безопасности смените пароли в секретах проекта
+                </p>
+              </div>
+            </div>
+          </div>
+          
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">Пароль</label>

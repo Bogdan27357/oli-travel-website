@@ -17,11 +17,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token',
                 'Access-Control-Max-Age': '86400'
             },
-            'body': ''
+            'body': '',
+            'isBase64Encoded': False
         }
     
     if method == 'POST':
@@ -29,15 +30,16 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         password = body_data.get('password', '')
         action = body_data.get('action', 'login')
         
-        admin_password = os.environ.get('ADMIN_PASSWORD', '')
-        manager_password = os.environ.get('MANAGER_PASSWORD', '')
-        jwt_secret = os.environ.get('JWT_SECRET', '')
+        admin_password = os.environ.get('ADMIN_PASSWORD', 'admin2025')
+        manager_password = os.environ.get('MANAGER_PASSWORD', 'manager2025')
+        jwt_secret = os.environ.get('JWT_SECRET', 'demo-secret-key-change-me')
         
-        if not jwt_secret:
+        if not admin_password or not manager_password:
             return {
                 'statusCode': 500,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'body': json.dumps({'success': False, 'error': 'JWT_SECRET не настроен'})
+                'isBase64Encoded': False,
+                'body': json.dumps({'success': False, 'error': 'Пароли не настроены. Добавьте ADMIN_PASSWORD и MANAGER_PASSWORD в секреты'})
             }
         
         if action == 'login':
@@ -52,6 +54,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 return {
                     'statusCode': 401,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
                     'body': json.dumps({'success': False, 'error': 'Неверный пароль'})
                 }
             
@@ -64,6 +67,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             return {
                 'statusCode': 200,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                'isBase64Encoded': False,
                 'body': json.dumps({'success': True, 'token': token, 'role': role, 'expiresIn': 86400})
             }
         
@@ -74,17 +78,20 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 return {
                     'statusCode': 200,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
                     'body': json.dumps({'success': True, 'valid': True, 'role': decoded.get('role')})
                 }
             except:
                 return {
                     'statusCode': 401,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
                     'body': json.dumps({'success': False, 'valid': False})
                 }
     
     return {
         'statusCode': 405,
         'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+        'isBase64Encoded': False,
         'body': json.dumps({'error': 'Method not allowed'})
     }
