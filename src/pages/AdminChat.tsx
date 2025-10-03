@@ -36,6 +36,8 @@ export default function AdminChat() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const previousMessageCountRef = useRef<Record<string, number>>({});
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -45,12 +47,37 @@ export default function AdminChat() {
     scrollToBottom();
   }, [messages]);
 
+  const playNotificationSound = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZSA0PVqzn7q1aFApCmN/yvGYdBzWN0vLSfCwGKHnJ8NuOPwoUYLPp66lUFApFnuHyvGgcBzKJ0/PNfy0FKnrK8N6OPgwVYLPp66hTFAo/');
+    }
+    audioRef.current.play().catch(err => console.log('Sound play failed:', err));
+  };
+
   const loadSessions = async () => {
     try {
       const response = await fetch(`${CHAT_API_URL}?action=get_all_sessions`);
       const data = await response.json();
       
       if (data.success && data.sessions) {
+        // Проверяем новые сообщения
+        data.sessions.forEach((session: Session) => {
+          const prevCount = previousMessageCountRef.current[session.session_id] || 0;
+          const newCount = session.message_count;
+          
+          if (prevCount > 0 && newCount > prevCount) {
+            // Новое сообщение!
+            playNotificationSound();
+            toast({
+              title: '💬 Новое сообщение',
+              description: `От ${session.user_name}`,
+              duration: 3000,
+            });
+          }
+          
+          previousMessageCountRef.current[session.session_id] = newCount;
+        });
+        
         setSessions(data.sessions);
       }
     } catch (error) {
