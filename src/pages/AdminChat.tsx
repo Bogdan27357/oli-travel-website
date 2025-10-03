@@ -34,7 +34,10 @@ export default function AdminChat() {
   const [message, setMessage] = useState('');
   const [managerName, setManagerName] = useState(localStorage.getItem('manager_name') || '');
   const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const saved = localStorage.getItem('manager_auth_token');
+    return !!saved;
+  });
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -172,6 +175,7 @@ export default function AdminChat() {
       
       if (data.success) {
         setIsAuthenticated(true);
+        localStorage.setItem('manager_auth_token', data.token);
         toast({
           title: '✅ Доступ разрешен',
           description: 'Добро пожаловать в чат менеджера'
@@ -312,7 +316,9 @@ export default function AdminChat() {
             variant="outline"
             onClick={() => {
               localStorage.removeItem('manager_name');
+              localStorage.removeItem('manager_auth_token');
               setManagerName('');
+              setIsAuthenticated(false);
             }}
           >
             <Icon name="LogOut" size={16} className="mr-2" />
