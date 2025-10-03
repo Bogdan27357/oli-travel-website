@@ -39,6 +39,16 @@ const slides = [
   }
 ];
 
+const getYouTubeEmbedUrl = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*!/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1` : null;
+};
+
+const isYouTubeUrl = (url: string) => {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+};
+
 export default function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -139,7 +149,7 @@ export default function HeroSection() {
           <div className="mb-8 relative group">
             {customVideoUrl ? (
               <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-                {musicUrl && (
+                {musicUrl && !isYouTubeUrl(customVideoUrl) && (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -154,20 +164,29 @@ export default function HeroSection() {
                     />
                   </button>
                 )}
-                <video 
-                  className="w-full max-h-[500px] object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  onError={(e) => {
-                    console.error('Video load error:', customVideoUrl);
-                    setCustomVideoUrl('');
-                  }}
-                >
-                  <source src={customVideoUrl} type="video/mp4" />
-                  Ваш браузер не поддерживает видео
-                </video>
+                {isYouTubeUrl(customVideoUrl) ? (
+                  <iframe
+                    className="w-full aspect-video max-h-[500px]"
+                    src={getYouTubeEmbedUrl(customVideoUrl) || ''}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video 
+                    className="w-full max-h-[500px] object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onError={(e) => {
+                      console.error('Video load error:', customVideoUrl);
+                      setCustomVideoUrl('');
+                    }}
+                  >
+                    <source src={customVideoUrl} type="video/mp4" />
+                    Ваш браузер не поддерживает видео
+                  </video>
+                )}
               </div>
             ) : (
               <div className="cursor-pointer" onClick={() => setShowVideo(true)}>

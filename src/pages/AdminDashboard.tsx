@@ -162,21 +162,20 @@ export default function AdminDashboard() {
                 value={videoUrl}
                 onChange={(e) => setVideoUrl(e.target.value)}
               />
-              <div className="mt-2 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                <p className="text-xs text-amber-800 mb-2 font-semibold">⚠️ Важно:</p>
-                <ul className="text-xs text-amber-700 space-y-1">
-                  <li>✅ Ссылка должна заканчиваться на .mp4</li>
-                  <li>✅ Только прямая ссылка на файл</li>
-                  <li>❌ НЕ работает: YouTube, VK, Google Drive</li>
-                  <li>💡 Работает: Яндекс.Диск, Telegram, прямая ссылка</li>
+              <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-xs text-green-800 mb-2 font-semibold">✅ Поддерживаемые форматы:</p>
+                <ul className="text-xs text-green-700 space-y-1">
+                  <li>🎬 YouTube (просто вставьте ссылку)</li>
+                  <li>📹 Прямая ссылка на .mp4 файл</li>
+                  <li>📱 Telegram (скопируйте ссылку на видео)</li>
                 </ul>
               </div>
               <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-800 mb-2 font-semibold">📹 Как загрузить видео:</p>
-                <ol className="text-xs text-blue-700 space-y-1 list-decimal list-inside">
-                  <li>Загрузите на Яндекс.Диск и получите прямую ссылку</li>
-                  <li>Или загрузите в Telegram и скопируйте ссылку</li>
-                  <li>Вставьте ссылку в поле выше</li>
+                <p className="text-xs text-blue-800 mb-2 font-semibold">📹 Как загрузить:</p>
+                <ol className="text-xs text-blue-700 space-y-1">
+                  <li><strong>Вариант 1 (YouTube):</strong> Загрузите на YouTube → скопируйте ссылку</li>
+                  <li><strong>Вариант 2 (Telegram):</strong> Загрузите в чат → web.telegram.org → скопируйте ссылку</li>
+                  <li><strong>Вариант 3:</strong> Используйте прямую ссылку на MP4</li>
                 </ol>
               </div>
               {videoUrl && (
