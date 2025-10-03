@@ -16,9 +16,9 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
           <nav className="hidden lg:flex items-center gap-2">
             {[
               { id: 'home', label: 'Главная' },
-              { id: 'tours', label: 'Туры' },
+              { id: 'tours', label: 'Заграница' },
+              { id: 'russia', label: 'Россия' },
               { id: 'hotels', label: 'Отели' },
-              { id: 'countries', label: 'Направления' },
               { id: 'reviews', label: 'Отзывы' },
               { id: 'contacts', label: 'Контакты' }
             ].map((item, idx) => (

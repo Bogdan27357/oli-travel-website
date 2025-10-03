@@ -144,7 +144,7 @@ export default function HeroSection() {
             </p>
             
             <p className="text-base md:text-lg text-white/90 mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Прямые рейсы • Рассрочка 0% • Гарантия лучшей цены
+              Гарантия лучшей цены • Официальный турагент
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>

@@ -5,6 +5,7 @@ import BenefitsSection from '@/components/BenefitsSection';
 import HotDealsSection from '@/components/HotDealsSection';
 import TourFinderForm from '@/components/TourFinderForm';
 import ToursSection from '@/components/ToursSection';
+import RussiaToursSection from '@/components/RussiaToursSection';
 import CountriesSection from '@/components/CountriesSection';
 import HotelsSection from '@/components/HotelsSection';
 import StatsSection from '@/components/StatsSection';
@@ -38,10 +39,11 @@ const Index = () => {
         <HotDealsSection />
         <TourFinderForm />
         <ToursSection />
+        <RussiaToursSection />
         <HotelsSection />
         <CountriesSection />
-        <StatsSection />
         <ReviewsSection />
+        <StatsSection />
         <AboutSection />
         <ContactForm />
         <Newsletter />
