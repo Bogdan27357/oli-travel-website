@@ -63,49 +63,78 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-r from-primary to-secondary">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <div className="mb-6">
-            <Icon name="Mail" size={48} className="mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
-              Подпишитесь на горящие туры
+    <section className="py-20 bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 relative overflow-hidden">
+      {/* Анимированный фон */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-yellow-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          {/* Заголовок с колокольчиком */}
+          <div className="text-center text-white mb-8">
+            <div className="inline-flex items-center gap-3 mb-4 animate-bounce">
+              <Icon name="Bell" size={56} className="drop-shadow-lg" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+              🔔 Подпишитесь на рассылку горящих туров
             </h2>
-            <p className="text-lg opacity-90">
-              Получайте лучшие предложения и скидки до 50% первыми
+            <p className="text-xl md:text-2xl font-medium opacity-95">
+              Получайте эксклюзивные предложения и скидки до 50% на email
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Ваш email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="h-12 bg-white text-gray-900 flex-1"
-              disabled={isSubmitting}
-            />
+          {/* Форма подписки */}
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
+            <div className="flex-1">
+              <Input
+                type="email"
+                placeholder="Введите ваш email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-14 bg-white text-gray-900 text-lg px-6 border-2 border-white shadow-2xl focus:ring-4 focus:ring-white/30"
+                disabled={isSubmitting}
+                required
+              />
+            </div>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="h-12 px-8 bg-white text-primary hover:bg-gray-100 font-semibold"
+              className="h-14 px-10 bg-white text-red-600 hover:bg-gray-50 font-bold text-lg shadow-2xl hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-white"
             >
               {isSubmitting ? (
                 <>
-                  <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                  <Icon name="Loader2" size={24} className="mr-2 animate-spin" />
                   Подписываем...
                 </>
               ) : (
-                <>
-                  <Icon name="Send" size={20} className="mr-2" />
-                  Подписаться
-                </>
+                'Подписаться'
               )}
             </Button>
           </form>
 
-          <p className="text-sm opacity-75 mt-4">
-            Никакого спама. Только выгодные предложения. Отписаться можно в любой момент.
+          {/* Преимущества подписки */}
+          <div className="grid md:grid-cols-3 gap-4 text-white text-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <Icon name="Zap" size={32} className="mx-auto mb-2" />
+              <p className="font-semibold">Первыми узнавайте</p>
+              <p className="text-sm opacity-90">о горящих турах</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <Icon name="Percent" size={32} className="mx-auto mb-2" />
+              <p className="font-semibold">Скидки до 50%</p>
+              <p className="text-sm opacity-90">только для подписчиков</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <Icon name="Shield" size={32} className="mx-auto mb-2" />
+              <p className="font-semibold">Никакого спама</p>
+              <p className="text-sm opacity-90">отписаться в 1 клик</p>
+            </div>
+          </div>
+
+          <p className="text-center text-white/80 text-sm mt-6">
+            🔒 Ваши данные защищены. Мы не передаем их третьим лицам.
           </p>
         </div>
       </div>
