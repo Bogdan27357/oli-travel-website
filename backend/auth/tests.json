@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Test successful login",
+      "method": "POST",
+      "body": {
+        "email": "bogdan273@yandex.ru",
+        "password": "admin123"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "token": "string",
+        "user": {
+          "email": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test invalid credentials",
+      "method": "POST",
+      "body": {
+        "email": "wrong@example.com",
+        "password": "wrongpass"
+      },
+      "expectedStatus": 401,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Should handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Should reject request without admin token",
+      "method": "GET",
+      "path": "/?resource=tours",
+      "expectedStatus": 401,
+      "expectedBody": {
+        "success": false
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

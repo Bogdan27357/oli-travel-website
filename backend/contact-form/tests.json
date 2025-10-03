@@ -1,0 +1,41 @@
+{
+  "tests": [
+    {
+      "name": "Should handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Should reject empty form",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "",
+        "email": "",
+        "message": ""
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "success": false
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Should accept valid submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Test User",
+        "email": "test@example.com",
+        "phone": "+7 900 123 45 67",
+        "message": "Test message"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
