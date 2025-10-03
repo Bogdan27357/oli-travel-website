@@ -40,9 +40,12 @@ const slides = [
 ];
 
 const getYouTubeEmbedUrl = (url: string) => {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|&v=)([^#&?]*).*!/;
+  const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
-  return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1` : null;
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1&controls=1`;
+  }
+  return null;
 };
 
 const isYouTubeUrl = (url: string) => {
@@ -144,16 +147,17 @@ export default function HeroSection() {
           
           {/* Video or Slideshow */}
           <div className="mb-6 md:mb-8 relative group">
-            {videoUrl ? (
-              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-                {isYouTubeUrl(videoUrl) ? (
-                  <iframe
-                    className="w-full aspect-video max-h-[300px] md:max-h-[500px]"
-                    src={getYouTubeEmbedUrl(videoUrl) || ''}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
+            {videoUrl && isYouTubeUrl(videoUrl) && getYouTubeEmbedUrl(videoUrl) ? (
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto bg-black">
+                <iframe
+                  className="w-full aspect-video min-h-[300px] md:min-h-[400px]"
+                  src={getYouTubeEmbedUrl(videoUrl)}
+                  title="YouTube video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : videoUrl ? (
                   <video 
                     className="w-full max-h-[500px] object-cover"
                     autoPlay
