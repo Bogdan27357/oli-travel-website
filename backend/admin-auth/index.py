@@ -169,29 +169,49 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         
         if action == 'change_password':
-            token = body_data.get('token', '')
+            current_password = body_data.get('current_password', '')
             new_password = body_data.get('new_password', '')
-            role_to_change = body_data.get('role', 'admin')
             
-            if not token or not new_password:
+            # Получаем токен из заголовка X-Auth-Token
+            headers = event.get('headers', {})
+            token = headers.get('X-Auth-Token', '')
+            
+            print(f"[AUTH] Change password request")
+            print(f"[AUTH] Current password: {current_password[:3]}*** (len: {len(current_password)})")
+            print(f"[AUTH] New password: {new_password[:3]}*** (len: {len(new_password)})")
+            print(f"[AUTH] Token: {token[:20] if token else 'missing'}...")
+            
+            if not current_password or not new_password or not token:
                 return {
                     'statusCode': 400,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                     'isBase64Encoded': False,
-                    'body': json.dumps({'success': False, 'error': 'Token and new password required'})
+                    'body': json.dumps({'success': False, 'error': 'Заполните все поля'})
                 }
             
+            # Проверяем текущий пароль
+            if current_password != admin_password and current_password != manager_password:
+                print(f"[AUTH] ❌ Current password incorrect")
+                return {
+                    'statusCode': 401,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Неверный текущий пароль'})
+                }
+            
+            # Проверяем токен
             try:
                 decoded = jwt.decode(token, jwt_secret, algorithms=['HS256'])
                 user_role = decoded.get('role')
+                print(f"[AUTH] Token valid, role: {user_role}")
                 
-                if user_role != 'admin':
-                    return {
-                        'statusCode': 403,
-                        'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                        'isBase64Encoded': False,
-                        'body': json.dumps({'success': False, 'error': 'Only admin can change passwords'})
-                    }
+                # Определяем какой пароль меняем
+                if current_password == admin_password:
+                    role_to_change = 'admin'
+                else:
+                    role_to_change = 'manager'
+                
+                print(f"[AUTH] ✅ Password change allowed for {role_to_change}")
                 
                 return {
                     'statusCode': 200,
@@ -199,16 +219,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'isBase64Encoded': False,
                     'body': json.dumps({
                         'success': True, 
-                        'message': f'Password for {role_to_change} would be updated. Update the {role_to_change.upper()}_PASSWORD secret in project settings.',
-                        'note': 'Passwords are stored as project secrets. Update them in poehali.dev secrets panel.'
+                        'message': f'Для полной смены пароля обновите секрет {role_to_change.upper()}_PASSWORD в настройках проекта poehali.dev на значение: {new_password}',
+                        'note': f'Пароли хранятся в секретах проекта. Откройте настройки → Секреты → {role_to_change.upper()}_PASSWORD и установите новое значение.'
                     })
                 }
-            except:
+            except Exception as e:
+                print(f"[AUTH] ❌ Token invalid: {str(e)}")
                 return {
                     'statusCode': 401,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                     'isBase64Encoded': False,
-                    'body': json.dumps({'success': False, 'error': 'Invalid token'})
+                    'body': json.dumps({'success': False, 'error': 'Недействительный токен'})
                 }
     
     return {
