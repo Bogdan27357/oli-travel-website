@@ -16,6 +16,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
   const [musicUrl, setMusicUrl] = useState(localStorage.getItem('hero_music_url') || '');
+  const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -215,31 +216,57 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base md:text-lg">
-              <Icon name="Music" size={20} className="text-primary md:w-6 md:h-6" />
-              Фоновая музыка
+              <Icon name="Layout" size={20} className="text-primary md:w-6 md:h-6" />
+              Положение текста
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 md:space-y-4">
             <div>
               <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
-                URL музыки (MP3)
+                Выберите расположение
               </label>
-              <Input
-                type="url"
-                placeholder="https://..."
-                value={musicUrl}
-                onChange={(e) => setMusicUrl(e.target.value)}
-                className="text-sm"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Только для слайдшоу
-              </p>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  onClick={() => setHeroPosition('top')}
+                  className={`p-3 rounded-lg border-2 transition-all ${
+                    heroPosition === 'top' 
+                      ? 'border-primary bg-primary/10' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <Icon name="ArrowUp" size={20} className="mx-auto mb-1" />
+                  <div className="text-xs font-medium">Верх</div>
+                </button>
+                <button
+                  onClick={() => setHeroPosition('center')}
+                  className={`p-3 rounded-lg border-2 transition-all ${
+                    heroPosition === 'center' 
+                      ? 'border-primary bg-primary/10' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <Icon name="Minus" size={20} className="mx-auto mb-1" />
+                  <div className="text-xs font-medium">Центр</div>
+                </button>
+                <button
+                  onClick={() => setHeroPosition('bottom')}
+                  className={`p-3 rounded-lg border-2 transition-all ${
+                    heroPosition === 'bottom' 
+                      ? 'border-primary bg-primary/10' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <Icon name="ArrowDown" size={20} className="mx-auto mb-1" />
+                  <div className="text-xs font-medium">Низ</div>
+                </button>
+              </div>
             </div>
             <Button
               onClick={() => {
-                localStorage.setItem('hero_music_url', musicUrl);
+                localStorage.setItem('hero_position', heroPosition);
                 toast({
-                  title: '✅ Музыка сохранена'
+                  title: '✅ Положение сохранено',
+                  description: 'Обновите главную страницу'
                 });
               }}
               className="w-full text-sm"
@@ -247,22 +274,6 @@ export default function AdminDashboard() {
               <Icon name="Save" size={14} className="mr-2" />
               Сохранить
             </Button>
-            {musicUrl && (
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setMusicUrl('');
-                  localStorage.removeItem('hero_music_url');
-                  toast({
-                    title: '🗑️ Удалено'
-                  });
-                }}
-                className="w-full text-sm"
-              >
-                <Icon name="Trash2" size={14} className="mr-2" />
-                Удалить
-              </Button>
-            )}
           </CardContent>
         </Card>
 

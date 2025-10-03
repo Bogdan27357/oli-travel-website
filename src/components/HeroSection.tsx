@@ -41,6 +41,7 @@ const slides = [
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,8 +50,34 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newPosition = localStorage.getItem('hero_position') || 'center';
+      setHeroPosition(newPosition);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    const interval = setInterval(() => {
+      const currentPosition = localStorage.getItem('hero_position') || 'center';
+      if (currentPosition !== heroPosition) {
+        setHeroPosition(currentPosition);
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [heroPosition]);
+
+  const positionClasses = {
+    top: 'justify-start pt-20 md:pt-32',
+    center: 'justify-center',
+    bottom: 'justify-end pb-20 md:pb-32'
+  };
+
   return (
-    <section id="home" className="relative overflow-hidden min-h-screen flex items-center py-20">
+    <section id="home" className={`relative overflow-hidden min-h-screen flex flex-col ${positionClasses[heroPosition as keyof typeof positionClasses]}`}>
       {/* Background Slideshow */}
       <div className="absolute inset-0 w-full h-full">
         {slides.map((slide, index) => (
@@ -78,45 +105,45 @@ export default function HeroSection() {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <div className="mb-8">
-            <div className="inline-block mb-4 px-6 py-2 bg-white/95 backdrop-blur-md rounded-full shadow-2xl">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 animate-fade-in-down">
+            <div className="inline-block mb-4 px-6 py-2 bg-white/95 backdrop-blur-md rounded-full shadow-2xl animate-bounce-slow">
               <span className="text-sm font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                🌍 Более 70 направлений по всему миру
+                ✨ Более 70 направлений по всему миру
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight">
-              <span className="text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+            <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight animate-scale-in">
+              <span className="text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text">
                 OliTravel
               </span>
             </h1>
-            <div className="h-1 w-48 mx-auto bg-gradient-to-r from-primary via-yellow-500 to-secondary rounded-full shadow-lg"></div>
+            <div className="h-1 w-48 mx-auto bg-gradient-to-r from-primary via-yellow-500 to-secondary rounded-full shadow-lg animate-pulse"></div>
           </div>
           
-          <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 md:p-8 mb-8 shadow-2xl">
-            <p className="text-2xl md:text-3xl text-white mb-4 font-bold">
-              Откройте мир вместе с нами
+          <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 md:p-8 mb-8 shadow-2xl animate-fade-in-up">
+            <p className="text-2xl md:text-4xl text-white mb-4 font-bold animate-slide-in-right">
+              Ваше путешествие мечты начинается здесь! 🌴
             </p>
             
-            <p className="text-lg md:text-xl text-white/95 mb-2 font-medium">
-              Туры из Санкт-Петербурга по лучшим ценам
+            <p className="text-lg md:text-xl text-white/95 mb-2 font-medium animate-slide-in-left" style={{ animationDelay: '0.1s' }}>
+              Лучшие туры из Санкт-Петербурга
             </p>
             
-            <p className="text-base md:text-lg text-white/90 mb-6">
-              Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
+            <p className="text-base md:text-lg text-white/90 mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              Прямые рейсы • Рассрочка 0% • Гарантия лучшей цены
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <Button 
                 size="lg" 
                 onClick={() => document.getElementById('tours')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-to-r from-primary to-yellow-500 hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg px-8 py-6 font-semibold"
+                className="bg-gradient-to-r from-primary to-yellow-500 hover:shadow-2xl transition-all duration-300 hover:scale-110 hover:rotate-1 text-lg px-8 py-6 font-semibold animate-pulse-slow"
               >
                 <Icon name="Search" className="mr-2" size={20} />
                 Подобрать тур
               </Button>
               <a href="tel:+79819812990">
-                <Button size="lg" className="bg-white hover:bg-white/90 text-primary border-2 border-white transition-all duration-300 hover:scale-105 text-lg px-8 py-6 font-semibold">
+                <Button size="lg" className="bg-white hover:bg-white/90 text-primary border-2 border-white transition-all duration-300 hover:scale-110 hover:-rotate-1 text-lg px-8 py-6 font-semibold">
                   <Icon name="Phone" className="mr-2" size={20} />
                   Позвонить
                 </Button>
@@ -125,16 +152,16 @@ export default function HeroSection() {
           </div>
           
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-sm">
-            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-sm animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:bg-white/35 transition-all">
               <Icon name="Shield" size={16} className="text-green-300" />
               <span className="text-white font-semibold">Надёжная компания</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:bg-white/35 transition-all">
               <Icon name="Star" size={16} className="text-yellow-300" />
               <span className="text-white font-semibold">2000+ отзывов</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+            <div className="flex items-center gap-2 bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:bg-white/35 transition-all">
               <Icon name="Award" size={16} className="text-blue-300" />
               <span className="text-white font-semibold">15 лет опыта</span>
             </div>
