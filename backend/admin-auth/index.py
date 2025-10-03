@@ -59,6 +59,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         
         if action == 'login':
+            print(f"[AUTH] ========================================")
+            print(f"[AUTH] 🔑 ПОЛНЫЕ ПАРОЛИ ДЛЯ ВХОДА:")
+            print(f"[AUTH] 👤 Admin password: {admin_password}")
+            print(f"[AUTH] 👔 Manager password: {manager_password}")
+            print(f"[AUTH] ========================================")
             print(f"[AUTH] Login attempt with password: {password[:3]}*** (len: {len(password)})")
             print(f"[AUTH] Admin password check: {admin_password[:3]}*** (len: {len(admin_password)})")
             print(f"[AUTH] Manager password check: {manager_password[:3]}*** (len: {len(manager_password)})")
