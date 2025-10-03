@@ -42,6 +42,7 @@ export default function ToursSection() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('popularity');
   const [transferFilter, setTransferFilter] = useState<string>('all');
+  const [priceCategory, setPriceCategory] = useState<string>('all');
 
   const handleBooking = (tour: Tour) => {
     setSelectedTourForBooking({
@@ -96,7 +97,17 @@ export default function ToursSection() {
 
       const transferMatch = transferFilter === 'all' || tour.fromSpb === transferFilter;
       
-      return priceMatch && searchMatch && transferMatch;
+      // Price category filter
+      let categoryMatch = true;
+      if (priceCategory === 'budget') {
+        categoryMatch = tour.price < 60000;
+      } else if (priceCategory === 'medium') {
+        categoryMatch = tour.price >= 60000 && tour.price < 150000;
+      } else if (priceCategory === 'premium') {
+        categoryMatch = tour.price >= 150000;
+      }
+      
+      return priceMatch && searchMatch && transferMatch && categoryMatch;
     });
 
     // Apply sorting
@@ -262,6 +273,51 @@ export default function ToursSection() {
         </div>
 
         <div className="bg-white rounded-2xl p-4 shadow-lg mb-6">
+          <div className="mb-4">
+            <label className="block text-xs font-medium mb-2 text-gray-700">
+              <Icon name="DollarSign" size={14} className="inline mr-1" />
+              Ценовая категория
+            </label>
+            <div className="flex gap-2 flex-wrap">
+              <Button
+                variant={priceCategory === 'all' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setPriceCategory('all')}
+                className={priceCategory === 'all' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
+              >
+                <Icon name="Globe" size={14} className="mr-1.5" />
+                Все туры
+              </Button>
+              <Button
+                variant={priceCategory === 'budget' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setPriceCategory('budget')}
+                className={priceCategory === 'budget' ? 'bg-gradient-to-r from-green-500 to-green-600' : ''}
+              >
+                <Icon name="Wallet" size={14} className="mr-1.5" />
+                Бюджетные (до 60К)
+              </Button>
+              <Button
+                variant={priceCategory === 'medium' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setPriceCategory('medium')}
+                className={priceCategory === 'medium' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : ''}
+              >
+                <Icon name="TrendingUp" size={14} className="mr-1.5" />
+                Средние (60-150К)
+              </Button>
+              <Button
+                variant={priceCategory === 'premium' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setPriceCategory('premium')}
+                className={priceCategory === 'premium' ? 'bg-gradient-to-r from-purple-500 to-purple-600' : ''}
+              >
+                <Icon name="Crown" size={14} className="mr-1.5" />
+                Премиум (от 150К)
+              </Button>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="lg:col-span-2">
               <label className="block text-xs font-medium mb-1.5 text-gray-700">

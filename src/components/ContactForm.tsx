@@ -212,7 +212,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Telegram</h3>
-                    <a href="https://t.me/+79819812990" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">@travel_spb</a>
+                    <a href="https://t.me/Oli_Travel" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">@Oli_Travel</a>
                     <p className="text-sm text-gray-500 mt-1">Пишите в любое время</p>
                   </div>
                 </div>

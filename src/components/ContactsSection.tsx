@@ -58,7 +58,7 @@ export default function ContactsSection() {
           </a>
           
           <a 
-            href="https://t.me/+79819812990" 
+            href="https://t.me/Oli_Travel" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
@@ -68,7 +68,7 @@ export default function ContactsSection() {
                 <Icon name="Send" size={22} className="text-white" />
               </div>
               <p className="font-bold text-base mb-1">Telegram</p>
-              <p className="text-blue-600 text-sm font-medium">Написать</p>
+              <p className="text-blue-600 text-sm font-medium">@Oli_Travel</p>
             </div>
           </a>
         </div>
