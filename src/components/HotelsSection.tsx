@@ -23,6 +23,10 @@ const hotels = [
   { id: 56, name: 'Ela Quality Resort', location: 'Турция, Белек', rating: 5, price: 44500, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Семейный', 'SPA', 'Аквапарк'] },
   { id: 57, name: 'Nirvana Lagoon', location: 'Турция, Кемер', rating: 5, price: 47500, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Виллы', 'Лагуна', 'SPA'] },
   { id: 58, name: 'Crystal Sunset', location: 'Турция, Сиде', rating: 5, price: 42500, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Все включено', 'Пляж', 'Анимация'] },
+  { id: 137, name: 'Calista Luxury Resort', location: 'Турция, Белек', rating: 5, price: 54000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Ультра все включено', 'Аквапарк', 'SPA'] },
+  { id: 138, name: 'Spice Hotel Belek', location: 'Турция, Белек', rating: 5, price: 46500, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Пляж', 'Детский клуб'] },
+  { id: 139, name: 'Bellis Deluxe', location: 'Турция, Белек', rating: 5, price: 48500, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Роскошь', 'SPA', 'Гольф'] },
+  { id: 140, name: 'Xanadu Resort', location: 'Турция, Белек', rating: 5, price: 52500, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Аквапарк', 'Все включено', 'Анимация'] },
   
   // ОАЭ
   { id: 9, name: 'Atlantis The Palm', location: 'ОАЭ, Дубай', rating: 5, price: 85000, image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800', features: ['Аквапарк', 'Океанариум', 'Дельфинарий'] },
@@ -76,6 +80,9 @@ const hotels = [
   { id: 86, name: 'Stella Di Mare', location: 'Египет, Шарм-эль-Шейх', rating: 5, price: 40000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Гольф', 'SPA'] },
   { id: 87, name: 'Grand Rotana Resort', location: 'Египет, Шарм-эль-Шейх', rating: 5, price: 43000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Все включено', 'Пляж', 'Дайвинг'] },
   { id: 88, name: 'Hurghada Marriott', location: 'Египет, Хургада', rating: 5, price: 38500, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Пляж', 'Бассейн', 'Фитнес'] },
+  { id: 141, name: 'Pickalbatros Aqua Park', location: 'Египет, Хургада', rating: 5, price: 37500, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Аквапарк', 'Все включено', 'Семейный'] },
+  { id: 142, name: 'Coral Beach Hurghada', location: 'Египет, Хургада', rating: 5, price: 39500, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Коралловый риф', 'Дайвинг', 'SPA'] },
+  { id: 143, name: 'Amwaj Blue Beach', location: 'Египет, Сома Бей', rating: 5, price: 42500, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Все включено', 'Пляж', 'Кайтсерфинг'] },
   
   // Мальдивы
   { id: 26, name: 'Conrad Maldives', location: 'Мальдивы, Рангали', rating: 5, price: 180000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Водные виллы', 'Подводный ресторан', 'SPA'] },
@@ -92,6 +99,8 @@ const hotels = [
   { id: 95, name: 'Park Hyatt Hadahaa', location: 'Мальдивы, Гааф Алиф', rating: 5, price: 158000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Уединение', 'Виллы', 'Дайвинг'] },
   { id: 96, name: 'Vakkaru Maldives', location: 'Мальдивы, Баа Атолл', rating: 5, price: 188000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Роскошь', 'Водные виллы', 'SPA'] },
   { id: 97, name: 'SAii Lagoon Maldives', location: 'Мальдивы, Эмбуду Финолу', rating: 5, price: 125000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Близко к Мале', 'Модерн', 'Бассейны'] },
+  { id: 144, name: 'Heritance Aarah', location: 'Мальдивы, Раа Атолл', rating: 5, price: 172000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Роскошь', 'Подводная вилла', 'SPA'] },
+  { id: 145, name: 'Oblu Select Sangeli', location: 'Мальдивы, Северный Мале', rating: 5, price: 135000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Риф', 'Дайвинг'] },
   
   // Вьетнам
   { id: 31, name: 'Vinpearl Nha Trang', location: 'Вьетнам, Нячанг', rating: 5, price: 48000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Остров', 'Аквапарк', 'Канатная дорога'] },
@@ -137,35 +146,38 @@ const hotels = [
   { id: 120, name: 'Fairmont Taghazout', location: 'Марокко, Тагазут', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Серфинг', 'SPA', 'Океан'] },
   { id: 121, name: 'Mandarin Oriental Marrakech', location: 'Марокко, Марракеш', rating: 5, price: 105000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Виллы', 'SPA', 'Рестораны'] },
   
-  // Греция
-  { id: 43, name: 'Blue Palace Crete', location: 'Греция, Крит', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Эгейское море', 'Виллы', 'SPA'] },
-  { id: 44, name: 'Ikos Dassia', location: 'Греция, Корфу', rating: 5, price: 70000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Все включено', 'Michelin рестораны', 'Пляж'] },
-  { id: 45, name: 'Sani Resort', location: 'Греция, Халкидики', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Марина', 'Гольф', 'Детский клуб'] },
-  { id: 122, name: 'Santa Marina Mykonos', location: 'Греция, Миконос', rating: 5, price: 92000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Пляж', 'Роскошь', 'SPA'] },
-  { id: 123, name: 'Canaves Oia Santorini', location: 'Греция, Санторини', rating: 5, price: 105000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Кальдера', 'Infinity pool', 'Романтик'] },
-  { id: 124, name: 'Porto Zante Zakynthos', location: 'Греция, Закинтос', rating: 5, price: 118000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Виллы', 'Приватный пляж', 'Роскошь'] },
-  { id: 125, name: 'Domes Noruz Chania', location: 'Греция, Крит', rating: 5, price: 78000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Только взрослые', 'SPA', 'Пляж'] },
-  { id: 126, name: 'Amanzoe Porto Heli', location: 'Греция, Порто Хели', rating: 5, price: 135000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Павильоны', 'Beach club', 'SPA'] },
-  { id: 127, name: 'Eagles Palace Halkidiki', location: 'Греция, Халкидики', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Бунгало', 'Пляж', 'SPA'] },
+  // Китай
+  { id: 43, name: 'Mandarin Oriental Sanya', location: 'Китай, Санья', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Хайнань', 'Пляж', 'SPA'] },
+  { id: 44, name: 'Ritz-Carlton Sanya', location: 'Китай, Санья', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Яолун Бэй', 'Роскошь', 'Гольф'] },
+  { id: 45, name: 'Atlantis Sanya', location: 'Китай, Санья', rating: 5, price: 75000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Аквапарк', 'Океанариум', 'Семейный'] },
+  { id: 122, name: 'Banyan Tree Sanya', location: 'Китай, Санья', rating: 5, price: 78000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Виллы', 'SPA', 'Пляж'] },
+  { id: 123, name: 'Anantara Sanya', location: 'Китай, Санья', rating: 5, price: 70000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Роскошь', 'Тропический сад', 'SPA'] },
+  { id: 124, name: 'InterContinental Sanya', location: 'Китай, Санья', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Пляж', 'Бассейн', 'Детский клуб'] },
+  { id: 125, name: 'Pullman Sanya', location: 'Китай, Санья', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Хайтан Бэй', 'SPA', 'Фитнес'] },
+  { id: 126, name: 'Shangri-La Sanya', location: 'Китай, Санья', rating: 5, price: 82000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Виллы', 'Приватный пляж', 'Роскошь'] },
+  { id: 127, name: 'Hilton Sanya', location: 'Китай, Санья', rating: 5, price: 62000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Пляж', 'Бассейны', 'Семейный'] },
+  { id: 135, name: 'MGM Grand Sanya', location: 'Китай, Санья', rating: 5, price: 88000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Роскошь', 'Казино', 'SPA'] },
+  { id: 136, name: 'Park Hyatt Sanya', location: 'Китай, Санья', rating: 5, price: 95000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Модерн', 'Бассейн', 'SPA'] },
   
-  // Испания
-  { id: 46, name: 'Iberostar Grand Portals', location: 'Испания, Майорка', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Только взрослые', 'SPA', 'Яхт-клуб'] },
-  { id: 47, name: 'Gran Hotel Bahia del Duque', location: 'Испания, Тенерифе', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Роскошь', 'Тропические сады', 'SPA'] },
-  { id: 48, name: 'Puente Romano', location: 'Испания, Марбелья', rating: 5, price: 95000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Теннис', 'Пляжный клуб', 'Nobu'] },
-  { id: 128, name: 'W Barcelona', location: 'Испания, Барселона', rating: 5, price: 78000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Пляж', 'Модерн', 'Набережная'] },
-  { id: 129, name: 'Ritz-Carlton Abama', location: 'Испания, Тенерифе', rating: 5, price: 88000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Гольф', 'Виллы', 'SPA'] },
-  { id: 130, name: 'Marbella Club', location: 'Испания, Марбелья', rating: 5, price: 92000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Классика', 'Пляжный клуб', 'SPA'] },
-  { id: 131, name: 'Jumeirah Port Soller', location: 'Испания, Майорка', rating: 5, price: 82000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Горы и море', 'Infinity pool', 'SPA'] },
-  { id: 132, name: 'SHA Wellness Clinic', location: 'Испания, Аликанте', rating: 5, price: 105000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Велнес', 'Детокс', 'SPA'] },
-  { id: 133, name: 'Hotel Arts Barcelona', location: 'Испания, Барселона', rating: 5, price: 85000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Скульптура', 'Пляж', 'Michelin'] },
-  { id: 134, name: 'Royal Hideaway Corales', location: 'Испания, Тенерифе', rating: 5, price: 75000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Только взрослые', 'Infinity pool', 'Роскошь'] }
+  // Куба
+  { id: 46, name: 'Paradisus Varadero', location: 'Куба, Варадеро', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Все включено', 'Пляж', 'SPA'] },
+  { id: 47, name: 'Iberostar Selection Varadero', location: 'Куба, Варадеро', rating: 5, price: 52000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Все включено', 'Анимация', 'Детский клуб'] },
+  { id: 48, name: 'Melia Varadero', location: 'Куба, Варадеро', rating: 5, price: 55000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Центр Варадеро', 'Бассейн', 'SPA'] },
+  { id: 128, name: 'Royalton Hicacos', location: 'Куба, Варадеро', rating: 5, price: 62000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Только взрослые', 'Роскошь', 'Пляж'] },
+  { id: 129, name: 'Memories Varadero', location: 'Куба, Варадеро', rating: 5, price: 48000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Семейный', 'Все включено', 'Аквапарк'] },
+  { id: 130, name: 'Grand Memories Varadero', location: 'Куба, Варадеро', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Роскошь', 'Все включено', 'SPA'] },
+  { id: 131, name: 'Blau Varadero', location: 'Куба, Варадеро', rating: 5, price: 54000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Все включено', 'Пляж', 'Анимация'] },
+  { id: 132, name: 'Meliá Las Americas', location: 'Куба, Варадеро', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Гольф', 'Роскошь', 'SPA'] },
+  { id: 133, name: 'Iberostar Bella Vista', location: 'Куба, Варадеро', rating: 5, price: 60000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Только взрослые', 'Бассейн', 'SPA'] },
+  { id: 134, name: 'Ocean Varadero El Patriarca', location: 'Куба, Варадеро', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Премиум', 'Все включено', 'Пляж'] }
 ];
 
 export default function HotelsSection() {
   const [selectedCountry, setSelectedCountry] = useState('Все страны');
   const [priceRange, setPriceRange] = useState('Все цены');
 
-  const countries = ['Все страны', 'Турция', 'ОАЭ', 'Таиланд', 'Египет', 'Мальдивы', 'Вьетнам', 'Шри-Ланка', 'Индонезия', 'Марокко', 'Греция', 'Испания'];
+  const [showAll, setShowAll] = useState(false);
+  const countries = ['Все страны', 'Турция', 'ОАЭ', 'Таиланд', 'Египет', 'Мальдивы', 'Вьетнам', 'Шри-Ланка', 'Индонезия', 'Марокко', 'Китай', 'Куба'];
   
   const priceRanges = [
     { label: 'Все цены', min: 0, max: Infinity },
@@ -180,6 +192,8 @@ export default function HotelsSection() {
     const priceMatch = selectedPriceRange && hotel.price >= selectedPriceRange.min && hotel.price <= selectedPriceRange.max;
     return countryMatch && priceMatch;
   });
+
+  const displayedHotels = showAll ? filteredHotels : filteredHotels.slice(0, 12);
 
   return (
     <section id="hotels" className="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -240,7 +254,7 @@ export default function HotelsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredHotels.map((hotel, idx) => (
+          {displayedHotels.map((hotel, idx) => (
             <Card 
               key={hotel.id} 
               className="overflow-hidden group cursor-pointer border-0 shadow-lg hover:shadow-2xl transition-all duration-500 animate-scale-in"
@@ -288,6 +302,36 @@ export default function HotelsSection() {
             </Card>
           ))}
         </div>
+
+        {!showAll && filteredHotels.length > 12 && (
+          <div className="mt-12 text-center">
+            <Button
+              size="lg"
+              onClick={() => setShowAll(true)}
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 gap-2"
+            >
+              <Icon name="ChevronDown" size={20} />
+              Показать еще {filteredHotels.length - 12} отелей
+            </Button>
+          </div>
+        )}
+
+        {showAll && filteredHotels.length > 12 && (
+          <div className="mt-12 text-center">
+            <Button
+              size="lg"
+              onClick={() => {
+                setShowAll(false);
+                document.getElementById('hotels')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              variant="outline"
+              className="gap-2"
+            >
+              <Icon name="ChevronUp" size={20} />
+              Свернуть
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
