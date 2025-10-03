@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import BookingModal from './BookingModal';
 
 const tourCategories = [
@@ -156,6 +157,7 @@ export default function ToursSection() {
   } | null>(null);
   const [priceRange, setPriceRange] = useState([0, 200000]);
   const [dateFilter, setDateFilter] = useState('');
+  const [sortBy, setSortBy] = useState('popularity');
 
   const handleBooking = (tour: any) => {
     setSelectedTour({
@@ -169,13 +171,24 @@ export default function ToursSection() {
   };
 
   const filteredTours = useMemo(() => {
-    const tours = tourExamples[selectedCategory as keyof typeof tourExamples] || [];
-    return tours.filter(tour => {
+    let tours = tourExamples[selectedCategory as keyof typeof tourExamples] || [];
+    
+    tours = tours.filter(tour => {
       const priceMatch = tour.price >= priceRange[0] && tour.price <= priceRange[1];
       const dateMatch = !dateFilter || tour.dates.toLowerCase().includes(dateFilter.toLowerCase());
       return priceMatch && dateMatch;
     });
-  }, [selectedCategory, priceRange, dateFilter]);
+
+    if (sortBy === 'price-asc') {
+      tours = [...tours].sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-desc') {
+      tours = [...tours].sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'popularity') {
+      tours = [...tours].sort((a, b) => a.id - b.id);
+    }
+    
+    return tours;
+  }, [selectedCategory, priceRange, dateFilter, sortBy]);
 
   return (
     <section id="tours" className="py-20 bg-white">
@@ -221,7 +234,7 @@ export default function ToursSection() {
           </h3>
           
           <div className="mb-8 bg-white rounded-2xl p-6 shadow-md">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-3 text-gray-700">
                   <Icon name="Wallet" size={16} className="inline mr-2" />
@@ -248,6 +261,22 @@ export default function ToursSection() {
                   onChange={(e) => setDateFilter(e.target.value)}
                   className="w-full"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-3 text-gray-700">
+                  <Icon name="ArrowUpDown" size={16} className="inline mr-2" />
+                  Сортировка
+                </label>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="popularity">По популярности</SelectItem>
+                    <SelectItem value="price-asc">Сначала дешёвые</SelectItem>
+                    <SelectItem value="price-desc">Сначала дорогие</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </div>
