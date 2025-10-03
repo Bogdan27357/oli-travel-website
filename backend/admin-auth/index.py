@@ -17,6 +17,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
     method: str = event.get('httpMethod', 'GET')
     
+    print(f"[AUTH] Request method: {method}")
+    print(f"[AUTH] Headers: {event.get('headers', {})}")
+    print(f"[AUTH] Body: {event.get('body', '')[:200]}")
+    
     if method == 'OPTIONS':
         return {
             'statusCode': 200,
@@ -41,12 +45,20 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         jwt_secret = os.environ.get('JWT_SECRET', 'demo-secret-key-change-me')
         
         if action == 'login':
+            print(f"[AUTH] Login attempt with password: {password[:3]}*** (len: {len(password)})")
+            print(f"[AUTH] Admin password check: {admin_password[:3]}*** (len: {len(admin_password)})")
+            print(f"[AUTH] Manager password check: {manager_password[:3]}*** (len: {len(manager_password)})")
+            
             role = ''
             
             if password == admin_password:
                 role = 'admin'
+                print(f"[AUTH] ✅ Admin password matched!")
             elif password == manager_password:
                 role = 'manager'
+                print(f"[AUTH] ✅ Manager password matched!")
+            else:
+                print(f"[AUTH] ❌ No password matched")
             
             if not role:
                 return {
