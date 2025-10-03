@@ -43,7 +43,7 @@ const getYouTubeEmbedUrl = (url: string) => {
   const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
   if (match && match[2].length === 11) {
-    return `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1&controls=1`;
+    return `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=1`;
   }
   return null;
 };
