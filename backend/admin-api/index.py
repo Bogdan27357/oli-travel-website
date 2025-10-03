@@ -563,11 +563,13 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         resource = 'tours'
     
     is_public_review_submit = (resource == 'reviews' and method == 'POST')
+    is_public_review_read = (resource == 'reviews' and method == 'GET')
+    is_public_tours_read = (resource == 'tours' and method == 'GET')
     
     headers = event.get('headers', {})
     admin_token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
     
-    if not is_public_review_submit and (not admin_token or not verify_admin_token(admin_token)):
+    if not (is_public_review_submit or is_public_review_read or is_public_tours_read) and (not admin_token or not verify_admin_token(admin_token)):
         return {
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},

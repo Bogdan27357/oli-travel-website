@@ -13,6 +13,7 @@ export interface Tour {
   includes: string[];
   category: 'beach' | 'excursion' | 'ski' | 'exotic';
   fromSpb: 'direct' | 'transfer';
+  transferCity?: string;
   description?: string;
   program?: string[];
   whyChoose?: string[];

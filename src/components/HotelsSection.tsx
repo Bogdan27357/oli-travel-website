@@ -27,6 +27,11 @@ const hotels = [
   { id: 138, name: 'Spice Hotel Belek', location: 'Турция, Белек', rating: 5, price: 46500, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Пляж', 'Детский клуб'] },
   { id: 139, name: 'Bellis Deluxe', location: 'Турция, Белек', rating: 5, price: 48500, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Роскошь', 'SPA', 'Гольф'] },
   { id: 140, name: 'Xanadu Resort', location: 'Турция, Белек', rating: 5, price: 52500, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Аквапарк', 'Все включено', 'Анимация'] },
+  { id: 146, name: 'Granada Luxury', location: 'Турция, Белек', rating: 5, price: 50000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Ультра все включено', 'SPA', 'Аквапарк'] },
+  { id: 147, name: 'Selectum Family Resort', location: 'Турция, Белек', rating: 5, price: 47000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Семейный', 'Все включено', 'Детский клуб'] },
+  { id: 148, name: 'Sueno Hotels Deluxe', location: 'Турция, Белек', rating: 5, price: 51000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Роскошь', 'Гольф', 'SPA'] },
+  { id: 149, name: 'TUI Magic Life Waterworld', location: 'Турция, Белек', rating: 5, price: 45000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Аквапарк', 'Все включено', 'Анимация'] },
+  { id: 150, name: 'Concorde De Luxe Resort', location: 'Турция, Анталия', rating: 5, price: 48000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Все включено', 'Пляж', 'SPA'] },
   
   // ОАЭ
   { id: 9, name: 'Atlantis The Palm', location: 'ОАЭ, Дубай', rating: 5, price: 85000, image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800', features: ['Аквапарк', 'Океанариум', 'Дельфинарий'] },
@@ -45,6 +50,10 @@ const hotels = [
   { id: 66, name: 'JA Beach Hotel', location: 'ОАЭ, Дубай', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Пляж', 'Аквапарк', 'Семейный'] },
   { id: 67, name: 'The Palace Downtown', location: 'ОАЭ, Дубай', rating: 5, price: 98000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Вид на Burj', 'Роскошь', 'SPA'] },
   { id: 68, name: 'Address Boulevard', location: 'ОАЭ, Дубай', rating: 5, price: 85000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Центр города', 'Вид на фонтаны', 'SPA'] },
+  { id: 151, name: 'Caesars Palace Bluewaters', location: 'ОАЭ, Дубай', rating: 5, price: 112000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Роскошь', 'Остров', 'Казино'] },
+  { id: 152, name: 'Le Royal Meridien', location: 'ОАЭ, Дубай', rating: 5, price: 78000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['JBR пляж', 'Бассейны', 'SPA'] },
+  { id: 153, name: 'Jumeirah Al Qasr', location: 'ОАЭ, Дубай', rating: 5, price: 125000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Роскошь', 'Арабский стиль', 'Пляж'] },
+  { id: 154, name: 'Palazzo Versace Dubai', location: 'ОАЭ, Дубай', rating: 5, price: 118000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Версаче', 'Роскошь', 'SPA'] },
   
   // Таиланд
   { id: 15, name: 'The Slate Phuket', location: 'Таиланд, Пхукет', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Бутик', 'SPA', 'Тайский массаж'] },
@@ -63,6 +72,10 @@ const hotels = [
   { id: 76, name: 'Rayavadee Krabi', location: 'Таиланд, Краби', rating: 5, price: 88000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Павильоны', 'Пляж', 'SPA'] },
   { id: 77, name: 'Trisara Phuket', location: 'Таиланд, Пхукет', rating: 5, price: 98000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Виллы', 'Приватный пляж', 'SPA'] },
   { id: 78, name: 'Renaissance Pattaya', location: 'Таиланд, Паттайя', rating: 5, price: 49000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Океан', 'Бассейн', 'Фитнес'] },
+  { id: 155, name: 'Amari Pattaya', location: 'Таиланд, Паттайя', rating: 5, price: 46000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Набережная', 'SPA', 'Бассейн'] },
+  { id: 156, name: 'Cape Panwa Hotel Phuket', location: 'Таиланд, Пхукет', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Приватный пляж', 'Виллы', 'SPA'] },
+  { id: 157, name: 'Angsana Laguna Phuket', location: 'Таиланд, Пхукет', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Лагуна', 'Семейный', 'SPA'] },
+  { id: 158, name: 'Conrad Koh Samui', location: 'Таиланд, Самуи', rating: 5, price: 92000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Виллы', 'Infinity pool', 'Роскошь'] },
   
   // Египет
   { id: 21, name: 'Rixos Sharm El Sheikh', location: 'Египет, Шарм-эль-Шейх', rating: 5, price: 38000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Все включено', 'Коралловый риф', 'Аквапарк'] },
@@ -101,6 +114,9 @@ const hotels = [
   { id: 97, name: 'SAii Lagoon Maldives', location: 'Мальдивы, Эмбуду Финолу', rating: 5, price: 125000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Близко к Мале', 'Модерн', 'Бассейны'] },
   { id: 144, name: 'Heritance Aarah', location: 'Мальдивы, Раа Атолл', rating: 5, price: 172000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Роскошь', 'Подводная вилла', 'SPA'] },
   { id: 145, name: 'Oblu Select Sangeli', location: 'Мальдивы, Северный Мале', rating: 5, price: 135000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Риф', 'Дайвинг'] },
+  { id: 159, name: 'Cocoon Maldives', location: 'Мальдивы, Лавияни Атолл', rating: 5, price: 165000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Модерн', 'Водные виллы', 'SPA'] },
+  { id: 160, name: 'Finolhu Baa Atoll', location: 'Мальдивы, Баа Атолл', rating: 5, price: 178000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Ретро-роскошь', 'Пляж-клуб', 'SPA'] },
+  { id: 161, name: 'Kuramathi Island', location: 'Мальдивы, Расду Атолл', rating: 5, price: 148000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Большой остров', 'Все включено', 'Дайвинг'] },
   
   // Вьетнам
   { id: 31, name: 'Vinpearl Nha Trang', location: 'Вьетнам, Нячанг', rating: 5, price: 48000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Остров', 'Аквапарк', 'Канатная дорога'] },
@@ -114,6 +130,9 @@ const hotels = [
   { id: 102, name: 'Fusion Resort Phu Quoc', location: 'Вьетнам, Фукуок', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Все включено SPA', 'Пляж', 'Велнес'] },
   { id: 103, name: 'Hyatt Regency Danang', location: 'Вьетнам, Дананг', rating: 5, price: 51000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Пляж', 'Бассейн', 'Фитнес'] },
   { id: 104, name: 'Pullman Danang', location: 'Вьетнам, Дананг', rating: 5, price: 49000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Пляж', 'Французский стиль', 'SPA'] },
+  { id: 162, name: 'Premier Village Phu Quoc', location: 'Вьетнам, Фукуок', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Виллы', 'Остров', 'Семейный'] },
+  { id: 163, name: 'Anam QT Resort Cam Ranh', location: 'Вьетнам, Камрань', rating: 5, price: 55000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Индокитайский стиль', 'Пляж', 'SPA'] },
+  { id: 164, name: 'La Vela Saigon', location: 'Вьетнам, Хошимин', rating: 5, price: 48000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Город', 'Бассейн на крыше', 'Рестораны'] },
   
   // Шри-Ланка
   { id: 35, name: 'Heritance Kandalama', location: 'Шри-Ланка, Дамбулла', rating: 5, price: 55000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Эко-отель', 'Озеро', 'SPA'] },
@@ -124,6 +143,8 @@ const hotels = [
   { id: 107, name: 'Cape Weligama', location: 'Шри-Ланка, Велигама', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Виллы с бассейном', 'Океан', 'Серфинг'] },
   { id: 108, name: 'Amangalla Galle', location: 'Шри-Ланка, Галле', rating: 5, price: 95000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Колониальный', 'SPA', 'История'] },
   { id: 109, name: 'The Fortress', location: 'Шри-Ланка, Косгода', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Роскошь', 'Океан', 'SPA'] },
+  { id: 165, name: 'Anantara Kalutara', location: 'Шри-Ланка, Калутара', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Пляж', 'SPA', 'Аюрведа'] },
+  { id: 166, name: 'Cinnamon Bey Beruwala', location: 'Шри-Ланка, Берувела', rating: 5, price: 52000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Пляж', 'Все включено', 'SPA'] },
   
   // Индонезия (Бали)
   { id: 38, name: 'AYANA Resort Bali', location: 'Индонезия, Бали', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Rock Bar', 'SPA', 'Виллы'] },
@@ -136,6 +157,9 @@ const hotels = [
   { id: 114, name: 'Bulgari Resort Bali', location: 'Индонезия, Улувату', rating: 5, price: 125000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Роскошь', 'Виллы', 'Итальянский стиль'] },
   { id: 115, name: 'Karma Kandara', location: 'Индонезия, Унгасан', rating: 5, price: 75000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Виллы', 'Пляжный клуб', 'SPA'] },
   { id: 116, name: 'Grand Hyatt Bali', location: 'Индонезия, Нуса Дуа', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Сады', 'Бассейны', 'Пляж'] },
+  { id: 167, name: 'Viceroy Bali', location: 'Индонезия, Убуд', rating: 5, price: 88000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Виллы', 'Джунгли', 'SPA'] },
+  { id: 168, name: 'W Bali Seminyak', location: 'Индонезия, Семиньяк', rating: 5, price: 82000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Модерн', 'Пляж', 'Клубная жизнь'] },
+  { id: 169, name: 'Sofitel Bali Nusa Dua', location: 'Индонезия, Нуса Дуа', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Французская роскошь', 'Пляж', 'SPA'] },
   
   // Марокко
   { id: 41, name: 'La Mamounia', location: 'Марокко, Марракеш', rating: 5, price: 75000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Дворец', 'Сады', 'SPA'] },
@@ -145,6 +169,8 @@ const hotels = [
   { id: 119, name: 'Four Seasons Marrakech', location: 'Марокко, Марракеш', rating: 5, price: 95000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Сады', 'SPA', 'Роскошь'] },
   { id: 120, name: 'Fairmont Taghazout', location: 'Марокко, Тагазут', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Серфинг', 'SPA', 'Океан'] },
   { id: 121, name: 'Mandarin Oriental Marrakech', location: 'Марокко, Марракеш', rating: 5, price: 105000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Виллы', 'SPA', 'Рестораны'] },
+  { id: 170, name: 'Banyan Tree Tamouda Bay', location: 'Марокко, Тамуда Бэй', rating: 5, price: 85000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Виллы', 'Пляж', 'SPA'] },
+  { id: 171, name: 'Hyatt Regency Casablanca', location: 'Марокко, Касабланка', rating: 5, price: 55000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Город', 'Океан', 'Бассейн'] },
   
   // Китай
   { id: 43, name: 'Mandarin Oriental Sanya', location: 'Китай, Санья', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Хайнань', 'Пляж', 'SPA'] },
@@ -158,6 +184,9 @@ const hotels = [
   { id: 127, name: 'Hilton Sanya', location: 'Китай, Санья', rating: 5, price: 62000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Пляж', 'Бассейны', 'Семейный'] },
   { id: 135, name: 'MGM Grand Sanya', location: 'Китай, Санья', rating: 5, price: 88000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Роскошь', 'Казино', 'SPA'] },
   { id: 136, name: 'Park Hyatt Sanya', location: 'Китай, Санья', rating: 5, price: 95000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Модерн', 'Бассейн', 'SPA'] },
+  { id: 172, name: 'Edition Sanya', location: 'Китай, Санья', rating: 5, price: 92000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Роскошь', 'Модерн', 'Пляж'] },
+  { id: 173, name: 'Rosewood Sanya', location: 'Китай, Санья', rating: 5, price: 105000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Виллы', 'SPA', 'Роскошь'] },
+  { id: 174, name: 'Waldorf Astoria Hainan', location: 'Китай, Санья', rating: 5, price: 98000, image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', features: ['Роскошь', 'Гольф', 'SPA'] },
   
   // Куба
   { id: 46, name: 'Paradisus Varadero', location: 'Куба, Варадеро', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Все включено', 'Пляж', 'SPA'] },
@@ -169,7 +198,10 @@ const hotels = [
   { id: 131, name: 'Blau Varadero', location: 'Куба, Варадеро', rating: 5, price: 54000, image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800', features: ['Все включено', 'Пляж', 'Анимация'] },
   { id: 132, name: 'Meliá Las Americas', location: 'Куба, Варадеро', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=800', features: ['Гольф', 'Роскошь', 'SPA'] },
   { id: 133, name: 'Iberostar Bella Vista', location: 'Куба, Варадеро', rating: 5, price: 60000, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', features: ['Только взрослые', 'Бассейн', 'SPA'] },
-  { id: 134, name: 'Ocean Varadero El Patriarca', location: 'Куба, Варадеро', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Премиум', 'Все включено', 'Пляж'] }
+  { id: 134, name: 'Ocean Varadero El Patriarca', location: 'Куба, Варадеро', rating: 5, price: 72000, image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', features: ['Премиум', 'Все включено', 'Пляж'] },
+  { id: 175, name: 'Dhawa Cayo Santa Maria', location: 'Куба, Кайо Санта Мария', rating: 5, price: 68000, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800', features: ['Все включено', 'Остров', 'Пляж'] },
+  { id: 176, name: 'Sol Cayo Guillermo', location: 'Куба, Кайо Гильермо', rating: 5, price: 58000, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800', features: ['Все включено', 'Риф', 'Пляж'] },
+  { id: 177, name: 'Valentin Perla Blanca', location: 'Куба, Кайо Санта Мария', rating: 5, price: 65000, image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800', features: ['Только взрослые', 'Все включено', 'Роскошь'] }
 ];
 
 export default function HotelsSection() {
