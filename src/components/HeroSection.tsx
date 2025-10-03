@@ -67,11 +67,39 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
+    const videoUrl = localStorage.getItem('hero_video_url');
+    if (videoUrl) {
+      setCustomVideoUrl(videoUrl);
+    }
+
+    const handleStorageChange = () => {
+      const newVideoUrl = localStorage.getItem('hero_video_url') || '';
+      setCustomVideoUrl(newVideoUrl);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+      const currentUrl = localStorage.getItem('hero_video_url') || '';
+      if (currentUrl !== customVideoUrl) {
+        setCustomVideoUrl(currentUrl);
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [customVideoUrl]);
+
+  useEffect(() => {
+    if (!customVideoUrl) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [customVideoUrl]);
 
   return (
     <section id="home" className="relative py-20 md:py-32 overflow-hidden">
@@ -107,8 +135,37 @@ export default function HeroSection() {
             Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
           </p>
           
-          {/* Slideshow */}
-          <div className="mb-8 relative group cursor-pointer" onClick={() => setShowVideo(true)}>
+          {/* Slideshow or Video */}
+          <div className="mb-8 relative group">
+            {customVideoUrl ? (
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
+                {musicUrl && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMusic();
+                    }}
+                    className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
+                  >
+                    <Icon 
+                      name={musicPlaying ? 'Volume2' : 'VolumeX'} 
+                      size={20} 
+                      className={musicPlaying ? 'text-primary' : 'text-gray-400'}
+                    />
+                  </button>
+                )}
+                <video 
+                  className="w-full max-h-[500px] object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={customVideoUrl} type="video/mp4" />
+                </video>
+              </div>
+            ) : (
+              <div className="cursor-pointer" onClick={() => setShowVideo(true)}>
             {musicUrl && (
               <button
                 onClick={(e) => {
@@ -178,6 +235,8 @@ export default function HeroSection() {
                 ))}
               </div>
             </div>
+              </div>
+            )}
           </div>
 
           {/* Video Modal */}
