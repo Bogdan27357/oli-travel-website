@@ -11,7 +11,7 @@
       }
     },
     {
-      "name": "POST contact form returns valid response",
+      "name": "POST contact form works without SMTP",
       "method": "POST",
       "path": "/",
       "body": {
@@ -21,11 +21,14 @@
         "phone": "+7 900 123-45-67",
         "message": "Тестовое сообщение"
       },
-      "expectedStatus": 500,
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
       "bodyMatcher": "partial"
     },
     {
-      "name": "POST tour booking returns valid response",
+      "name": "POST tour booking works without SMTP",
       "method": "POST",
       "path": "/",
       "body": {
@@ -35,11 +38,14 @@
         "email": "",
         "message": "Бронирование тура Турция"
       },
-      "expectedStatus": 500,
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
       "bodyMatcher": "partial"
     },
     {
-      "name": "POST newsletter returns valid response",
+      "name": "POST newsletter works without SMTP",
       "method": "POST",
       "path": "/",
       "body": {
@@ -48,7 +54,10 @@
         "name": "Подписчик",
         "message": "Подписка на рассылку"
       },
-      "expectedStatus": 500,
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
       "bodyMatcher": "partial"
     },
     {
