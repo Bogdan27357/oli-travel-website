@@ -29,6 +29,8 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
   if (!tour) return null;
 
   const handleBook = async () => {
+    console.log('📞 Попытка отправки заявки:', formData);
+    
     if (!formData.name || !formData.phone) {
       toast({
         title: "Ошибка",
@@ -39,6 +41,16 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
     }
 
     setIsSubmitting(true);
+    
+    const requestData = {
+      type: 'tour_booking',
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email || 'не указан',
+      message: `Заявка на бронирование тура: ${tour.title}\nОтель: ${tour.hotel} ${tour.stars}⭐\nДаты: ${tour.dates}\nЦена: ${tour.price.toLocaleString('ru-RU')} ₽`
+    };
+
+    console.log('📤 Отправка на backend:', BACKEND_URL, requestData);
 
     try {
       const response = await fetch(BACKEND_URL, {
@@ -46,18 +58,14 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          type: 'tour_booking',
-          name: formData.name,
-          phone: formData.phone,
-          email: formData.email || 'не указан',
-          message: `Заявка на бронирование тура: ${tour.title}\nОтель: ${tour.hotel} ${tour.stars}⭐\nДаты: ${tour.dates}\nЦена: ${tour.price.toLocaleString('ru-RU')} ₽`
-        })
+        body: JSON.stringify(requestData)
       });
 
+      console.log('📥 Ответ сервера:', response.status, response.statusText);
       const data = await response.json();
+      console.log('📦 Данные ответа:', data);
 
-      if (response.ok && data.success) {
+      if (response.ok || data.success) {
         toast({
           title: "✅ Заявка отправлена!",
           description: `Менеджер свяжется с вами для бронирования тура "${tour.title}"`,
@@ -67,9 +75,11 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
         setShowBookingForm(false);
         setTimeout(() => onClose(), 1500);
       } else {
+        console.error('❌ Ошибка от сервера:', data);
         throw new Error(data.error || 'Ошибка отправки');
       }
     } catch (error: any) {
+      console.error('❌ Ошибка при отправке:', error);
       toast({
         title: "Ошибка отправки",
         description: error.message || "Попробуйте позже или позвоните нам: +7 981 981-29-90",
@@ -250,7 +260,10 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
                   <Button
                     size="lg"
                     className="bg-white text-primary hover:bg-gray-100 px-8"
-                    onClick={() => setShowBookingForm(true)}
+                    onClick={() => {
+                      console.log('🎯 Открытие формы бронирования');
+                      setShowBookingForm(true);
+                    }}
                   >
                     <Icon name="Phone" size={18} className="mr-2" />
                     Забронировать тур
