@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 
 const slides = [
   {
-    type: 'logo',
-    title: 'OliTravel',
-    subtitle: 'Ваш путь к мечте',
-    logo: '/img/8cca68ee-013b-4080-8459-d6ba015ad7ef.jpg'
+    type: 'hero',
+    title: 'TIME TO TRAVEL',
+    subtitle: 'BOOK YOUR TRIP TODAY',
+    image: 'https://cdn.poehali.dev/files/9f295ef9-dc4e-4a82-9017-70ce5ec2365c.png'
   },
   {
     type: 'benefit',
@@ -39,20 +39,8 @@ const slides = [
   }
 ];
 
-const getYouTubeEmbedUrl = (url: string) => {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*!/;
-  const match = url.match(regExp);
-  return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1` : null;
-};
-
-const isYouTubeUrl = (url: string) => {
-  return url.includes('youtube.com') || url.includes('youtu.be');
-};
-
 export default function HeroSection() {
-  const [showVideo, setShowVideo] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [customVideoUrl, setCustomVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
   const [musicPlaying, setMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const musicUrl = localStorage.getItem('hero_music_url') || '';
@@ -77,43 +65,14 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
-    const videoUrl = localStorage.getItem('hero_video_url');
-    if (videoUrl) {
-      setCustomVideoUrl(videoUrl);
-    }
-
-    const handleStorageChange = () => {
-      const newVideoUrl = localStorage.getItem('hero_video_url') || '';
-      setCustomVideoUrl(newVideoUrl);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    
     const interval = setInterval(() => {
-      const currentUrl = localStorage.getItem('hero_video_url') || '';
-      if (currentUrl !== customVideoUrl) {
-        setCustomVideoUrl(currentUrl);
-      }
-    }, 1000);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
-    };
-  }, [customVideoUrl]);
-
-  useEffect(() => {
-    if (!customVideoUrl) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [customVideoUrl]);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="home" className="relative py-20 md:py-32 overflow-hidden">
-      {/* Animated background pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-transparent"></div>
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -145,51 +104,8 @@ export default function HeroSection() {
             Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
           </p>
           
-          {/* Slideshow or Video */}
+          {/* Slideshow */}
           <div className="mb-8 relative group">
-            {customVideoUrl ? (
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-                {musicUrl && !isYouTubeUrl(customVideoUrl) && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMusic();
-                    }}
-                    className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
-                  >
-                    <Icon 
-                      name={musicPlaying ? 'Volume2' : 'VolumeX'} 
-                      size={20} 
-                      className={musicPlaying ? 'text-primary' : 'text-gray-400'}
-                    />
-                  </button>
-                )}
-                {isYouTubeUrl(customVideoUrl) ? (
-                  <iframe
-                    className="w-full aspect-video max-h-[500px]"
-                    src={getYouTubeEmbedUrl(customVideoUrl) || ''}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <video 
-                    className="w-full max-h-[500px] object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    onError={(e) => {
-                      console.error('Video load error:', customVideoUrl);
-                      setCustomVideoUrl('');
-                    }}
-                  >
-                    <source src={customVideoUrl} type="video/mp4" />
-                    Ваш браузер не поддерживает видео
-                  </video>
-                )}
-              </div>
-            ) : (
-              <div className="cursor-pointer" onClick={() => setShowVideo(true)}>
             {musicUrl && (
               <button
                 onClick={(e) => {
@@ -205,19 +121,15 @@ export default function HeroSection() {
                 />
               </button>
             )}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[350px]">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[450px]">
               {slides.map((slide, index) => (
                 <div
                   key={index}
                   className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
                 >
-                  {slide.type === 'logo' ? (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex flex-col items-center justify-center">
-                      <img src={slide.logo} alt="OliTravel" className="h-24 mb-4 object-contain" />
-                      <h2 className="text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                        {slide.title}
-                      </h2>
-                      <p className="text-xl text-gray-600 mt-2">{slide.subtitle}</p>
+                  {slide.type === 'hero' ? (
+                    <div className="w-full h-full relative">
+                      <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
                     </div>
                   ) : (
                     <>
@@ -237,12 +149,6 @@ export default function HeroSection() {
                 </div>
               ))}
               
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all pointer-events-none">
-                <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon name="Play" size={40} className="text-primary ml-1" />
-                </div>
-              </div>
-              
               {/* Slide indicators */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                 {slides.map((_, index) => (
@@ -259,79 +165,7 @@ export default function HeroSection() {
                 ))}
               </div>
             </div>
-              </div>
-            )}
           </div>
-
-          {/* Video Modal */}
-          {showVideo && (
-            <div 
-              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-              onClick={() => setShowVideo(false)}
-            >
-              <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-                <button 
-                  onClick={() => setShowVideo(false)}
-                  className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
-                >
-                  <Icon name="X" size={32} />
-                </button>
-                <div className="bg-black rounded-2xl overflow-hidden">
-                  {customVideoUrl ? (
-                    <video 
-                      className="w-full max-h-[70vh] object-contain"
-                      controls
-                      autoPlay
-                      onError={(e) => {
-                        console.error('Video load error in modal:', customVideoUrl);
-                      }}
-                    >
-                      <source src={customVideoUrl} type="video/mp4" />
-                      Ваш браузер не поддерживает видео
-                    </video>
-                  ) : (
-                    <div className="w-full h-[50vh] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                      <div className="text-center text-white p-8">
-                        <Icon name="Video" size={64} className="mx-auto mb-4 opacity-50" />
-                        <p className="text-lg">Видео ещё не загружено</p>
-                        <p className="text-sm opacity-75 mt-2">Загрузите видео через админ-панель</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="bg-white p-6">
-                    <h2 className="text-2xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                      Добро пожаловать в OliTravel!
-                    </h2>
-                    <div className="space-y-3 text-left text-gray-700">
-                      <p className="text-lg">
-                        🌴 <strong>Мы - ваши эксперты по путешествиям!</strong> С 2009 года помогаем тысячам туристов находить идеальные туры по всему миру.
-                      </p>
-                      <p>
-                        ✈️ <strong>Прямые перелёты и с пересадками из СПб</strong> - выбирайте удобный вариант! Прямые рейсы для максимального комфорта или с пересадками для экономии.
-                      </p>
-                      <p>
-                        💰 <strong>Рассрочка 0%</strong> - путешествуйте сейчас, платите потом! Без переплат и скрытых комиссий.
-                      </p>
-                      <p>
-                        🏆 <strong>Гарантия лучшей цены</strong> - нашли дешевле? Мы вернём разницу или сделаем лучшее предложение!
-                      </p>
-                      <p>
-                        🎯 <strong>Индивидуальный подход</strong> - наши менеджеры подберут тур именно под ваши пожелания и бюджет.
-                      </p>
-                      <div className="pt-4 border-t mt-4">
-                        <p className="text-center text-xl font-semibold text-primary">
-                          📞 Позвоните нам: <a href="tel:+79819812990" className="underline hover:text-secondary transition-colors">+7 (981) 981-29-90</a>
-                        </p>
-                        <p className="text-center text-sm text-gray-600 mt-2">
-                          Или напишите в чат - мы онлайн и готовы помочь! 💬
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up mb-8" style={{ animationDelay: '200ms' }}>
             <Button 
