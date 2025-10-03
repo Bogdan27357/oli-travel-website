@@ -39,8 +39,19 @@ const slides = [
   }
 ];
 
+const getYouTubeEmbedUrl = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|&v=)([^#&?]*).*!/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}?autoplay=1&loop=1&playlist=${match[2]}&mute=1` : null;
+};
+
+const isYouTubeUrl = (url: string) => {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+};
+
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
   const [musicPlaying, setMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const musicUrl = localStorage.getItem('hero_music_url') || '';
@@ -65,11 +76,38 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
+    const storedUrl = localStorage.getItem('hero_video_url');
+    if (storedUrl) {
+      setVideoUrl(storedUrl);
+    }
+
+    const handleStorageChange = () => {
+      const newUrl = localStorage.getItem('hero_video_url') || '';
+      setVideoUrl(newUrl);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+      const currentUrl = localStorage.getItem('hero_video_url') || '';
+      if (currentUrl !== videoUrl) {
+        setVideoUrl(currentUrl);
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [videoUrl]);
+
+  useEffect(() => {
+    if (!videoUrl) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [videoUrl]);
 
   return (
     <section id="home" className="relative py-20 md:py-32 overflow-hidden">
@@ -104,67 +142,97 @@ export default function HeroSection() {
             Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
           </p>
           
-          {/* Slideshow */}
+          {/* Video or Slideshow */}
           <div className="mb-8 relative group">
-            {musicUrl && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleMusic();
-                }}
-                className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
-              >
-                <Icon 
-                  name={musicPlaying ? 'Volume2' : 'VolumeX'} 
-                  size={20} 
-                  className={musicPlaying ? 'text-primary' : 'text-gray-400'}
-                />
-              </button>
-            )}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[450px]">
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  {slide.type === 'hero' ? (
-                    <div className="w-full h-full relative">
-                      <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-                    </div>
-                  ) : (
-                    <>
-                      <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <Icon name={slide.icon as any} size={24} />
-                          </div>
-                          <h3 className="text-2xl font-bold">{slide.title}</h3>
-                        </div>
-                        <p className="text-lg opacity-90">{slide.description}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-              
-              {/* Slide indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                {slides.map((_, index) => (
+            {videoUrl ? (
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
+                {isYouTubeUrl(videoUrl) ? (
+                  <iframe
+                    className="w-full aspect-video max-h-[500px]"
+                    src={getYouTubeEmbedUrl(videoUrl) || ''}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video 
+                    className="w-full max-h-[500px] object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onError={() => {
+                      console.error('Video load error:', videoUrl);
+                      setVideoUrl('');
+                    }}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                    Ваш браузер не поддерживает видео
+                  </video>
+                )}
+              </div>
+            ) : (
+              <>
+                {musicUrl && (
                   <button
-                    key={index}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setCurrentSlide(index);
+                      toggleMusic();
                     }}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      currentSlide === index ? 'bg-white w-8' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
+                    className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
+                  >
+                    <Icon 
+                      name={musicPlaying ? 'Volume2' : 'VolumeX'} 
+                      size={20} 
+                      className={musicPlaying ? 'text-primary' : 'text-gray-400'}
+                    />
+                  </button>
+                )}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[450px]">
+                  {slides.map((slide, index) => (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      {slide.type === 'hero' ? (
+                        <div className="w-full h-full relative">
+                          <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                        </div>
+                      ) : (
+                        <>
+                          <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                <Icon name={slide.icon as any} size={24} />
+                              </div>
+                              <h3 className="text-2xl font-bold">{slide.title}</h3>
+                            </div>
+                            <p className="text-lg opacity-90">{slide.description}</p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  ))}
+                  
+                  {/* Slide indicators */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {slides.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentSlide(index);
+                        }}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          currentSlide === index ? 'bg-white w-8' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up mb-8" style={{ animationDelay: '200ms' }}>

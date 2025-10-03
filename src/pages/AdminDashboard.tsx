@@ -147,24 +147,28 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Icon name="Music" size={24} className="text-primary" />
-              Музыка на фоне слайдшоу
+              <Icon name="Video" size={24} className="text-primary" />
+              Видео на главной
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">
-                URL музыки (MP3)
+                YouTube ссылка
               </label>
               <Input
                 type="url"
-                placeholder="https://example.com/music.mp3"
-                value={musicUrl}
-                onChange={(e) => setMusicUrl(e.target.value)}
+                placeholder="https://youtube.com/shorts/..."
+                value={videoUrl}
+                onChange={(e) => setVideoUrl(e.target.value)}
               />
-              <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-800 mb-1 font-semibold">💡 Подсказка:</p>
-                <p className="text-xs text-blue-700">Загрузите музыку на Яндекс.Диск или другой хостинг и вставьте прямую ссылку на MP3 файл</p>
+              <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-xs text-green-800 mb-2 font-semibold">✅ Поддерживаемые форматы:</p>
+                <ul className="text-xs text-green-700 space-y-1">
+                  <li>🎬 YouTube обычные видео</li>
+                  <li>📱 YouTube Shorts</li>
+                  <li>📹 Прямая ссылка на .mp4</li>
+                </ul>
               </div>
             </div>
             <Button
@@ -189,6 +193,60 @@ export default function AdminDashboard() {
                   toast({
                     title: '🗑️ Видео удалено',
                     description: 'Будет показываться слайд-шоу'
+                  });
+                }}
+                className="w-full"
+              >
+                <Icon name="Trash2" size={16} className="mr-2" />
+                Удалить видео
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Icon name="Music" size={24} className="text-primary" />
+              Фоновая музыка
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 block">
+                URL музыки (MP3)
+              </label>
+              <Input
+                type="url"
+                placeholder="https://example.com/music.mp3"
+                value={musicUrl}
+                onChange={(e) => setMusicUrl(e.target.value)}
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Музыка играет только если включено слайдшоу (без видео)
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                localStorage.setItem('hero_music_url', musicUrl);
+                toast({
+                  title: '✅ Музыка сохранена',
+                  description: 'Обновите главную страницу'
+                });
+              }}
+              className="w-full"
+            >
+              <Icon name="Save" size={16} className="mr-2" />
+              Сохранить музыку
+            </Button>
+            {musicUrl && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setMusicUrl('');
+                  localStorage.removeItem('hero_music_url');
+                  toast({
+                    title: '🗑️ Музыка удалена'
                   });
                 }}
                 className="w-full"
