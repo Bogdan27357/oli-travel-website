@@ -168,6 +168,38 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         'count': len(sessions_list)
                     })
                 }
+            
+            elif action == 'get_all_sessions':
+                cur.execute(
+                    "SELECT s.session_id, s.user_name, s.user_email, s.status, s.created_at, "
+                    "(SELECT COUNT(*) FROM chat_messages WHERE chat_messages.session_id = s.session_id) as message_count, "
+                    "(SELECT MAX(created_at) FROM chat_messages WHERE chat_messages.session_id = s.session_id) as last_message_at "
+                    "FROM chat_sessions s ORDER BY last_message_at DESC NULLS LAST"
+                )
+                
+                sessions = cur.fetchall()
+                
+                sessions_list = []
+                for session in sessions:
+                    sessions_list.append({
+                        'session_id': session[0],
+                        'user_name': session[1],
+                        'user_email': session[2],
+                        'status': session[3],
+                        'created_at': str(session[4]),
+                        'message_count': session[5],
+                        'last_message_at': str(session[6]) if session[6] else None
+                    })
+                
+                return {
+                    'statusCode': 200,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'body': json.dumps({
+                        'success': True,
+                        'sessions': sessions_list,
+                        'count': len(sessions_list)
+                    })
+                }
         
         elif method == 'PUT':
             body = json.loads(event.get('body', '{}'))
