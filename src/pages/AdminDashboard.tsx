@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { adminAPI } from '@/lib/admin-api';
+import { useToast } from '@/hooks/use-toast';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -11,6 +14,8 @@ export default function AdminDashboard() {
     pendingReviews: 0
   });
   const [loading, setLoading] = useState(true);
+  const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
+  const { toast } = useToast();
 
   useEffect(() => {
     const loadStats = async () => {
@@ -93,7 +98,7 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -135,6 +140,61 @@ export default function AdminDashboard() {
                 </div>
               </div>
             </a>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Icon name="Video" size={24} className="text-primary" />
+              Видео на главной
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 block">
+                URL видео (MP4)
+              </label>
+              <Input
+                type="url"
+                placeholder="https://example.com/video.mp4"
+                value={videoUrl}
+                onChange={(e) => setVideoUrl(e.target.value)}
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Вставьте прямую ссылку на видео формата MP4
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                localStorage.setItem('hero_video_url', videoUrl);
+                toast({
+                  title: '✅ Видео сохранено',
+                  description: 'Обновите главную страницу чтобы увидеть изменения'
+                });
+              }}
+              className="w-full"
+            >
+              <Icon name="Save" size={16} className="mr-2" />
+              Сохранить видео
+            </Button>
+            {videoUrl && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setVideoUrl('');
+                  localStorage.removeItem('hero_video_url');
+                  toast({
+                    title: '🗑️ Видео удалено',
+                    description: 'Будет показываться слайд-шоу'
+                  });
+                }}
+                className="w-full"
+              >
+                <Icon name="Trash2" size={16} className="mr-2" />
+                Удалить видео
+              </Button>
+            )}
           </CardContent>
         </Card>
 

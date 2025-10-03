@@ -1,9 +1,55 @@
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const slides = [
+  {
+    type: 'logo',
+    title: 'OliTravel',
+    subtitle: 'Ваш путь к мечте',
+    logo: '/img/8cca68ee-013b-4080-8459-d6ba015ad7ef.jpg'
+  },
+  {
+    type: 'benefit',
+    icon: 'Plane',
+    title: 'Прямые рейсы и с пересадками',
+    description: 'Выбирайте удобный вариант из СПб: прямые для комфорта или с пересадками для экономии',
+    image: '/img/41b5736e-24a7-41c1-9c33-fac454c6508a.jpg'
+  },
+  {
+    type: 'benefit',
+    icon: 'CreditCard',
+    title: 'Рассрочка 0%',
+    description: 'Путешествуйте сейчас, платите потом! Без переплат и скрытых комиссий',
+    image: '/img/07dae78f-45b3-413a-a25a-4b306011834c.jpg'
+  },
+  {
+    type: 'benefit',
+    icon: 'Award',
+    title: '15 лет опыта',
+    description: 'С 2009 года помогаем тысячам туристов находить идеальные туры',
+    image: '/img/a44c474f-2a33-4162-b2db-68c78f5d4068.jpg'
+  },
+  {
+    type: 'benefit',
+    icon: 'Shield',
+    title: 'Гарантия лучшей цены',
+    description: 'Нашли дешевле? Вернём разницу или сделаем лучшее предложение!',
+    image: '/img/41b5736e-24a7-41c1-9c33-fac454c6508a.jpg'
+  }
+];
 
 export default function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [customVideoUrl, setCustomVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="home" className="relative py-20 md:py-32 overflow-hidden">
@@ -39,31 +85,60 @@ export default function HeroSection() {
             Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
           </p>
           
-          {/* Video preview */}
+          {/* Slideshow */}
           <div className="mb-8 relative group cursor-pointer" onClick={() => setShowVideo(true)}>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-              <video 
-                className="w-full h-[300px] object-cover"
-                poster="/img/496b4f04-d693-4e43-b4c3-526b487a4c42.jpg"
-                muted
-                loop
-                playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause();
-                  e.currentTarget.currentTime = 0;
-                }}
-              >
-                <source src="https://cdn.pixabay.com/video/2022/05/10/116827-709619015_large.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-all">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[350px]">
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  {slide.type === 'logo' ? (
+                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex flex-col items-center justify-center">
+                      <img src={slide.logo} alt="OliTravel" className="h-24 mb-4 object-contain" />
+                      <h2 className="text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        {slide.title}
+                      </h2>
+                      <p className="text-xl text-gray-600 mt-2">{slide.subtitle}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <Icon name={slide.icon as any} size={24} />
+                          </div>
+                          <h3 className="text-2xl font-bold">{slide.title}</h3>
+                        </div>
+                        <p className="text-lg opacity-90">{slide.description}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+              
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all pointer-events-none">
                 <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Icon name="Play" size={40} className="text-primary ml-1" />
                 </div>
               </div>
-              <div className="absolute bottom-4 left-4 right-4 text-white text-left">
-                <h3 className="text-xl font-bold mb-1">Добро пожаловать в OliTravel!</h3>
-                <p className="text-sm opacity-90">Нажмите, чтобы узнать больше о нас</p>
+              
+              {/* Slide indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentSlide(index);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      currentSlide === index ? 'bg-white w-8' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -82,13 +157,23 @@ export default function HeroSection() {
                   <Icon name="X" size={32} />
                 </button>
                 <div className="bg-black rounded-2xl overflow-hidden">
-                  <video 
-                    className="w-full max-h-[70vh] object-contain"
-                    controls
-                    autoPlay
-                  >
-                    <source src="https://cdn.pixabay.com/video/2022/05/10/116827-709619015_large.mp4" type="video/mp4" />
-                  </video>
+                  {customVideoUrl ? (
+                    <video 
+                      className="w-full max-h-[70vh] object-contain"
+                      controls
+                      autoPlay
+                    >
+                      <source src={customVideoUrl} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <div className="w-full h-[50vh] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                      <div className="text-center text-white p-8">
+                        <Icon name="Video" size={64} className="mx-auto mb-4 opacity-50" />
+                        <p className="text-lg">Видео ещё не загружено</p>
+                        <p className="text-sm opacity-75 mt-2">Загрузите видео через админ-панель</p>
+                      </div>
+                    </div>
+                  )}
                   <div className="bg-white p-6">
                     <h2 className="text-2xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       Добро пожаловать в OliTravel!
