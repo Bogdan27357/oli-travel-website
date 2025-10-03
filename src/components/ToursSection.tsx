@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import BookingModal from './BookingModal';
+import TourDetailModal from './TourDetailModal';
 import { allTours, Tour } from '@/data/tours';
 
 const tourCategories = [
@@ -20,20 +21,22 @@ const tourCategories = [
 export default function ToursSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTour, setSelectedTour] = useState<{
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [selectedTourForBooking, setSelectedTourForBooking] = useState<{
     title: string;
     hotel: string;
     duration: string;
     dates: string;
     price: number;
   } | null>(null);
+  const [selectedTourForDetail, setSelectedTourForDetail] = useState<Tour | null>(null);
   const [priceRange, setPriceRange] = useState([0, 200000]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('popularity');
   const [transferFilter, setTransferFilter] = useState<string>('all');
 
   const handleBooking = (tour: Tour) => {
-    setSelectedTour({
+    setSelectedTourForBooking({
       title: tour.title,
       hotel: tour.hotel,
       duration: tour.duration,
@@ -41,6 +44,11 @@ export default function ToursSection() {
       price: tour.price
     });
     setIsModalOpen(true);
+  };
+
+  const handleTourDetails = (tour: Tour) => {
+    setSelectedTourForDetail(tour);
+    setIsDetailModalOpen(true);
   };
 
   const filteredTours = useMemo(() => {
@@ -208,6 +216,7 @@ export default function ToursSection() {
               key={tour.id}
               className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer animate-fade-in flex flex-col"
               style={{ animationDelay: `${idx * 50}ms` }}
+              onClick={() => handleTourDetails(tour)}
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
@@ -272,7 +281,10 @@ export default function ToursSection() {
                     </p>
                   </div>
                   <Button 
-                    onClick={() => handleBooking(tour)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleBooking(tour);
+                    }}
                     size="sm"
                     className="bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105"
                   >
@@ -286,10 +298,16 @@ export default function ToursSection() {
         </div>
       </div>
 
+      <TourDetailModal
+        tour={selectedTourForDetail}
+        open={isDetailModalOpen}
+        onClose={() => setIsDetailModalOpen(false)}
+      />
+
       <BookingModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        tourData={selectedTour}
+        tourData={selectedTourForBooking}
       />
     </section>
   );

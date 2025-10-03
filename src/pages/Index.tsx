@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import HotDealsSection from '@/components/HotDealsSection';
+import TourFinderForm from '@/components/TourFinderForm';
 import TourCalendar from '@/components/TourCalendar';
 import ToursSection from '@/components/ToursSection';
 import CountriesSection from '@/components/CountriesSection';
@@ -13,6 +14,7 @@ import ReviewsSection from '@/components/ReviewsSection';
 import PromotionsSection from '@/components/PromotionsSection';
 import ContactsSection from '@/components/ContactsSection';
 import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -33,6 +35,7 @@ const Index = () => {
         <HeroSection />
         <BenefitsSection />
         <HotDealsSection />
+        <TourFinderForm />
         <TourCalendar />
         <ToursSection />
         <CountriesSection />
@@ -45,6 +48,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
