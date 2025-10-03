@@ -58,7 +58,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     smtp_port = int(os.environ.get('SMTP_PORT', '587'))
     smtp_user = os.environ.get('SMTP_USER')
     smtp_password = os.environ.get('SMTP_PASSWORD')
-    contact_email = os.environ.get('CONTACT_EMAIL')
+    contact_email = os.environ.get('CONTACT_EMAIL', 'bogdan273@yandex.ru')
     
     if not all([smtp_host, smtp_user, smtp_password, contact_email]):
         return {

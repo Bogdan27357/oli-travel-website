@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
-const BACKEND_URL = 'https://functions.poehali.dev/e18f8d09-e392-4a56-8727-a952e837f1fa';
+const BACKEND_URL = 'https://functions.poehali.dev/dea48100-ddb2-4f0d-8e5f-770296090960';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

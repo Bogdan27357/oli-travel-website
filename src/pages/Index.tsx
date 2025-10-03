@@ -14,6 +14,7 @@ import ReviewsSection from '@/components/ReviewsSection';
 import PromotionsSection from '@/components/PromotionsSection';
 import ContactForm from '@/components/ContactForm';
 import ContactsSection from '@/components/ContactsSection';
+import ChatWidget from '@/components/ChatWidget';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -50,6 +51,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <ChatWidget />
       <ScrollToTop />
     </div>
   );

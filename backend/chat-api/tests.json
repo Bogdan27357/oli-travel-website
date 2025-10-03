@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "Create chat session",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "create_session",
+        "user_name": "Test User"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "session_id": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
