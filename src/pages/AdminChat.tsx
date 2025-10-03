@@ -33,6 +33,8 @@ export default function AdminChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState('');
   const [managerName, setManagerName] = useState(localStorage.getItem('manager_name') || '');
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -152,6 +154,46 @@ export default function AdminChat() {
     }
   };
 
+  const checkPassword = async () => {
+    if (!password.trim()) return;
+    
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/a5ac7b7d-d827-4215-869d-0bb5f5eb885f', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'login',
+          password: password.trim()
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setIsAuthenticated(true);
+        toast({
+          title: '✅ Доступ разрешен',
+          description: 'Добро пожаловать в чат менеджера'
+        });
+      } else {
+        toast({
+          title: 'Ошибка',
+          description: data.error || 'Неверный пароль',
+          variant: 'destructive'
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось проверить пароль',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const saveManagerName = () => {
     if (managerName.trim()) {
       localStorage.setItem('manager_name', managerName.trim());
@@ -162,6 +204,54 @@ export default function AdminChat() {
       });
     }
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center p-4">
+        <div className="absolute top-4 left-4">
+          <a href="/">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Icon name="ArrowLeft" size={16} />
+              На главную
+            </Button>
+          </a>
+        </div>
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-center text-2xl flex items-center justify-center gap-2">
+              <Icon name="Shield" size={28} className="text-primary" />
+              Чат менеджера
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-center text-gray-600">
+              Введите пароль для доступа к чату
+            </p>
+            <Input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && checkPassword()}
+              className="h-12"
+            />
+            <Button
+              onClick={checkPassword}
+              className="w-full h-12 bg-gradient-to-r from-primary to-secondary"
+              disabled={!password.trim() || isLoading}
+            >
+              {isLoading ? (
+                <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+              ) : (
+                <Icon name="Lock" size={20} className="mr-2" />
+              )}
+              Войти
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (!managerName || !localStorage.getItem('manager_name')) {
     return (
