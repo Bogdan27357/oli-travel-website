@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 import PasswordLogin from '@/components/admin/PasswordLogin';
 import ManagerNameSetup from '@/components/admin/ManagerNameSetup';
-import SessionsList, { Session } from '@/components/admin/SessionsList';
-import ChatWindow, { Message } from '@/components/admin/ChatWindow';
+import SessionsList from '@/components/admin/SessionsList';
+import ChatWindow from '@/components/admin/ChatWindow';
+import ChatStatistics from '@/components/admin/ChatStatistics';
+import TagManager from '@/components/admin/TagManager';
+import ArchiveControl from '@/components/admin/ArchiveControl';
+import QuickReplies from '@/components/admin/QuickReplies';
+import { Session, Message } from '@/types/admin';
 
 const CHAT_API_URL = 'https://functions.poehali.dev/bcc8f618-4702-4e8b-9aac-7ac6a7b988e6';
 
@@ -13,11 +19,14 @@ export default function AdminChat() {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [selectedSession, setSelectedSession] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [currentMessage, setCurrentMessage] = useState('');
   const [managerName, setManagerName] = useState(localStorage.getItem('manager_name') || '');
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const saved = localStorage.getItem('manager_auth_token');
     return !!saved;
   });
+  const [showQuickReplies, setShowQuickReplies] = useState(false);
+  const [activeTab, setActiveTab] = useState('active');
   const { toast } = useToast();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const previousMessageCountRef = useRef<Record<string, number>>({});
@@ -35,7 +44,16 @@ export default function AdminChat() {
       const data = await response.json();
       
       if (data.success && data.sessions) {
-        data.sessions.forEach((session: Session) => {
+        const storedData = localStorage.getItem('admin_sessions_data');
+        const localData = storedData ? JSON.parse(storedData) : {};
+        
+        const enrichedSessions = data.sessions.map((session: Session) => ({
+          ...session,
+          tags: localData[session.session_id]?.tags || [],
+          archived: localData[session.session_id]?.archived || false
+        }));
+        
+        enrichedSessions.forEach((session: Session) => {
           const prevCount = previousMessageCountRef.current[session.session_id] || 0;
           const newCount = session.message_count;
           
@@ -51,7 +69,7 @@ export default function AdminChat() {
           previousMessageCountRef.current[session.session_id] = newCount;
         });
         
-        setSessions(data.sessions);
+        setSessions(enrichedSessions);
       }
     } catch (error) {
       console.error('Error loading sessions:', error);
@@ -109,6 +127,51 @@ export default function AdminChat() {
     setIsAuthenticated(false);
   };
 
+  const handleTagsUpdate = (sessionId: string, tags: string[]) => {
+    const storedData = localStorage.getItem('admin_sessions_data');
+    const localData = storedData ? JSON.parse(storedData) : {};
+    
+    localData[sessionId] = {
+      ...localData[sessionId],
+      tags
+    };
+    
+    localStorage.setItem('admin_sessions_data', JSON.stringify(localData));
+    
+    setSessions(sessions.map(s => 
+      s.session_id === sessionId ? { ...s, tags } : s
+    ));
+  };
+
+  const handleArchiveToggle = (sessionId: string, archived: boolean) => {
+    const storedData = localStorage.getItem('admin_sessions_data');
+    const localData = storedData ? JSON.parse(storedData) : {};
+    
+    localData[sessionId] = {
+      ...localData[sessionId],
+      archived
+    };
+    
+    localStorage.setItem('admin_sessions_data', JSON.stringify(localData));
+    
+    setSessions(sessions.map(s => 
+      s.session_id === sessionId ? { ...s, archived } : s
+    ));
+    
+    if (archived && selectedSession === sessionId) {
+      setSelectedSession(null);
+    }
+  };
+
+  const handleQuickReplySelect = (message: string) => {
+    setCurrentMessage(message);
+    setShowQuickReplies(false);
+  };
+
+  const getCurrentSession = () => {
+    return sessions.find(s => s.session_id === selectedSession);
+  };
+
   if (!isAuthenticated) {
     return <PasswordLogin onAuthenticated={handleAuthenticated} />;
   }
@@ -117,9 +180,11 @@ export default function AdminChat() {
     return <ManagerNameSetup onNameSaved={handleNameSaved} />;
   }
 
+  const currentSession = getCurrentSession();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5">
-      <div className="container mx-auto p-4 max-w-7xl">
+      <div className="container mx-auto p-4 max-w-[1600px]">
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -135,20 +200,75 @@ export default function AdminChat() {
           </Button>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-4 h-[calc(100vh-180px)]">
-          <SessionsList 
-            sessions={sessions}
-            selectedSession={selectedSession}
-            onSelectSession={setSelectedSession}
-          />
-          
-          <ChatWindow
-            selectedSession={selectedSession}
-            messages={messages}
-            managerName={managerName}
-            chatApiUrl={CHAT_API_URL}
-            onMessageSent={handleMessageSent}
-          />
+        <div className="mb-6">
+          <ChatStatistics sessions={sessions} />
+        </div>
+
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+          <TabsList>
+            <TabsTrigger value="active" className="gap-2">
+              <Icon name="MessageSquare" size={16} />
+              Активные
+            </TabsTrigger>
+            <TabsTrigger value="archived" className="gap-2">
+              <Icon name="Archive" size={16} />
+              Архив
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+
+        <div className="grid lg:grid-cols-12 gap-4">
+          <div className="lg:col-span-3">
+            <TabsContent value="active" className="mt-0">
+              <SessionsList 
+                sessions={sessions}
+                selectedSession={selectedSession}
+                onSelectSession={setSelectedSession}
+                showArchived={false}
+              />
+            </TabsContent>
+            <TabsContent value="archived" className="mt-0">
+              <SessionsList 
+                sessions={sessions}
+                selectedSession={selectedSession}
+                onSelectSession={setSelectedSession}
+                showArchived={true}
+              />
+            </TabsContent>
+          </div>
+
+          <div className="lg:col-span-6">
+            <ChatWindow
+              selectedSession={selectedSession}
+              messages={messages}
+              managerName={managerName}
+              chatApiUrl={CHAT_API_URL}
+              onMessageSent={handleMessageSent}
+              onQuickReplyClick={() => setShowQuickReplies(!showQuickReplies)}
+              currentMessage={currentMessage}
+              onMessageChange={setCurrentMessage}
+            />
+          </div>
+
+          <div className="lg:col-span-3 space-y-4">
+            {showQuickReplies ? (
+              <QuickReplies onSelectReply={handleQuickReplySelect} />
+            ) : (
+              <>
+                <TagManager
+                  sessionId={selectedSession}
+                  sessionTags={currentSession?.tags || []}
+                  onTagsUpdate={handleTagsUpdate}
+                />
+                
+                <ArchiveControl
+                  sessionId={selectedSession}
+                  isArchived={currentSession?.archived || false}
+                  onArchiveToggle={handleArchiveToggle}
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

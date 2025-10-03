@@ -4,14 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
-
-export interface Message {
-  id: number;
-  sender_type: 'user' | 'manager';
-  sender_name: string;
-  message: string;
-  created_at: string;
-}
+import { Message } from '@/types/admin';
 
 interface ChatWindowProps {
   selectedSession: string | null;
@@ -19,6 +12,9 @@ interface ChatWindowProps {
   managerName: string;
   chatApiUrl: string;
   onMessageSent: () => void;
+  onQuickReplyClick: () => void;
+  currentMessage: string;
+  onMessageChange: (message: string) => void;
 }
 
 export default function ChatWindow({ 
@@ -26,9 +22,11 @@ export default function ChatWindow({
   messages, 
   managerName, 
   chatApiUrl,
-  onMessageSent 
+  onMessageSent,
+  onQuickReplyClick,
+  currentMessage,
+  onMessageChange
 }: ChatWindowProps) {
-  const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -42,7 +40,7 @@ export default function ChatWindow({
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!message.trim() || !selectedSession || !managerName) return;
+    if (!currentMessage.trim() || !selectedSession || !managerName) return;
 
     setIsLoading(true);
     
@@ -55,11 +53,11 @@ export default function ChatWindow({
           session_id: selectedSession,
           sender_type: 'manager',
           sender_name: managerName,
-          message: message.trim()
+          message: currentMessage.trim()
         })
       });
 
-      setMessage('');
+      onMessageChange('');
       onMessageSent();
       
       toast({
@@ -136,12 +134,23 @@ export default function ChatWindow({
         <div ref={messagesEndRef} />
       </CardContent>
 
-      <div className="p-4 bg-white border-t">
+      <div className="p-4 bg-white border-t space-y-2">
+        <div className="flex gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={onQuickReplyClick}
+            className="gap-2"
+          >
+            <Icon name="MessageSquareText" size={16} />
+            Шаблоны
+          </Button>
+        </div>
         <div className="flex gap-2">
           <Textarea
             placeholder="Введите сообщение клиенту..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={currentMessage}
+            onChange={(e) => onMessageChange(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -153,7 +162,7 @@ export default function ChatWindow({
           />
           <Button
             onClick={sendMessage}
-            disabled={!message.trim() || isLoading}
+            disabled={!currentMessage.trim() || isLoading}
             className="bg-gradient-to-r from-primary to-secondary px-4"
           >
             {isLoading ? (
