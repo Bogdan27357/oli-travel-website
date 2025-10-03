@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { adminAPI } from '@/lib/admin-api';
 import { useToast } from '@/hooks/use-toast';
-import { DialogTrigger } from '@/components/ui/dialog';
 import TourFormDialog from '@/components/admin/TourFormDialog';
 import ToursList from '@/components/admin/ToursList';
 
@@ -207,12 +206,10 @@ export default function AdminTours() {
           <h1 className="text-3xl font-bold mb-2">Туры</h1>
           <p className="text-gray-600">Управление турами на сайте</p>
         </div>
-        <DialogTrigger asChild>
-          <Button onClick={openCreateModal} className="gap-2">
-            <Icon name="Plus" size={20} />
-            Добавить тур
-          </Button>
-        </DialogTrigger>
+        <Button onClick={openCreateModal} className="gap-2">
+          <Icon name="Plus" size={20} />
+          Добавить тур
+        </Button>
       </div>
 
       <div className="flex items-center gap-2">

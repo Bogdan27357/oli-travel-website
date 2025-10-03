@@ -26,12 +26,26 @@ def verify_admin_token(token: str) -> bool:
     except:
         return False
 
+def escape_sql_string(value) -> str:
+    """Escape string for SQL by replacing ' with ''"""
+    if value is None:
+        return 'NULL'
+    return "'" + str(value).replace("'", "''") + "'"
+
+def escape_sql_value(value) -> str:
+    """Convert Python value to SQL literal"""
+    if value is None:
+        return 'NULL'
+    elif isinstance(value, bool):
+        return 'TRUE' if value else 'FALSE'
+    elif isinstance(value, (int, float)):
+        return str(value)
+    else:
+        return escape_sql_string(value)
+
 def handle_tours(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, Any]:
     """
     Handle CRUD operations for tours table
-    Schema: id, title, country, city, hotel, stars, dates, duration, price, 
-            old_price, image_url, description, includes, flight_included, 
-            is_hot, is_active, created_at, updated_at
     """
     schema = get_schema_name()
     
@@ -40,13 +54,12 @@ def handle_tours(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, 
         tour_id = params.get('id')
         
         if tour_id:
-            # Get single tour by ID
-            cursor.execute(
+            query = (
                 f"SELECT id, title, country, city, hotel, stars, dates, duration, price, "
                 f"old_price, image_url, description, includes, flight_included, is_hot, "
-                f"is_active, created_at, updated_at FROM {schema}.tours WHERE id = %s",
-                (tour_id,)
+                f"is_active, created_at, updated_at FROM {schema}.tours WHERE id = {escape_sql_value(tour_id)}"
             )
+            cursor.execute(query)
             row = cursor.fetchone()
             if not row:
                 return {'success': False, 'error': 'Tour not found'}
@@ -73,34 +86,33 @@ def handle_tours(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, 
             }
             return {'success': True, 'tour': tour}
         else:
-            # Get all tours with pagination and filters
             limit = int(params.get('limit', 100))
             offset = int(params.get('offset', 0))
             is_active = params.get('is_active')
             is_hot = params.get('is_hot')
             country = params.get('country')
             
-            query = f"SELECT id, title, country, city, hotel, stars, dates, duration, price, " \
-                    f"old_price, image_url, description, includes, flight_included, is_hot, " \
-                    f"is_active, created_at, updated_at FROM {schema}.tours WHERE 1=1"
-            query_params = []
+            query = (
+                f"SELECT id, title, country, city, hotel, stars, dates, duration, price, "
+                f"old_price, image_url, description, includes, flight_included, is_hot, "
+                f"is_active, created_at, updated_at FROM {schema}.tours WHERE 1=1"
+            )
             
             if is_active is not None:
-                query += " AND is_active = %s"
-                query_params.append(is_active == 'true')
+                is_active_bool = 'TRUE' if is_active == 'true' else 'FALSE'
+                query += f" AND is_active = {is_active_bool}"
             
             if is_hot is not None:
-                query += " AND is_hot = %s"
-                query_params.append(is_hot == 'true')
+                is_hot_bool = 'TRUE' if is_hot == 'true' else 'FALSE'
+                query += f" AND is_hot = {is_hot_bool}"
             
             if country:
-                query += " AND country ILIKE %s"
-                query_params.append(f'%{country}%')
+                escaped_country = str(country).replace("'", "''")
+                query += f" AND country ILIKE '%{escaped_country}%'"
             
-            query += " ORDER BY created_at DESC LIMIT %s OFFSET %s"
-            query_params.extend([limit, offset])
+            query += f" ORDER BY created_at DESC LIMIT {limit} OFFSET {offset}"
             
-            cursor.execute(query, query_params)
+            cursor.execute(query)
             rows = cursor.fetchall()
             
             tours = []
@@ -126,97 +138,99 @@ def handle_tours(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, 
                     'updated_at': row[17].isoformat() if row[17] else None
                 })
             
-            # Get total count
             count_query = f"SELECT COUNT(*) FROM {schema}.tours WHERE 1=1"
-            count_params = []
             
             if is_active is not None:
-                count_query += " AND is_active = %s"
-                count_params.append(is_active == 'true')
+                is_active_bool = 'TRUE' if is_active == 'true' else 'FALSE'
+                count_query += f" AND is_active = {is_active_bool}"
             
             if is_hot is not None:
-                count_query += " AND is_hot = %s"
-                count_params.append(is_hot == 'true')
+                is_hot_bool = 'TRUE' if is_hot == 'true' else 'FALSE'
+                count_query += f" AND is_hot = {is_hot_bool}"
             
             if country:
-                count_query += " AND country ILIKE %s"
-                count_params.append(f'%{country}%')
+                escaped_country = str(country).replace("'", "''")
+                count_query += f" AND country ILIKE '%{escaped_country}%'"
             
-            cursor.execute(count_query, count_params)
+            cursor.execute(count_query)
             total = cursor.fetchone()[0]
             
             return {'success': True, 'tours': tours, 'total': total}
     
     elif method == 'POST':
-        # Create new tour
         body_data = json.loads(event.get('body', '{}'))
         
-        cursor.execute(
+        includes = body_data.get('includes', [])
+        if isinstance(includes, list):
+            includes_json = json.dumps(includes).replace("'", "''")
+        else:
+            includes_json = str(includes).replace("'", "''") if includes else '[]'
+        
+        query = (
             f"INSERT INTO {schema}.tours "
             f"(title, country, city, hotel, stars, dates, duration, price, old_price, "
             f"image_url, description, includes, flight_included, is_hot, is_active) "
-            f"VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) "
-            f"RETURNING id",
-            (
-                body_data.get('title'),
-                body_data.get('country'),
-                body_data.get('city'),
-                body_data.get('hotel'),
-                body_data.get('stars'),
-                body_data.get('dates'),
-                body_data.get('duration'),
-                body_data.get('price'),
-                body_data.get('old_price'),
-                body_data.get('image_url'),
-                body_data.get('description'),
-                json.dumps(body_data.get('includes', [])) if isinstance(body_data.get('includes'), list) else body_data.get('includes'),
-                body_data.get('flight_included', False),
-                body_data.get('is_hot', False),
-                body_data.get('is_active', True)
-            )
+            f"VALUES ("
+            f"{escape_sql_value(body_data.get('title'))}, "
+            f"{escape_sql_value(body_data.get('country'))}, "
+            f"{escape_sql_value(body_data.get('city'))}, "
+            f"{escape_sql_value(body_data.get('hotel'))}, "
+            f"{escape_sql_value(body_data.get('stars'))}, "
+            f"{escape_sql_value(body_data.get('dates'))}, "
+            f"{escape_sql_value(body_data.get('duration'))}, "
+            f"{escape_sql_value(body_data.get('price'))}, "
+            f"{escape_sql_value(body_data.get('old_price'))}, "
+            f"{escape_sql_value(body_data.get('image_url'))}, "
+            f"{escape_sql_value(body_data.get('description'))}, "
+            f"'{includes_json}', "
+            f"{escape_sql_value(body_data.get('flight_included', False))}, "
+            f"{escape_sql_value(body_data.get('is_hot', False))}, "
+            f"{escape_sql_value(body_data.get('is_active', True))}"
+            f") RETURNING id"
         )
+        cursor.execute(query)
         new_id = cursor.fetchone()[0]
         conn.commit()
         return {'success': True, 'id': new_id, 'message': 'Tour created successfully'}
     
     elif method == 'PUT':
-        # Update existing tour
         body_data = json.loads(event.get('body', '{}'))
         tour_id = body_data.get('id')
         
         if not tour_id:
             return {'success': False, 'error': 'Tour ID is required'}
         
-        cursor.execute(
+        includes = body_data.get('includes', [])
+        if isinstance(includes, list):
+            includes_json = json.dumps(includes).replace("'", "''")
+        else:
+            includes_json = str(includes).replace("'", "''") if includes else '[]'
+        
+        query = (
             f"UPDATE {schema}.tours SET "
-            f"title = %s, country = %s, city = %s, hotel = %s, stars = %s, dates = %s, "
-            f"duration = %s, price = %s, old_price = %s, image_url = %s, description = %s, "
-            f"includes = %s, flight_included = %s, is_hot = %s, is_active = %s, "
-            f"updated_at = CURRENT_TIMESTAMP WHERE id = %s",
-            (
-                body_data.get('title'),
-                body_data.get('country'),
-                body_data.get('city'),
-                body_data.get('hotel'),
-                body_data.get('stars'),
-                body_data.get('dates'),
-                body_data.get('duration'),
-                body_data.get('price'),
-                body_data.get('old_price'),
-                body_data.get('image_url'),
-                body_data.get('description'),
-                json.dumps(body_data.get('includes', [])) if isinstance(body_data.get('includes'), list) else body_data.get('includes'),
-                body_data.get('flight_included'),
-                body_data.get('is_hot'),
-                body_data.get('is_active'),
-                tour_id
-            )
+            f"title = {escape_sql_value(body_data.get('title'))}, "
+            f"country = {escape_sql_value(body_data.get('country'))}, "
+            f"city = {escape_sql_value(body_data.get('city'))}, "
+            f"hotel = {escape_sql_value(body_data.get('hotel'))}, "
+            f"stars = {escape_sql_value(body_data.get('stars'))}, "
+            f"dates = {escape_sql_value(body_data.get('dates'))}, "
+            f"duration = {escape_sql_value(body_data.get('duration'))}, "
+            f"price = {escape_sql_value(body_data.get('price'))}, "
+            f"old_price = {escape_sql_value(body_data.get('old_price'))}, "
+            f"image_url = {escape_sql_value(body_data.get('image_url'))}, "
+            f"description = {escape_sql_value(body_data.get('description'))}, "
+            f"includes = '{includes_json}', "
+            f"flight_included = {escape_sql_value(body_data.get('flight_included'))}, "
+            f"is_hot = {escape_sql_value(body_data.get('is_hot'))}, "
+            f"is_active = {escape_sql_value(body_data.get('is_active'))}, "
+            f"updated_at = CURRENT_TIMESTAMP "
+            f"WHERE id = {escape_sql_value(tour_id)}"
         )
+        cursor.execute(query)
         conn.commit()
         return {'success': True, 'message': 'Tour updated successfully'}
     
     elif method == 'DELETE':
-        # Deactivate tour (soft delete)
         params = event.get('queryStringParameters', {}) or {}
         body_data = json.loads(event.get('body', '{}')) if event.get('body') else {}
         tour_id = params.get('id') or body_data.get('id')
@@ -224,19 +238,16 @@ def handle_tours(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, 
         if not tour_id:
             return {'success': False, 'error': 'Tour ID is required'}
         
-        cursor.execute(
-            f"UPDATE {schema}.tours SET is_active = FALSE, updated_at = CURRENT_TIMESTAMP WHERE id = %s",
-            (tour_id,)
+        query = (
+            f"UPDATE {schema}.tours SET is_active = FALSE, "
+            f"updated_at = CURRENT_TIMESTAMP WHERE id = {escape_sql_value(tour_id)}"
         )
+        cursor.execute(query)
         conn.commit()
         return {'success': True, 'message': 'Tour deactivated successfully'}
 
 def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, Any]:
-    """
-    Handle CRUD operations for reviews table
-    Schema: id, author_name, author_avatar, country, rating, comment, 
-            date, is_approved, created_at
-    """
+    """Handle CRUD operations for reviews table"""
     schema = get_schema_name()
     
     if method == 'GET':
@@ -244,12 +255,12 @@ def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str
         review_id = params.get('id')
         
         if review_id:
-            # Get single review by ID
-            cursor.execute(
+            query = (
                 f"SELECT id, author_name, author_avatar, country, rating, comment, "
-                f"date, is_approved, created_at FROM {schema}.reviews WHERE id = %s",
-                (review_id,)
+                f"date, is_approved, created_at FROM {schema}.reviews "
+                f"WHERE id = {escape_sql_value(review_id)}"
             )
+            cursor.execute(query)
             row = cursor.fetchone()
             if not row:
                 return {'success': False, 'error': 'Review not found'}
@@ -267,23 +278,28 @@ def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str
             }
             return {'success': True, 'review': review}
         else:
-            # Get all reviews with pagination and filters
             limit = int(params.get('limit', 100))
             offset = int(params.get('offset', 0))
             is_approved = params.get('is_approved')
+            status = params.get('status')
             
-            query = f"SELECT id, author_name, author_avatar, country, rating, comment, " \
-                    f"date, is_approved, created_at FROM {schema}.reviews WHERE 1=1"
-            query_params = []
+            query = (
+                f"SELECT id, author_name, author_avatar, country, rating, comment, "
+                f"date, is_approved, created_at FROM {schema}.reviews WHERE 1=1"
+            )
             
             if is_approved is not None:
-                query += " AND is_approved = %s"
-                query_params.append(is_approved == 'true')
+                is_approved_bool = 'TRUE' if is_approved == 'true' else 'FALSE'
+                query += f" AND is_approved = {is_approved_bool}"
             
-            query += " ORDER BY created_at DESC LIMIT %s OFFSET %s"
-            query_params.extend([limit, offset])
+            if status == 'pending':
+                query += " AND is_approved = FALSE"
+            elif status == 'approved':
+                query += " AND is_approved = TRUE"
             
-            cursor.execute(query, query_params)
+            query += f" ORDER BY created_at DESC LIMIT {limit} OFFSET {offset}"
+            
+            cursor.execute(query)
             rows = cursor.fetchall()
             
             reviews = []
@@ -300,15 +316,18 @@ def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str
                     'created_at': row[8].isoformat() if row[8] else None
                 })
             
-            # Get total and pending counts
             count_query = f"SELECT COUNT(*) FROM {schema}.reviews WHERE 1=1"
-            count_params = []
             
             if is_approved is not None:
-                count_query += " AND is_approved = %s"
-                count_params.append(is_approved == 'true')
+                is_approved_bool = 'TRUE' if is_approved == 'true' else 'FALSE'
+                count_query += f" AND is_approved = {is_approved_bool}"
             
-            cursor.execute(count_query, count_params)
+            if status == 'pending':
+                count_query += " AND is_approved = FALSE"
+            elif status == 'approved':
+                count_query += " AND is_approved = TRUE"
+            
+            cursor.execute(count_query)
             total = cursor.fetchone()[0]
             
             cursor.execute(f"SELECT COUNT(*) FROM {schema}.reviews WHERE is_approved = FALSE")
@@ -317,75 +336,68 @@ def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str
             return {'success': True, 'reviews': reviews, 'total': total, 'pending': pending}
     
     elif method == 'POST':
-        # Create new review
         body_data = json.loads(event.get('body', '{}'))
         
-        cursor.execute(
+        query = (
             f"INSERT INTO {schema}.reviews "
             f"(author_name, author_avatar, country, rating, comment, date, is_approved) "
-            f"VALUES (%s, %s, %s, %s, %s, %s, %s) "
-            f"RETURNING id",
-            (
-                body_data.get('author_name'),
-                body_data.get('author_avatar'),
-                body_data.get('country'),
-                body_data.get('rating'),
-                body_data.get('comment'),
-                body_data.get('date'),
-                body_data.get('is_approved', False)
-            )
+            f"VALUES ("
+            f"{escape_sql_value(body_data.get('author_name'))}, "
+            f"{escape_sql_value(body_data.get('author_avatar'))}, "
+            f"{escape_sql_value(body_data.get('country'))}, "
+            f"{escape_sql_value(body_data.get('rating'))}, "
+            f"{escape_sql_value(body_data.get('comment'))}, "
+            f"{escape_sql_value(body_data.get('date'))}, "
+            f"{escape_sql_value(body_data.get('is_approved', False))}"
+            f") RETURNING id"
         )
+        cursor.execute(query)
         new_id = cursor.fetchone()[0]
         conn.commit()
         return {'success': True, 'id': new_id, 'message': 'Review created successfully'}
     
     elif method == 'PUT':
-        # Update or approve review
         body_data = json.loads(event.get('body', '{}'))
         review_id = body_data.get('id')
         
         if not review_id:
             return {'success': False, 'error': 'Review ID is required'}
         
-        # Check if this is an approval action
         action = body_data.get('action')
         
         if action == 'approve':
-            cursor.execute(
-                f"UPDATE {schema}.reviews SET is_approved = TRUE WHERE id = %s",
-                (review_id,)
+            query = (
+                f"UPDATE {schema}.reviews SET is_approved = TRUE "
+                f"WHERE id = {escape_sql_value(review_id)}"
             )
+            cursor.execute(query)
             conn.commit()
             return {'success': True, 'message': 'Review approved successfully'}
         elif action == 'reject':
-            cursor.execute(
-                f"UPDATE {schema}.reviews SET is_approved = FALSE WHERE id = %s",
-                (review_id,)
+            query = (
+                f"UPDATE {schema}.reviews SET is_approved = FALSE "
+                f"WHERE id = {escape_sql_value(review_id)}"
             )
+            cursor.execute(query)
             conn.commit()
             return {'success': True, 'message': 'Review rejected successfully'}
         else:
-            # Regular update
-            cursor.execute(
+            query = (
                 f"UPDATE {schema}.reviews SET "
-                f"author_name = %s, author_avatar = %s, country = %s, rating = %s, "
-                f"comment = %s, date = %s, is_approved = %s WHERE id = %s",
-                (
-                    body_data.get('author_name'),
-                    body_data.get('author_avatar'),
-                    body_data.get('country'),
-                    body_data.get('rating'),
-                    body_data.get('comment'),
-                    body_data.get('date'),
-                    body_data.get('is_approved'),
-                    review_id
-                )
+                f"author_name = {escape_sql_value(body_data.get('author_name'))}, "
+                f"author_avatar = {escape_sql_value(body_data.get('author_avatar'))}, "
+                f"country = {escape_sql_value(body_data.get('country'))}, "
+                f"rating = {escape_sql_value(body_data.get('rating'))}, "
+                f"comment = {escape_sql_value(body_data.get('comment'))}, "
+                f"date = {escape_sql_value(body_data.get('date'))}, "
+                f"is_approved = {escape_sql_value(body_data.get('is_approved'))} "
+                f"WHERE id = {escape_sql_value(review_id)}"
             )
+            cursor.execute(query)
             conn.commit()
             return {'success': True, 'message': 'Review updated successfully'}
     
     elif method == 'DELETE':
-        # Delete review permanently
         params = event.get('queryStringParameters', {}) or {}
         body_data = json.loads(event.get('body', '{}')) if event.get('body') else {}
         review_id = params.get('id') or body_data.get('id')
@@ -393,15 +405,13 @@ def handle_reviews(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str
         if not review_id:
             return {'success': False, 'error': 'Review ID is required'}
         
-        cursor.execute(f"DELETE FROM {schema}.reviews WHERE id = %s", (review_id,))
+        query = f"DELETE FROM {schema}.reviews WHERE id = {escape_sql_value(review_id)}"
+        cursor.execute(query)
         conn.commit()
         return {'success': True, 'message': 'Review deleted successfully'}
 
 def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[str, Any]:
-    """
-    Handle operations for contact_requests table
-    Schema: id, name, email, phone, message, status, created_at, processed_at, notes
-    """
+    """Handle operations for contact_requests table"""
     schema = get_schema_name()
     
     if method == 'GET':
@@ -409,12 +419,12 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
         request_id = params.get('id')
         
         if request_id:
-            # Get single request by ID
-            cursor.execute(
+            query = (
                 f"SELECT id, name, email, phone, message, status, created_at, "
-                f"processed_at, notes FROM {schema}.contact_requests WHERE id = %s",
-                (request_id,)
+                f"processed_at, notes FROM {schema}.contact_requests "
+                f"WHERE id = {escape_sql_value(request_id)}"
             )
+            cursor.execute(query)
             row = cursor.fetchone()
             if not row:
                 return {'success': False, 'error': 'Request not found'}
@@ -432,23 +442,21 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
             }
             return {'success': True, 'request': request}
         else:
-            # Get all requests with pagination and filters
             limit = int(params.get('limit', 100))
             offset = int(params.get('offset', 0))
             status = params.get('status')
             
-            query = f"SELECT id, name, email, phone, message, status, created_at, " \
-                    f"processed_at, notes FROM {schema}.contact_requests WHERE 1=1"
-            query_params = []
+            query = (
+                f"SELECT id, name, email, phone, message, status, created_at, "
+                f"processed_at, notes FROM {schema}.contact_requests WHERE 1=1"
+            )
             
-            if status:
-                query += " AND status = %s"
-                query_params.append(status)
+            if status and status != 'all':
+                query += f" AND status = {escape_sql_value(status)}"
             
-            query += " ORDER BY created_at DESC LIMIT %s OFFSET %s"
-            query_params.extend([limit, offset])
+            query += f" ORDER BY created_at DESC LIMIT {limit} OFFSET {offset}"
             
-            cursor.execute(query, query_params)
+            cursor.execute(query)
             rows = cursor.fetchall()
             
             requests = []
@@ -465,15 +473,12 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
                     'notes': row[8]
                 })
             
-            # Get total and status counts
             count_query = f"SELECT COUNT(*) FROM {schema}.contact_requests WHERE 1=1"
-            count_params = []
             
-            if status:
-                count_query += " AND status = %s"
-                count_params.append(status)
+            if status and status != 'all':
+                count_query += f" AND status = {escape_sql_value(status)}"
             
-            cursor.execute(count_query, count_params)
+            cursor.execute(count_query)
             total = cursor.fetchone()[0]
             
             cursor.execute(f"SELECT COUNT(*) FROM {schema}.contact_requests WHERE status = 'pending'")
@@ -487,7 +492,7 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
             
             return {
                 'success': True,
-                'requests': requests,
+                'submissions': requests,
                 'total': total,
                 'stats': {
                     'pending': pending,
@@ -497,7 +502,6 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
             }
     
     elif method == 'PUT':
-        # Update request status and notes
         body_data = json.loads(event.get('body', '{}'))
         request_id = body_data.get('id')
         
@@ -507,31 +511,25 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
         new_status = body_data.get('status')
         notes = body_data.get('notes')
         
-        # Build update query dynamically
         update_fields = []
-        update_values = []
         
         if new_status:
-            update_fields.append("status = %s")
-            update_values.append(new_status)
+            update_fields.append(f"status = {escape_sql_value(new_status)}")
             
-            # Set processed_at if status is completed
             if new_status == 'completed':
                 update_fields.append("processed_at = CURRENT_TIMESTAMP")
         
         if notes is not None:
-            update_fields.append("notes = %s")
-            update_values.append(notes)
+            update_fields.append(f"notes = {escape_sql_value(notes)}")
         
         if not update_fields:
             return {'success': False, 'error': 'No fields to update'}
         
-        update_values.append(request_id)
-        
-        cursor.execute(
-            f"UPDATE {schema}.contact_requests SET {', '.join(update_fields)} WHERE id = %s",
-            update_values
+        query = (
+            f"UPDATE {schema}.contact_requests SET {', '.join(update_fields)} "
+            f"WHERE id = {escape_sql_value(request_id)}"
         )
+        cursor.execute(query)
         conn.commit()
         return {'success': True, 'message': 'Request updated successfully'}
 
@@ -540,7 +538,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     method: str = event.get('httpMethod', 'GET')
     
-    # Handle CORS preflight
     if method == 'OPTIONS':
         return {
             'statusCode': 200,
@@ -553,7 +550,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': ''
         }
     
-    # Verify admin token
     headers = event.get('headers', {})
     admin_token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
     
@@ -562,10 +558,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
             'isBase64Encoded': False,
-            'body': json.dumps({'success': False, 'error': 'Unauthorized - Invalid or missing admin token'})
+            'body': json.dumps({'success': False, 'error': 'Unauthorized'})
         }
     
-    # Check database configuration
     database_url = os.environ.get('DATABASE_URL')
     if not database_url:
         return {
@@ -575,11 +570,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': json.dumps({'success': False, 'error': 'Database not configured'})
         }
     
-    # Determine resource from query parameters or path
     params = event.get('queryStringParameters', {}) or {}
     path = event.get('path', '')
     
-    # Extract resource from path (e.g., /tours, /reviews, /requests)
     resource = params.get('resource')
     if not resource and path:
         path_parts = path.strip('/').split('/')
@@ -587,9 +580,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             resource = path_parts[-1]
     
     if not resource:
-        resource = 'tours'  # Default resource
+        resource = 'tours'
     
-    # Connect to database
     conn = None
     cursor = None
     
@@ -597,12 +589,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         conn = psycopg2.connect(database_url)
         cursor = conn.cursor()
         
-        # Route to appropriate handler
         if resource == 'tours':
             result = handle_tours(method, event, cursor, conn)
         elif resource == 'reviews':
             result = handle_reviews(method, event, cursor, conn)
-        elif resource in ['requests', 'contact_requests']:
+        elif resource in ['requests', 'contact_requests', 'submissions']:
             result = handle_requests(method, event, cursor, conn)
         else:
             result = {'success': False, 'error': f'Invalid resource: {resource}'}

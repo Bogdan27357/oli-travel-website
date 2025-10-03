@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import ReviewForm from '@/components/ReviewForm';
 
 const reviews = [
   { 
@@ -95,7 +96,9 @@ export default function ReviewsSection() {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-6">
+          <ReviewForm />
+          
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full">
             <Icon name="Users" size={20} className="text-primary" />
             <span className="text-sm font-medium">Более 2000 довольных туристов за 2024 год</span>
