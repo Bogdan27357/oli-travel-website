@@ -11,7 +11,7 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 animate-fade-in">
-            <img src="/img/a6646f57-0a66-476a-9d43-6a33fed933cb.jpg" alt="OliTravel" className="h-12 w-12 object-contain" />
+            <img src="/img/ba1adb08-b692-455f-9800-71be9436d24a.jpg" alt="OliTravel" className="h-12 w-12 object-contain" />
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               OliTravel
             </span>
@@ -43,9 +43,13 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
             ))}
           </nav>
 
-          <Button className="hidden md:block bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105">
-            Связаться
-          </Button>
+          <a href="/admin" className="hidden md:block">
+            <Button variant="outline" size="sm" className="gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </Button>
+          </a>
         </div>
       </div>
     </header>

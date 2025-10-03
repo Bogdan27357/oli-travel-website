@@ -11,17 +11,43 @@ export default function ContactsSection() {
         <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
           Готовы к путешествию мечты?
         </h2>
-        <p className="text-xl mb-10 opacity-95 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-          Оставьте заявку и наш менеджер свяжется с вами в течение 15 минут
+        <p className="text-xl mb-8 opacity-95 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          Свяжитесь с нашими менеджерами
         </p>
-        <Button 
-          size="lg" 
-          className="bg-white text-primary hover:bg-gray-100 shadow-2xl transition-all duration-300 hover:scale-110 text-lg px-10 py-7 animate-scale-in"
-          style={{ animationDelay: '200ms' }}
-        >
-          <Icon name="Phone" className="mr-2" size={20} />
-          Получить консультацию
-        </Button>
+        
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          <a 
+            href="tel:+79819812990" 
+            className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="bg-gradient-to-r from-primary to-secondary p-3 rounded-xl group-hover:scale-110 transition-transform">
+                <Icon name="Phone" size={24} className="text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-bold text-lg">Ольга</p>
+                <p className="text-primary/70">+7 981 981-29-90</p>
+              </div>
+            </div>
+          </a>
+          
+          <a 
+            href="tel:+79219456735" 
+            className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="bg-gradient-to-r from-primary to-secondary p-3 rounded-xl group-hover:scale-110 transition-transform">
+                <Icon name="Phone" size={24} className="text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-bold text-lg">Вячеслав</p>
+                <p className="text-primary/70">+7 921 945-67-35</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <p className="text-white/90 text-sm">*Мы ответим в течение 15 минут</p>
       </div>
     </section>
   );

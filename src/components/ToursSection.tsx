@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { Slider } from '@/components/ui/slider';
+import { Input } from '@/components/ui/input';
 import BookingModal from './BookingModal';
 
 const tourCategories = [
@@ -152,6 +154,8 @@ export default function ToursSection() {
     dates: string;
     price: number;
   } | null>(null);
+  const [priceRange, setPriceRange] = useState([0, 200000]);
+  const [dateFilter, setDateFilter] = useState('');
 
   const handleBooking = (tour: any) => {
     setSelectedTour({
@@ -163,6 +167,15 @@ export default function ToursSection() {
     });
     setIsModalOpen(true);
   };
+
+  const filteredTours = useMemo(() => {
+    const tours = tourExamples[selectedCategory as keyof typeof tourExamples] || [];
+    return tours.filter(tour => {
+      const priceMatch = tour.price >= priceRange[0] && tour.price <= priceRange[1];
+      const dateMatch = !dateFilter || tour.dates.toLowerCase().includes(dateFilter.toLowerCase());
+      return priceMatch && dateMatch;
+    });
+  }, [selectedCategory, priceRange, dateFilter]);
 
   return (
     <section id="tours" className="py-20 bg-white">
@@ -206,8 +219,46 @@ export default function ToursSection() {
           <h3 className="text-2xl font-bold text-center mb-8">
             Актуальные предложения
           </h3>
+          
+          <div className="mb-8 bg-white rounded-2xl p-6 shadow-md">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-3 text-gray-700">
+                  <Icon name="Wallet" size={16} className="inline mr-2" />
+                  Цена: {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()} ₽
+                </label>
+                <Slider
+                  min={0}
+                  max={200000}
+                  step={5000}
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  className="w-full"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-3 text-gray-700">
+                  <Icon name="Calendar" size={16} className="inline mr-2" />
+                  Период (месяц)
+                </label>
+                <Input
+                  type="text"
+                  placeholder="Например: октября, ноября, декабря"
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tourExamples[selectedCategory as keyof typeof tourExamples].map((example, idx) => (
+            {filteredTours.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <Icon name="SearchX" size={48} className="mx-auto mb-4 text-gray-400" />
+                <p className="text-gray-500 text-lg">Туры не найдены. Попробуйте изменить фильтры</p>
+              </div>
+            ) : filteredTours.map((example, idx) => (
               <Card 
                 key={example.id}
                 className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer animate-fade-in"

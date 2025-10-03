@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/img/a6646f57-0a66-476a-9d43-6a33fed933cb.jpg" alt="OliTravel" className="h-10 w-10 object-contain" />
+              <img src="/img/ba1adb08-b692-455f-9800-71be9436d24a.jpg" alt="OliTravel" className="h-10 w-10 object-contain" />
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 OliTravel
               </span>
@@ -40,13 +40,13 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Контакты</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 hover:text-white transition-colors">
                 <Icon name="Phone" size={16} />
-                +7 (812) 123-45-67
+                <a href="tel:+79819812990">Ольга: +7 981 981-29-90</a>
               </li>
-              <li className="flex items-center gap-2">
-                <Icon name="Mail" size={16} />
-                info@olitravel.ru
+              <li className="flex items-center gap-2 hover:text-white transition-colors">
+                <Icon name="Phone" size={16} />
+                <a href="tel:+79219456735">Вячеслав: +7 921 945-67-35</a>
               </li>
               <li className="flex items-center gap-2">
                 <Icon name="MapPin" size={16} />

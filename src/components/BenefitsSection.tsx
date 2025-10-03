@@ -3,9 +3,9 @@ import Icon from '@/components/ui/icon';
 
 const benefits = [
   { icon: 'Plane', title: 'Прямые рейсы', description: 'Из Санкт-Петербурга' },
-  { icon: 'Clock', title: 'Быстрое бронирование', description: 'За 5 минут' },
-  { icon: 'Shield', title: 'Гарантия', description: 'Возврат денег' },
-  { icon: 'Headphones', title: 'Поддержка 24/7', description: 'Всегда на связи' }
+  { icon: 'DollarSign', title: 'Лучшие цены', description: 'Без переплат' },
+  { icon: 'Shield', title: 'Надёжность', description: 'Официальный турагент' },
+  { icon: 'Headphones', title: 'Поддержка 24/7', description: 'Персональный менеджер' }
 ];
 
 export default function BenefitsSection() {
