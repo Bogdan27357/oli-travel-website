@@ -86,11 +86,12 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
                 </Badge>
               )}
             </a>
-            <a href="/admin" className="hidden md:block">
-              <Button variant="outline" size="sm" className="gap-2">
+            <a href="/admin">
+              <Button variant="outline" size="sm" className="gap-2 border-blue-300 hover:bg-blue-50">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
+                <span className="hidden sm:inline text-xs">Управление</span>
               </Button>
             </a>
           </div>
