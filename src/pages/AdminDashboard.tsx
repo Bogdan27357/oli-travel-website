@@ -19,6 +19,14 @@ export default function AdminDashboard() {
   const { toast } = useToast();
 
   useEffect(() => {
+    const defaultVideoUrl = 'https://youtube.com/shorts/KIB0PwVua0w';
+    if (!localStorage.getItem('hero_video_url')) {
+      localStorage.setItem('hero_video_url', defaultVideoUrl);
+      setVideoUrl(defaultVideoUrl);
+    }
+  }, []);
+
+  useEffect(() => {
     const loadStats = async () => {
       try {
         const [submissionsData, toursData, reviewsData] = await Promise.all([
