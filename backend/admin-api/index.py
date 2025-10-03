@@ -550,10 +550,24 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': ''
         }
     
+    params = event.get('queryStringParameters', {}) or {}
+    path = event.get('path', '')
+    
+    resource = params.get('resource')
+    if not resource and path:
+        path_parts = path.strip('/').split('/')
+        if path_parts:
+            resource = path_parts[-1]
+    
+    if not resource:
+        resource = 'tours'
+    
+    is_public_review_submit = (resource == 'reviews' and method == 'POST')
+    
     headers = event.get('headers', {})
     admin_token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
     
-    if not admin_token or not verify_admin_token(admin_token):
+    if not is_public_review_submit and (not admin_token or not verify_admin_token(admin_token)):
         return {
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
@@ -569,18 +583,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'isBase64Encoded': False,
             'body': json.dumps({'success': False, 'error': 'Database not configured'})
         }
-    
-    params = event.get('queryStringParameters', {}) or {}
-    path = event.get('path', '')
-    
-    resource = params.get('resource')
-    if not resource and path:
-        path_parts = path.strip('/').split('/')
-        if path_parts:
-            resource = path_parts[-1]
-    
-    if not resource:
-        resource = 'tours'
     
     conn = None
     cursor = None
