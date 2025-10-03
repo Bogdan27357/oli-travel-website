@@ -167,9 +167,17 @@ export default function AdminDashboard() {
                 <ul className="text-xs text-amber-700 space-y-1">
                   <li>✅ Ссылка должна заканчиваться на .mp4</li>
                   <li>✅ Только прямая ссылка на файл</li>
-                  <li>❌ НЕ работает: YouTube, VK, облачные диски</li>
-                  <li>💡 Рекомендуем: загрузить на свой хостинг</li>
+                  <li>❌ НЕ работает: YouTube, VK, Google Drive</li>
+                  <li>💡 Работает: Яндекс.Диск, Telegram, прямая ссылка</li>
                 </ul>
+              </div>
+              <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-xs text-blue-800 mb-2 font-semibold">📹 Как загрузить видео:</p>
+                <ol className="text-xs text-blue-700 space-y-1 list-decimal list-inside">
+                  <li>Загрузите на Яндекс.Диск и получите прямую ссылку</li>
+                  <li>Или загрузите в Telegram и скопируйте ссылку</li>
+                  <li>Вставьте ссылку в поле выше</li>
+                </ol>
               </div>
               {videoUrl && (
                 <div className="mt-2">

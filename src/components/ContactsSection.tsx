@@ -15,7 +15,7 @@ export default function ContactsSection() {
           Свяжитесь с нашими менеджерами
         </p>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
           <a 
             href="tel:+79819812990" 
             className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
@@ -69,6 +69,36 @@ export default function ContactsSection() {
               </div>
               <p className="font-bold text-base mb-1">Telegram</p>
               <p className="text-blue-600 text-sm font-medium">@Oli_Travel</p>
+            </div>
+          </a>
+
+          <a 
+            href="https://vk.com/oli8travel" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+          >
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 rounded-xl group-hover:scale-110 transition-transform mx-auto w-14 h-14 flex items-center justify-center mb-3">
+                <Icon name="MessageSquare" size={22} className="text-white" />
+              </div>
+              <p className="font-bold text-base mb-1">ВКонтакте</p>
+              <p className="text-blue-700 text-sm font-medium">Группа</p>
+            </div>
+          </a>
+
+          <a 
+            href="https://t.me/Oli8Travel" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white/95 backdrop-blur-sm hover:bg-white text-primary p-5 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+          >
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-sky-500 to-sky-600 p-3 rounded-xl group-hover:scale-110 transition-transform mx-auto w-14 h-14 flex items-center justify-center mb-3">
+                <Icon name="Radio" size={22} className="text-white" />
+              </div>
+              <p className="font-bold text-base mb-1">Telegram</p>
+              <p className="text-sky-600 text-sm font-medium">Канал</p>
             </div>
           </a>
         </div>
