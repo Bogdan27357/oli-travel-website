@@ -15,6 +15,7 @@ const countryTabs = [
   { id: 'turkey', name: 'Турция', icon: 'MapPin', country: 'Турция' },
   { id: 'egypt', name: 'Египет', icon: 'MapPin', country: 'Египет' },
   { id: 'uae', name: 'ОАЭ', icon: 'MapPin', country: 'ОАЭ' },
+  { id: 'armenia', name: 'Армения', icon: 'MapPin', country: 'Армения' },
   { id: 'thailand', name: 'Таиланд', icon: 'MapPin', country: 'Таиланд' },
   { id: 'maldives', name: 'Мальдивы', icon: 'MapPin', country: 'Мальдивы' },
   { id: 'greece', name: 'Греция', icon: 'MapPin', country: 'Греция' },

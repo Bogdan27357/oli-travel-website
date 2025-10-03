@@ -143,7 +143,45 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
                 </div>
               )}
 
-              <div className="bg-blue-50 p-4 rounded-lg">
+              {tour.whyChoose && tour.whyChoose.length > 0 && (
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Icon name="Sparkles" size={18} className="text-blue-600" />
+                    Почему выбрать этот тур?
+                  </h4>
+                  <div className="space-y-2">
+                    {tour.whyChoose.map((reason, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <Icon name="Star" size={14} className="text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-gray-700">{reason}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {tour.program && tour.program.length > 0 && (
+            <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-lg">
+              <h3 className="font-semibold text-xl mb-4 flex items-center gap-2">
+                <Icon name="ScrollText" size={24} className="text-primary" />
+                📋 Описание программы
+              </h3>
+              <div className="space-y-3">
+                {tour.program.map((day, index) => (
+                  <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                      {index + 1}
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed pt-1">{day}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="hidden">
                 <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <Icon name="Sparkles" size={18} className="text-blue-600" />
                   Почему выбрать этот тур?
@@ -176,14 +214,46 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
                   <Icon name="Phone" size={18} className="mr-2" />
                   Забронировать тур
                 </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="bg-transparent text-white border-white hover:bg-white/20"
-                >
-                  <Icon name="Download" size={16} className="mr-2" />
-                  Скачать программу
-                </Button>
+                {tour.program && tour.program.length > 0 && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white/20"
+                    onClick={() => {
+                      const programText = `
+${tour.title}
+${tour.hotel} ${tour.stars}⭐
+${tour.duration} | ${tour.dates}
+
+ПРОГРАММА ТУРА:
+${tour.program.map((day, i) => `${i + 1}. ${day}`).join('\n')}
+
+${tour.whyChoose ? `\nПОЧЕМУ ВЫБРАТЬ ЭТОТ ТУР:\n${tour.whyChoose.map(r => `• ${r}`).join('\n')}` : ''}
+
+Стоимость: ${tour.price.toLocaleString('ru-RU')} ₽
+
+Контакты: +7 (981) 981-29-90
+Сайт: oli-travel.com
+                      `.trim();
+                      
+                      const blob = new Blob([programText], { type: 'text/plain;charset=utf-8' });
+                      const url = URL.createObjectURL(blob);
+                      const link = document.createElement('a');
+                      link.href = url;
+                      link.download = `${tour.title.replace(/[^\w\s]/gi, '')}_программа.txt`;
+                      link.click();
+                      URL.revokeObjectURL(url);
+                      
+                      toast({
+                        title: "✅ Программа скачана",
+                        description: "Файл сохранен в папку загрузок"
+                      });
+                    }}
+                  >
+                    <Icon name="Download" size={16} className="mr-2" />
+                    Скачать программу
+                  </Button>
+                )}
               </div>
             </div>
           </div>
