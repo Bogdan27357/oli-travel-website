@@ -150,7 +150,7 @@ export default function ToursSection() {
         style={{ animationDelay: `${idx * 50}ms` }}
         onClick={() => handleTourDetails(tour)}
       >
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-40 overflow-hidden">
           <img 
             src={tour.image} 
             alt={tour.title}
@@ -196,31 +196,31 @@ export default function ToursSection() {
           </div>
         </div>
         
-        <div className="p-4 bg-white flex-1 flex flex-col">
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-            <Icon name="Calendar" size={14} />
-            <span className="text-xs">{tour.dates}</span>
+        <div className="p-3 bg-white flex-1 flex flex-col">
+          <div className="flex items-center gap-2 text-xs text-gray-600 mb-1">
+            <Icon name="Calendar" size={12} />
+            <span>{tour.dates}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
-            <Icon name="Clock" size={14} />
-            <span className="text-xs">{tour.duration}</span>
+          <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
+            <Icon name="Clock" size={12} />
+            <span>{tour.duration}</span>
           </div>
           
-          <div className="flex flex-wrap gap-1 mb-3">
-            {tour.includes.slice(0, 3).map((item, i) => (
+          <div className="flex flex-wrap gap-1 mb-2">
+            {tour.includes.slice(0, 2).map((item, i) => (
               <span 
                 key={i}
-                className="px-2 py-0.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary text-xs rounded-full"
+                className="px-1.5 py-0.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary text-[10px] rounded-full"
               >
                 {item}
               </span>
             ))}
           </div>
           
-          <div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+          <div className="flex items-center justify-between pt-2 border-t border-gray-100 mt-auto">
             <div>
-              <p className="text-xs text-gray-500">от</p>
-              <p className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <p className="text-[10px] text-gray-500">от</p>
+              <p className="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {tour.price.toLocaleString()} ₽
               </p>
             </div>
@@ -230,9 +230,9 @@ export default function ToursSection() {
                 handleBooking(tour);
               }}
               size="sm"
-              className="bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105 h-8 px-3 text-xs"
             >
-              <Icon name="Send" size={14} className="mr-1" />
+              <Icon name="Send" size={12} className="mr-1" />
               Купить
             </Button>
           </div>
@@ -242,30 +242,30 @@ export default function ToursSection() {
   };
 
   return (
-    <section id="tours" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="tours" className="py-12 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Туры из Санкт-Петербурга
           </h2>
-          <p className="text-gray-600 text-lg mb-4">Прямые рейсы и с пересадками — более {tourStats.total} направлений в {tourStats.countries} стран</p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Badge variant="secondary" className="text-sm px-4 py-2">
-              <Icon name="Plane" size={16} className="mr-2" />
+          <p className="text-gray-600 text-base mb-3">Прямые рейсы и с пересадками — более {tourStats.total} направлений в {tourStats.countries} стран</p>
+          <div className="flex justify-center gap-3 flex-wrap">
+            <Badge variant="secondary" className="text-xs px-3 py-1">
+              <Icon name="Plane" size={14} className="mr-1.5" />
               {tourStats.direct} прямых рейсов
             </Badge>
-            <Badge variant="secondary" className="text-sm px-4 py-2">
-              <Icon name="MapPin" size={16} className="mr-2" />
+            <Badge variant="secondary" className="text-xs px-3 py-1">
+              <Icon name="MapPin" size={14} className="mr-1.5" />
               {tourStats.transfer} с пересадками
             </Badge>
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 shadow-xl mb-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white rounded-2xl p-4 shadow-lg mb-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="lg:col-span-2">
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                <Icon name="Search" size={16} className="inline mr-2" />
+              <label className="block text-xs font-medium mb-1.5 text-gray-700">
+                <Icon name="Search" size={14} className="inline mr-1" />
                 Поиск по названию, стране, городу или отелю
               </label>
               <Input
@@ -273,17 +273,17 @@ export default function ToursSection() {
                 placeholder="Например: Турция, Rixos, Анталья..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-11"
+                className="w-full h-9 text-sm"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                <Icon name="Plane" size={16} className="inline mr-2" />
+              <label className="block text-xs font-medium mb-1.5 text-gray-700">
+                <Icon name="Plane" size={14} className="inline mr-1" />
                 Тип перелета
               </label>
               <Select value={transferFilter} onValueChange={setTransferFilter}>
-                <SelectTrigger className="w-full h-11">
+                <SelectTrigger className="w-full h-9 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -295,12 +295,12 @@ export default function ToursSection() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                <Icon name="ArrowUpDown" size={16} className="inline mr-2" />
+              <label className="block text-xs font-medium mb-1.5 text-gray-700">
+                <Icon name="ArrowUpDown" size={14} className="inline mr-1" />
                 Сортировка
               </label>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full h-11">
+                <SelectTrigger className="w-full h-9 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -312,9 +312,9 @@ export default function ToursSection() {
             </div>
           </div>
 
-          <div className="mt-6">
-            <label className="block text-sm font-medium mb-3 text-gray-700">
-              <Icon name="Wallet" size={16} className="inline mr-2" />
+          <div className="mt-4">
+            <label className="block text-xs font-medium mb-2 text-gray-700">
+              <Icon name="Wallet" size={14} className="inline mr-1" />
               Цена: {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()} ₽
             </label>
             <Slider
@@ -333,20 +333,20 @@ export default function ToursSection() {
           onValueChange={setSelectedCountry}
           className="w-full"
         >
-          <div className="relative mb-6">
+          <div className="relative mb-4">
             <div className="overflow-x-auto scrollbar-hide">
-              <TabsList className="inline-flex w-auto min-w-full md:min-w-0 h-auto bg-white p-2 rounded-2xl shadow-lg border-0 gap-2">
+              <TabsList className="inline-flex w-auto min-w-full md:min-w-0 h-auto bg-white p-1.5 rounded-xl shadow-md border-0 gap-1.5">
                 {countryTabs.map((tab) => (
                   <TabsTrigger 
                     key={tab.id} 
                     value={tab.id}
-                    className="flex-shrink-0 px-4 md:px-6 py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white data-[state=active]:shadow-lg hover:scale-105 whitespace-nowrap"
+                    className="flex-shrink-0 px-3 md:px-4 py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white data-[state=active]:shadow-md hover:scale-105 whitespace-nowrap"
                   >
-                    <Icon name={tab.icon as any} size={16} className="mr-2 flex-shrink-0" />
+                    <Icon name={tab.icon as any} size={14} className="mr-1.5 flex-shrink-0" />
                     <span>{tab.name}</span>
                     <Badge 
                       variant="secondary" 
-                      className="ml-2 bg-white/20 text-inherit border-0 hover:bg-white/30"
+                      className="ml-1.5 bg-white/20 text-inherit border-0 hover:bg-white/30 text-xs px-1.5"
                     >
                       {countryStats[tab.id]}
                     </Badge>
@@ -365,26 +365,27 @@ export default function ToursSection() {
                 value={tab.id}
                 className="mt-0 animate-fade-in"
               >
-                <div className="mb-6 flex justify-between items-center">
-                  <p className="text-gray-600">
+                <div className="mb-4 flex justify-between items-center">
+                  <p className="text-sm text-gray-600">
                     Найдено туров: <span className="font-bold text-primary">{filteredTours.length}</span>
                   </p>
                   
                   {compareList.length > 0 && (
                     <Button
                       onClick={() => setIsCompareModalOpen(true)}
-                      className="bg-gradient-to-r from-secondary to-primary hover:shadow-xl transition-all relative"
+                      size="sm"
+                      className="bg-gradient-to-r from-secondary to-primary hover:shadow-xl transition-all relative h-8 px-3 text-xs"
                     >
-                      <Icon name="GitCompare" size={18} className="mr-2" />
+                      <Icon name="GitCompare" size={14} className="mr-1.5" />
                       Сравнить туры
-                      <Badge className="ml-2 bg-white text-primary hover:bg-white">
+                      <Badge className="ml-1.5 bg-white text-primary hover:bg-white text-xs px-1.5">
                         {compareList.length}
                       </Badge>
                     </Button>
                   )}
                 </div>
                 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {renderTourCards(filteredTours)}
                 </div>
               </TabsContent>
