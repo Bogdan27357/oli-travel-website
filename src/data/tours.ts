@@ -26,7 +26,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '15-22 октября 2024',
     price: 42000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct',
@@ -42,7 +42,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '20-30 октября 2024',
     price: 48000,
-    image: 'https://images.unsplash.com/photo-1599447292104-cd42e95804d3?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&auto=format&fit=crop',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
     category: 'beach',
     fromSpb: 'direct'
@@ -57,7 +57,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '18-26 октября 2024',
     price: 39000,
-    image: 'https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -72,7 +72,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '20-30 октября 2024',
     price: 38000,
-    image: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct'
@@ -87,7 +87,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '22-31 октября 2024',
     price: 52000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&auto=format&fit=crop',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -102,7 +102,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '25 октября - 6 ноября 2024',
     price: 67000,
-    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -117,7 +117,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '23 октября - 3 ноября 2024',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Аквапарк'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -132,7 +132,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '18-24 октября 2024',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&auto=format&fit=crop',
     includes: ['Завтраки', '5 экскурсий', 'Прямой перелет', 'Трансфер'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -147,7 +147,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '20-27 октября 2024',
     price: 65000,
-    image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Экскурсии', 'Прямой перелет'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -162,7 +162,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '25 октября - 4 ноября 2024',
     price: 145000,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1589881133595-c7e4e7b9e36a?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Дайвинг'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -177,7 +177,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '28 октября - 8 ноября 2024',
     price: 158000,
-    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -192,7 +192,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '16-24 октября 2024',
     price: 68000,
-    image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -207,7 +207,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '19-28 октября 2024',
     price: 59000,
-    image: 'https://images.unsplash.com/photo-1601581875039-e899893d0dca?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -222,7 +222,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '21-28 октября 2024',
     price: 54000,
-    image: 'https://images.unsplash.com/photo-1601581875039-e899893d0dca?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -237,7 +237,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '22-28 октября 2024',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Экскурсии', 'Перелет с пересадкой'],
     category: 'excursion',
     fromSpb: 'transfer'
@@ -252,7 +252,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '24-29 октября 2024',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Экскурсии', 'Перелет с пересадкой'],
     category: 'excursion',
     fromSpb: 'transfer'
@@ -267,7 +267,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '19-25 октября 2024',
     price: 56000,
-    image: 'https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Экскурсии', 'Перелет с пересадкой'],
     category: 'excursion',
     fromSpb: 'transfer'
@@ -282,7 +282,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '23 октября - 1 ноября 2024',
     price: 64000,
-    image: 'https://images.unsplash.com/photo-1583338908858-5d9e5bb40c0b?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -297,7 +297,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '26 октября - 6 ноября 2024',
     price: 74000,
-    image: 'https://images.unsplash.com/photo-1583488881133-c9ba4dfbbcdb?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -312,7 +312,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '24 октября - 5 ноября 2024',
     price: 82000,
-    image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -327,7 +327,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '28 октября - 9 ноября 2024',
     price: 178000,
-    image: 'https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -342,7 +342,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '20-31 октября 2024',
     price: 89000,
-    image: 'https://images.unsplash.com/photo-1508804052814-cd3ba865a116?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -357,7 +357,7 @@ export const allTours: Tour[] = [
     duration: '13 ночей',
     dates: '27 октября - 9 ноября 2024',
     price: 112000,
-    image: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -372,7 +372,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '25 октября - 5 ноября 2024',
     price: 135000,
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -387,7 +387,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '26 октября - 7 ноября 2024',
     price: 148000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1589881133595-c7e4e7b9e36a?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -402,7 +402,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '15-22 декабря 2024',
     price: 95000,
-    image: 'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Ски-пасс 6 дней', 'Перелет с пересадкой'],
     category: 'ski',
     fromSpb: 'transfer'
@@ -417,7 +417,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '20-28 декабря 2024',
     price: 102000,
-    image: 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Ски-пасс', 'Перелет с пересадкой', 'Трансфер'],
     category: 'ski',
     fromSpb: 'transfer'
@@ -432,7 +432,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '18-25 декабря 2024',
     price: 125000,
-    image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Ски-пасс 6 дней', 'Перелет с пересадкой'],
     category: 'ski',
     fromSpb: 'transfer'
@@ -447,7 +447,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '16-24 декабря 2024',
     price: 88000,
-    image: 'https://images.unsplash.com/photo-1551524164-687a55dd1126?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Ски-пасс', 'Перелет с пересадкой'],
     category: 'ski',
     fromSpb: 'transfer'
@@ -462,7 +462,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '17-25 октября 2024',
     price: 52000,
-    image: 'https://images.unsplash.com/photo-1602945405853-64a0e4a98232?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -477,7 +477,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '19-28 октября 2024',
     price: 61000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -492,7 +492,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '20-27 октября 2024',
     price: 28000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=600&auto=format&fit=crop',
     includes: ['Полупансион', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct'
@@ -507,7 +507,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '18-25 октября 2024',
     price: 35000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=600&auto=format&fit=crop',
     includes: ['Завтраки', 'Перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -522,7 +522,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '27 октября - 7 ноября 2024',
     price: 168000,
-    image: 'https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -537,7 +537,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '25 октября - 6 ноября 2024',
     price: 152000,
-    image: 'https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&auto=format&fit=crop',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
