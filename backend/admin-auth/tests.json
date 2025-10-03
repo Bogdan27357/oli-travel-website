@@ -4,7 +4,10 @@
       "name": "Should handle OPTIONS request",
       "method": "OPTIONS",
       "path": "/",
-      "expectedStatus": 200
+      "expectedStatus": 200,
+      "expectedHeaders": {
+        "Access-Control-Allow-Methods": "POST, OPTIONS"
+      }
     },
     {
       "name": "Should reject invalid password",
@@ -12,7 +15,7 @@
       "path": "/",
       "body": {
         "action": "login",
-        "password": "wrong"
+        "password": "wrongpassword"
       },
       "expectedStatus": 401,
       "expectedBody": {

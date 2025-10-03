@@ -6,9 +6,9 @@ from datetime import datetime, timedelta
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
-    Business: Admin authentication with JWT tokens
-    Args: event dict with httpMethod and body, context object with request_id
-    Returns: HTTP response dict with token or error
+    Business: Авторизация менеджеров с JWT токенами
+    Args: event dict с httpMethod и body, context object с request_id
+    Returns: HTTP response dict с токеном или ошибкой
     '''
     method: str = event.get('httpMethod', 'GET')
     
@@ -29,18 +29,18 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         password = body_data.get('password', '')
         action = body_data.get('action', 'login')
         
-        admin_password = os.environ.get('ADMIN_PASSWORD', '')
+        manager_password = os.environ.get('MANAGER_PASSWORD', '')
         jwt_secret = os.environ.get('JWT_SECRET', '')
         
-        if not admin_password or not jwt_secret:
+        if not manager_password or not jwt_secret:
             return {
                 'statusCode': 500,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'body': json.dumps({'success': False, 'error': 'Server config error'})
+                'body': json.dumps({'success': False, 'error': 'Пароль для менеджеров не установлен. Добавьте секрет MANAGER_PASSWORD в настройках проекта.'})
             }
         
         if action == 'login':
-            if password != admin_password:
+            if password != manager_password:
                 return {
                     'statusCode': 401,
                     'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
