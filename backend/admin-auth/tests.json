@@ -12,7 +12,7 @@
       "path": "/",
       "body": {
         "action": "login",
-        "password": "wrong_password"
+        "password": "wrong"
       },
       "expectedStatus": 401,
       "expectedBody": {
