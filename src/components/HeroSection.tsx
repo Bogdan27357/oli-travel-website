@@ -42,6 +42,8 @@ const slides = [
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
+  const [heroTitle, setHeroTitle] = useState(localStorage.getItem('hero_title') || 'Откройте мир вместе с нами');
+  const [heroSubtitle, setHeroSubtitle] = useState(localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,14 +55,26 @@ export default function HeroSection() {
   useEffect(() => {
     const handleStorageChange = () => {
       const newPosition = localStorage.getItem('hero_position') || 'center';
+      const newTitle = localStorage.getItem('hero_title') || 'Откройте мир вместе с нами';
+      const newSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам';
       setHeroPosition(newPosition);
+      setHeroTitle(newTitle);
+      setHeroSubtitle(newSubtitle);
     };
 
     window.addEventListener('storage', handleStorageChange);
     const interval = setInterval(() => {
       const currentPosition = localStorage.getItem('hero_position') || 'center';
+      const currentTitle = localStorage.getItem('hero_title') || 'Откройте мир вместе с нами';
+      const currentSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам';
       if (currentPosition !== heroPosition) {
         setHeroPosition(currentPosition);
+      }
+      if (currentTitle !== heroTitle) {
+        setHeroTitle(currentTitle);
+      }
+      if (currentSubtitle !== heroSubtitle) {
+        setHeroSubtitle(currentSubtitle);
       }
     }, 1000);
 
@@ -68,7 +82,7 @@ export default function HeroSection() {
       window.removeEventListener('storage', handleStorageChange);
       clearInterval(interval);
     };
-  }, [heroPosition]);
+  }, [heroPosition, heroTitle, heroSubtitle]);
 
   const positionClasses = {
     top: 'justify-start pt-20 md:pt-32',
@@ -122,11 +136,11 @@ export default function HeroSection() {
           
           <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 md:p-8 mb-8 shadow-2xl animate-fade-in-up">
             <p className="text-2xl md:text-4xl text-white mb-4 font-bold animate-slide-in-right">
-              Ваше путешествие мечты начинается здесь! 🌴
+              {heroTitle}
             </p>
             
             <p className="text-lg md:text-xl text-white/95 mb-2 font-medium animate-slide-in-left" style={{ animationDelay: '0.1s' }}>
-              Лучшие туры из Санкт-Петербурга
+              {heroSubtitle}
             </p>
             
             <p className="text-base md:text-lg text-white/90 mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>

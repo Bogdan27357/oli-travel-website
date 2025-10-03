@@ -17,6 +17,8 @@ export default function AdminDashboard() {
   const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
   const [musicUrl, setMusicUrl] = useState(localStorage.getItem('hero_music_url') || '');
   const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
+  const [heroTitle, setHeroTitle] = useState(localStorage.getItem('hero_title') || 'Откройте мир вместе с нами');
+  const [heroSubtitle, setHeroSubtitle] = useState(localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -280,46 +282,49 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Icon name="Info" size={24} className="text-primary" />
-              Информация
+              <Icon name="Type" size={24} className="text-primary" />
+              Текст на главной
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <div className="flex items-start gap-3">
-                <Icon name="Server" size={20} className="text-blue-600 mt-0.5" />
-                <div>
-                  <div className="font-semibold text-blue-900">Backend функции</div>
-                  <div className="text-sm text-blue-700 mt-1">
-                    Все функции развернуты и работают
-                  </div>
-                </div>
-              </div>
+          <CardContent className="space-y-3 md:space-y-4">
+            <div>
+              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
+                Главный лозунг
+              </label>
+              <Input
+                type="text"
+                placeholder="Откройте мир вместе с нами"
+                value={heroTitle}
+                onChange={(e) => setHeroTitle(e.target.value)}
+                className="text-sm"
+              />
             </div>
-
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-              <div className="flex items-start gap-3">
-                <Icon name="Database" size={20} className="text-green-600 mt-0.5" />
-                <div>
-                  <div className="font-semibold text-green-900">База данных</div>
-                  <div className="text-sm text-green-700 mt-1">
-                    Подключена и готова к работе
-                  </div>
-                </div>
-              </div>
+            <div>
+              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
+                Подзаголовок
+              </label>
+              <Input
+                type="text"
+                placeholder="Туры из Санкт-Петербурга по лучшим ценам"
+                value={heroSubtitle}
+                onChange={(e) => setHeroSubtitle(e.target.value)}
+                className="text-sm"
+              />
             </div>
-
-            <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
-              <div className="flex items-start gap-3">
-                <Icon name="Zap" size={20} className="text-purple-600 mt-0.5" />
-                <div>
-                  <div className="font-semibold text-purple-900">Email уведомления</div>
-                  <div className="text-sm text-purple-700 mt-1">
-                    Заявки отправляются на bogdan273@yandex.ru
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Button
+              onClick={() => {
+                localStorage.setItem('hero_title', heroTitle);
+                localStorage.setItem('hero_subtitle', heroSubtitle);
+                toast({
+                  title: '✅ Текст сохранён',
+                  description: 'Обновите главную страницу'
+                });
+              }}
+              className="w-full text-sm"
+            >
+              <Icon name="Save" size={14} className="mr-2" />
+              Сохранить текст
+            </Button>
           </CardContent>
         </Card>
       </div>
