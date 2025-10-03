@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -11,7 +11,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import BookingModal from './BookingModal';
 import TourDetailModal from './TourDetailModal';
 import TourCompareModal from './TourCompareModal';
-import { allTours, Tour } from '@/data/tours';
+import { allTours as fallbackTours, Tour } from '@/data/tours';
+
+const ADMIN_API_URL = 'https://functions.poehali.dev/2ebb973a-0dd8-4f3b-8168-e788b062dbef';
 
 const countryTabs = [
   { id: 'all', name: 'Все туры', icon: 'Globe', country: null },
@@ -25,6 +27,8 @@ const countryTabs = [
 ];
 
 export default function ToursSection() {
+  const [allTours, setAllTours] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -43,6 +47,42 @@ export default function ToursSection() {
   const [sortBy, setSortBy] = useState('popularity');
   const [transferFilter, setTransferFilter] = useState<string>('all');
   const [priceCategory, setPriceCategory] = useState<string>('all');
+
+  useEffect(() => {
+    loadTours();
+  }, []);
+
+  const loadTours = async () => {
+    try {
+      const response = await fetch(`${ADMIN_API_URL}?resource=tours&is_active=true&limit=100`);
+      const data = await response.json();
+      
+      if (data.success && data.tours && data.tours.length > 0) {
+        const mappedTours = data.tours.map((tour: any) => ({
+          id: tour.id,
+          title: `${tour.country}, ${tour.city}`,
+          country: tour.country,
+          city: tour.city,
+          hotel: tour.title || tour.hotel,
+          stars: tour.stars,
+          dates: tour.dates,
+          duration: tour.duration,
+          price: tour.price,
+          fromSpb: tour.flight_included ? 'direct' : 'transfer',
+          image: tour.image_url,
+          includes: Array.isArray(tour.includes) ? tour.includes : []
+        }));
+        setAllTours(mappedTours);
+      } else {
+        setAllTours(fallbackTours);
+      }
+    } catch (error) {
+      console.log('Loading tours from static data');
+      setAllTours(fallbackTours);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleBooking = (tour: Tour) => {
     setSelectedTourForBooking({
@@ -145,6 +185,18 @@ export default function ToursSection() {
     });
     return stats;
   }, []);
+
+  if (loading) {
+    return (
+      <section id="tours" className="py-12 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center h-64">
+            <Icon name="Loader2" size={48} className="animate-spin text-primary" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const renderTourCards = (tours: Tour[]) => {
     if (tours.length === 0) {
