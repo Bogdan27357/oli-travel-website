@@ -28,7 +28,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'Crystal Sunset Luxury Resort',
     stars: 5,
     duration: '7 ночей',
-    dates: '10-17 мая 2025',
+    dates: '8-15 октября 2025',
     originalPrice: 95000,
     discountPrice: 62000,
     discount: 35,
@@ -37,7 +37,7 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'direct',
     limitedSeats: 8,
-    expiresAt: '2025-05-05',
+    expiresAt: '2025-10-06',
     dealType: 'last-minute'
   },
   {
@@ -48,7 +48,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'Steigenberger Aqua Magic',
     stars: 5,
     duration: '10 ночей',
-    dates: '12-22 мая 2025',
+    dates: '10-20 октября 2025',
     originalPrice: 85000,
     discountPrice: 55000,
     discount: 35,
@@ -57,7 +57,7 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'direct',
     limitedSeats: 12,
-    expiresAt: '2025-05-08',
+    expiresAt: '2025-10-07',
     dealType: 'hot'
   },
   {
@@ -77,18 +77,18 @@ export const hotDeals: HotDeal[] = [
     category: 'excursion',
     fromSpb: 'direct',
     limitedSeats: 15,
-    expiresAt: '2025-05-15',
+    expiresAt: '2025-10-20',
     dealType: 'early'
   },
   {
     id: 4,
-    title: 'Таиланд, Пхукет - Акция мая!',
+    title: 'Таиланд, Пхукет - Акция октября!',
     country: 'Таиланд',
     city: 'Пхукет',
     hotel: 'Le Meridien Phuket Beach Resort',
     stars: 5,
     duration: '12 ночей',
-    dates: '18-30 мая 2025',
+    dates: '18-30 октября 2025',
     originalPrice: 165000,
     discountPrice: 118000,
     discount: 28,
@@ -97,7 +97,7 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'transfer',
     limitedSeats: 10,
-    expiresAt: '2025-05-12',
+    expiresAt: '2025-10-12',
     dealType: 'hot'
   },
   {
@@ -108,7 +108,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'Kurumba Maldives',
     stars: 5,
     duration: '10 ночей',
-    dates: '20-30 мая 2025',
+    dates: '8-18 ноября 2025',
     originalPrice: 385000,
     discountPrice: 285000,
     discount: 26,
@@ -117,7 +117,7 @@ export const hotDeals: HotDeal[] = [
     category: 'exotic',
     fromSpb: 'transfer',
     limitedSeats: 6,
-    expiresAt: '2025-05-10',
+    expiresAt: '2025-10-25',
     dealType: 'last-minute'
   },
   {
@@ -128,7 +128,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'InterContinental Nha Trang',
     stars: 5,
     duration: '11 ночей',
-    dates: '14-25 мая 2025',
+    dates: '12-23 октября 2025',
     originalPrice: 178000,
     discountPrice: 125000,
     discount: 30,
@@ -137,7 +137,7 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'transfer',
     limitedSeats: 9,
-    expiresAt: '2025-05-09',
+    expiresAt: '2025-10-08',
     dealType: 'hot'
   },
   {
@@ -148,7 +148,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'Swissotel Resort Sochi Kamelia',
     stars: 5,
     duration: '7 ночей',
-    dates: '25 мая - 1 июня 2025',
+    dates: '15-22 октября 2025',
     originalPrice: 82000,
     discountPrice: 58000,
     discount: 29,
@@ -157,18 +157,18 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'direct',
     limitedSeats: 14,
-    expiresAt: '2025-05-18',
+    expiresAt: '2025-10-10',
     dealType: 'hot'
   },
   {
     id: 8,
-    title: 'Шри-Ланка - Раннее бронирование лета',
+    title: 'Шри-Ланка - Раннее бронирование',
     country: 'Шри-Ланка',
     city: 'Бентота',
     hotel: 'Heritance Ahungalla',
     stars: 5,
     duration: '11 ночей',
-    dates: '5-16 июля 2025',
+    dates: '5-16 декабря 2025',
     originalPrice: 215000,
     discountPrice: 168000,
     discount: 22,
@@ -177,7 +177,7 @@ export const hotDeals: HotDeal[] = [
     category: 'exotic',
     fromSpb: 'transfer',
     limitedSeats: 11,
-    expiresAt: '2025-05-20',
+    expiresAt: '2025-10-30',
     dealType: 'early'
   },
   {
@@ -188,7 +188,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'Rixos Sungate',
     stars: 5,
     duration: '8 ночей',
-    dates: '13-21 мая 2025',
+    dates: '5-13 октября 2025',
     originalPrice: 98000,
     discountPrice: 68000,
     discount: 31,
@@ -197,18 +197,18 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'direct',
     limitedSeats: 5,
-    expiresAt: '2025-05-08',
+    expiresAt: '2025-10-04',
     dealType: 'last-minute'
   },
   {
     id: 10,
-    title: 'Абхазия, Гагра - Майская акция',
+    title: 'Абхазия, Гагра - Октябрьская акция',
     country: 'Абхазия',
     city: 'Гагра',
     hotel: 'Wellness Park Hotel Gagra',
     stars: 4,
     duration: '10 ночей',
-    dates: '18-28 мая 2025',
+    dates: '20-30 октября 2025',
     originalPrice: 68000,
     discountPrice: 48000,
     discount: 29,
@@ -217,7 +217,7 @@ export const hotDeals: HotDeal[] = [
     category: 'beach',
     fromSpb: 'direct',
     limitedSeats: 18,
-    expiresAt: '2025-05-14',
+    expiresAt: '2025-10-15',
     dealType: 'hot'
   },
   {
@@ -228,7 +228,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'The St. Regis Bali Resort',
     stars: 5,
     duration: '13 ночей',
-    dates: '22 мая - 4 июня 2025',
+    dates: '10-23 ноября 2025',
     originalPrice: 285000,
     discountPrice: 215000,
     discount: 25,
@@ -237,7 +237,7 @@ export const hotDeals: HotDeal[] = [
     category: 'exotic',
     fromSpb: 'transfer',
     limitedSeats: 7,
-    expiresAt: '2025-05-15',
+    expiresAt: '2025-10-28',
     dealType: 'hot'
   },
   {
@@ -248,7 +248,7 @@ export const hotDeals: HotDeal[] = [
     hotel: 'The Alexander Luxury Collection',
     stars: 5,
     duration: '6 ночей',
-    dates: '8-14 мая 2025',
+    dates: '12-18 октября 2025',
     originalPrice: 85000,
     discountPrice: 51000,
     discount: 40,
@@ -257,7 +257,7 @@ export const hotDeals: HotDeal[] = [
     category: 'excursion',
     fromSpb: 'direct',
     limitedSeats: 16,
-    expiresAt: '2025-05-06',
+    expiresAt: '2025-10-09',
     dealType: 'last-minute'
   }
 ];
