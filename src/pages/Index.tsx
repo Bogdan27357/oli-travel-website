@@ -15,6 +15,7 @@ import Newsletter from '@/components/Newsletter';
 import ChatWidget from '@/components/ChatWidget';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import QuickContactButton from '@/components/QuickContactButton';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -48,6 +49,7 @@ const Index = () => {
 
       <Footer />
       <ChatWidget />
+      <QuickContactButton />
       <ScrollToTop />
     </div>
   );
