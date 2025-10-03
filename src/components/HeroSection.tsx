@@ -143,12 +143,12 @@ export default function HeroSection() {
           </p>
           
           {/* Video or Slideshow */}
-          <div className="mb-8 relative group">
+          <div className="mb-6 md:mb-8 relative group">
             {videoUrl ? (
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
                 {isYouTubeUrl(videoUrl) ? (
                   <iframe
-                    className="w-full aspect-video max-h-[500px]"
+                    className="w-full aspect-video max-h-[300px] md:max-h-[500px]"
                     src={getYouTubeEmbedUrl(videoUrl) || ''}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen

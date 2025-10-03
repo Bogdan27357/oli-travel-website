@@ -87,27 +87,27 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6 p-4 md:p-0">
       <div>
-        <h1 className="text-3xl font-bold mb-2">Панель управления</h1>
-        <p className="text-gray-600">Обзор системы управления сайтом</p>
+        <h1 className="text-2xl md:text-3xl font-bold mb-2">Панель управления</h1>
+        <p className="text-sm md:text-base text-gray-600">Обзор системы управления сайтом</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         {statCards.map((stat) => (
           <Card key={stat.title} className="overflow-hidden">
             <CardHeader className={`bg-gradient-to-r ${stat.color} text-white pb-2`}>
-              <Icon name={stat.icon as any} size={32} />
+              <Icon name={stat.icon as any} size={24} className="md:w-8 md:h-8" />
             </CardHeader>
-            <CardContent className="pt-4">
-              <div className="text-3xl font-bold mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.title}</div>
+            <CardContent className="pt-3 md:pt-4">
+              <div className="text-2xl md:text-3xl font-bold mb-1">{stat.value}</div>
+              <div className="text-xs md:text-sm text-gray-600">{stat.title}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -115,36 +115,36 @@ export default function AdminDashboard() {
               Быстрые действия
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <a href="/admin/tours" className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-3">
-                <Icon name="Plus" size={20} className="text-primary" />
+          <CardContent className="space-y-2 md:space-y-3">
+            <a href="/admin/tours" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2 md:gap-3">
+                <Icon name="Plus" size={18} className="text-primary md:w-5 md:h-5" />
                 <div>
-                  <div className="font-semibold">Добавить тур</div>
-                  <div className="text-sm text-gray-600">Создать новое предложение</div>
+                  <div className="text-sm md:text-base font-semibold">Добавить тур</div>
+                  <div className="text-xs md:text-sm text-gray-600">Новое предложение</div>
                 </div>
               </div>
             </a>
             
-            <a href="/admin/submissions" className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-3">
-                <Icon name="Mail" size={20} className="text-primary" />
+            <a href="/admin/submissions" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2 md:gap-3">
+                <Icon name="Mail" size={18} className="text-primary md:w-5 md:h-5" />
                 <div>
-                  <div className="font-semibold">Просмотреть заявки</div>
-                  <div className="text-sm text-gray-600">Обработать новые запросы</div>
+                  <div className="text-sm md:text-base font-semibold">Заявки</div>
+                  <div className="text-xs md:text-sm text-gray-600">Обработать запросы</div>
                 </div>
               </div>
             </a>
 
-            <a href="/admin/reviews" className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-3">
-                <Icon name="CheckCircle" size={20} className="text-primary" />
+            <a href="/admin/reviews" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2 md:gap-3">
+                <Icon name="CheckCircle" size={18} className="text-primary md:w-5 md:h-5" />
                 <div>
-                  <div className="font-semibold">Модерация отзывов</div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm md:text-base font-semibold">Модерация</div>
+                  <div className="text-xs md:text-sm text-gray-600">
                     {stats.pendingReviews > 0 
-                      ? `${stats.pendingReviews} отзывов ждут проверки` 
-                      : 'Все отзывы проверены'}
+                      ? `${stats.pendingReviews} отзывов` 
+                      : 'Все проверены'}
                   </div>
                 </div>
               </div>
@@ -159,23 +159,23 @@ export default function AdminDashboard() {
               Видео на главной
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3 md:space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-2 block">
+              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
                 YouTube ссылка
               </label>
               <Input
                 type="url"
-                placeholder="https://youtube.com/shorts/..."
+                placeholder="youtube.com/shorts/..."
                 value={videoUrl}
                 onChange={(e) => setVideoUrl(e.target.value)}
+                className="text-sm"
               />
-              <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-xs text-green-800 mb-2 font-semibold">✅ Поддерживаемые форматы:</p>
-                <ul className="text-xs text-green-700 space-y-1">
-                  <li>🎬 YouTube обычные видео</li>
+              <div className="mt-2 p-2 md:p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-xs text-green-800 mb-1 font-semibold">✅ Поддержка:</p>
+                <ul className="text-xs text-green-700 space-y-0.5">
+                  <li>🎬 YouTube видео</li>
                   <li>📱 YouTube Shorts</li>
-                  <li>📹 Прямая ссылка на .mp4</li>
                 </ul>
               </div>
             </div>
@@ -184,12 +184,12 @@ export default function AdminDashboard() {
                 localStorage.setItem('hero_video_url', videoUrl);
                 toast({
                   title: '✅ Видео сохранено',
-                  description: 'Обновите главную страницу чтобы увидеть изменения'
+                  description: 'Обновите главную страницу'
                 });
               }}
-              className="w-full"
+              className="w-full text-sm"
             >
-              <Icon name="Save" size={16} className="mr-2" />
+              <Icon name="Save" size={14} className="mr-2" />
               Сохранить видео
             </Button>
             {videoUrl && (
@@ -200,13 +200,13 @@ export default function AdminDashboard() {
                   localStorage.removeItem('hero_video_url');
                   toast({
                     title: '🗑️ Видео удалено',
-                    description: 'Будет показываться слайд-шоу'
+                    description: 'Будет слайд-шоу'
                   });
                 }}
-                className="w-full"
+                className="w-full text-sm"
               >
-                <Icon name="Trash2" size={16} className="mr-2" />
-                Удалить видео
+                <Icon name="Trash2" size={14} className="mr-2" />
+                Удалить
               </Button>
             )}
           </CardContent>
@@ -214,38 +214,38 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Icon name="Music" size={24} className="text-primary" />
+            <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+              <Icon name="Music" size={20} className="text-primary md:w-6 md:h-6" />
               Фоновая музыка
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3 md:space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-2 block">
+              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
                 URL музыки (MP3)
               </label>
               <Input
                 type="url"
-                placeholder="https://example.com/music.mp3"
+                placeholder="https://..."
                 value={musicUrl}
                 onChange={(e) => setMusicUrl(e.target.value)}
+                className="text-sm"
               />
               <p className="text-xs text-gray-500 mt-1">
-                Музыка играет только если включено слайдшоу (без видео)
+                Только для слайдшоу
               </p>
             </div>
             <Button
               onClick={() => {
                 localStorage.setItem('hero_music_url', musicUrl);
                 toast({
-                  title: '✅ Музыка сохранена',
-                  description: 'Обновите главную страницу'
+                  title: '✅ Музыка сохранена'
                 });
               }}
-              className="w-full"
+              className="w-full text-sm"
             >
-              <Icon name="Save" size={16} className="mr-2" />
-              Сохранить музыку
+              <Icon name="Save" size={14} className="mr-2" />
+              Сохранить
             </Button>
             {musicUrl && (
               <Button
@@ -254,13 +254,13 @@ export default function AdminDashboard() {
                   setMusicUrl('');
                   localStorage.removeItem('hero_music_url');
                   toast({
-                    title: '🗑️ Музыка удалена'
+                    title: '🗑️ Удалено'
                   });
                 }}
-                className="w-full"
+                className="w-full text-sm"
               >
-                <Icon name="Trash2" size={16} className="mr-2" />
-                Удалить музыку
+                <Icon name="Trash2" size={14} className="mr-2" />
+                Удалить
               </Button>
             )}
           </CardContent>
