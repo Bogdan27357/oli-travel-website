@@ -158,21 +158,21 @@ export default function HeroSection() {
                 />
               </div>
             ) : videoUrl ? (
-                  <video 
-                    className="w-full max-h-[500px] object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    onError={() => {
-                      console.error('Video load error:', videoUrl);
-                      setVideoUrl('');
-                    }}
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                    Ваш браузер не поддерживает видео
-                  </video>
-                )}
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
+                <video 
+                  className="w-full max-h-[500px] object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onError={() => {
+                    console.error('Video load error:', videoUrl);
+                    setVideoUrl('');
+                  }}
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                  Ваш браузер не поддерживает видео
+                </video>
               </div>
             ) : (
               <>
