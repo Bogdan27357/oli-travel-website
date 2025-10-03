@@ -143,7 +143,10 @@ export default function PopularDestinationsSection() {
                       {dest.price}
                     </div>
                   </div>
-                  <button className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                  <button 
+                    onClick={() => document.getElementById('tours')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                  >
                     Выбрать
                     <Icon name="ArrowRight" size={16} />
                   </button>
@@ -155,7 +158,10 @@ export default function PopularDestinationsSection() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <button className="px-8 py-4 bg-white border-2 border-primary text-primary rounded-xl font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl">
+          <button 
+            onClick={() => document.getElementById('tours')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-8 py-4 bg-white border-2 border-primary text-primary rounded-xl font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl"
+          >
             Смотреть все направления
             <Icon name="Globe" size={20} />
           </button>

@@ -215,27 +215,26 @@ export default function AdminChat() {
               Архив
             </TabsTrigger>
           </TabsList>
-        </Tabs>
 
-        <div className="grid lg:grid-cols-12 gap-4">
-          <div className="lg:col-span-3">
-            <TabsContent value="active" className="mt-0">
-              <SessionsList 
-                sessions={sessions}
-                selectedSession={selectedSession}
-                onSelectSession={setSelectedSession}
-                showArchived={false}
-              />
-            </TabsContent>
-            <TabsContent value="archived" className="mt-0">
-              <SessionsList 
-                sessions={sessions}
-                selectedSession={selectedSession}
-                onSelectSession={setSelectedSession}
-                showArchived={true}
-              />
-            </TabsContent>
-          </div>
+          <div className="grid lg:grid-cols-12 gap-4 mt-6">
+            <div className="lg:col-span-3">
+              <TabsContent value="active" className="mt-0">
+                <SessionsList 
+                  sessions={sessions}
+                  selectedSession={selectedSession}
+                  onSelectSession={setSelectedSession}
+                  showArchived={false}
+                />
+              </TabsContent>
+              <TabsContent value="archived" className="mt-0">
+                <SessionsList 
+                  sessions={sessions}
+                  selectedSession={selectedSession}
+                  onSelectSession={setSelectedSession}
+                  showArchived={true}
+                />
+              </TabsContent>
+            </div>
 
           <div className="lg:col-span-6">
             <ChatWindow
@@ -250,26 +249,27 @@ export default function AdminChat() {
             />
           </div>
 
-          <div className="lg:col-span-3 space-y-4">
-            {showQuickReplies ? (
-              <QuickReplies onSelectReply={handleQuickReplySelect} />
-            ) : (
-              <>
-                <TagManager
-                  sessionId={selectedSession}
-                  sessionTags={currentSession?.tags || []}
-                  onTagsUpdate={handleTagsUpdate}
-                />
-                
-                <ArchiveControl
-                  sessionId={selectedSession}
-                  isArchived={currentSession?.archived || false}
-                  onArchiveToggle={handleArchiveToggle}
-                />
-              </>
-            )}
+            <div className="lg:col-span-3 space-y-4">
+              {showQuickReplies ? (
+                <QuickReplies onSelectReply={handleQuickReplySelect} />
+              ) : (
+                <>
+                  <TagManager
+                    sessionId={selectedSession}
+                    sessionTags={currentSession?.tags || []}
+                    onTagsUpdate={handleTagsUpdate}
+                  />
+                  
+                  <ArchiveControl
+                    sessionId={selectedSession}
+                    isArchived={currentSession?.archived || false}
+                    onArchiveToggle={handleArchiveToggle}
+                  />
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        </Tabs>
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { Session } from '@/types/admin';
+import { useToast } from '@/hooks/use-toast';
 
 interface ChatStatisticsProps {
   sessions: Session[];
 }
 
 export default function ChatStatistics({ sessions }: ChatStatisticsProps) {
+  const { toast } = useToast();
   const activeSessions = sessions.filter(s => !s.archived).length;
   const archivedSessions = sessions.filter(s => s.archived).length;
   const totalMessages = sessions.reduce((sum, s) => sum + s.message_count, 0);
@@ -25,6 +28,39 @@ export default function ChatStatistics({ sessions }: ChatStatisticsProps) {
     const created = new Date(s.created_at);
     return created >= weekAgo;
   }).length;
+
+  const exportToCSV = () => {
+    const csvData = [
+      ['ID сессии', 'Имя пользователя', 'Создан', 'Статус', 'Сообщений', 'Последнее сообщение', 'Теги', 'Архивирован'],
+      ...sessions.map(s => [
+        s.session_id,
+        s.user_name,
+        new Date(s.created_at).toLocaleString('ru'),
+        s.status,
+        s.message_count,
+        s.last_message_at ? new Date(s.last_message_at).toLocaleString('ru') : 'Нет сообщений',
+        (s.tags || []).join(', '),
+        s.archived ? 'Да' : 'Нет'
+      ])
+    ];
+    
+    const csv = csvData.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `статистика_чатов_${new Date().toLocaleDateString('ru')}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: '📊 Экспорт выполнен',
+      description: 'Статистика сохранена в CSV файл',
+      duration: 3000
+    });
+  };
 
   const stats = [
     {
@@ -74,10 +110,21 @@ export default function ChatStatistics({ sessions }: ChatStatisticsProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Icon name="BarChart3" size={20} />
-          Статистика обращений
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-2">
+            <Icon name="BarChart3" size={20} />
+            Статистика обращений
+          </CardTitle>
+          <Button
+            onClick={exportToCSV}
+            variant="outline"
+            size="sm"
+            className="gap-2"
+          >
+            <Icon name="Download" size={16} />
+            Экспорт CSV
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
