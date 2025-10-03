@@ -127,7 +127,10 @@ export default function ToursSection() {
       total: allTours.length,
       direct: allTours.filter(t => t.fromSpb === 'direct').length,
       transfer: allTours.filter(t => t.fromSpb === 'transfer').length,
-      countries: new Set(allTours.map(t => t.country)).size
+      countries: new Set(allTours.map(t => t.country)).size,
+      budget: allTours.filter(t => t.price < 60000).length,
+      medium: allTours.filter(t => t.price >= 60000 && t.price < 150000).length,
+      premium: allTours.filter(t => t.price >= 150000).length
     };
   }, []);
 
@@ -287,6 +290,9 @@ export default function ToursSection() {
               >
                 <Icon name="Globe" size={14} className="mr-1.5" />
                 Все туры
+                <Badge variant="secondary" className="ml-2 bg-white/20 text-inherit">
+                  {tourStats.total}
+                </Badge>
               </Button>
               <Button
                 variant={priceCategory === 'budget' ? 'default' : 'outline'}
@@ -296,6 +302,9 @@ export default function ToursSection() {
               >
                 <Icon name="Wallet" size={14} className="mr-1.5" />
                 Бюджетные (до 60К)
+                <Badge variant="secondary" className="ml-2 bg-white/20 text-inherit">
+                  {tourStats.budget}
+                </Badge>
               </Button>
               <Button
                 variant={priceCategory === 'medium' ? 'default' : 'outline'}
@@ -305,6 +314,9 @@ export default function ToursSection() {
               >
                 <Icon name="TrendingUp" size={14} className="mr-1.5" />
                 Средние (60-150К)
+                <Badge variant="secondary" className="ml-2 bg-white/20 text-inherit">
+                  {tourStats.medium}
+                </Badge>
               </Button>
               <Button
                 variant={priceCategory === 'premium' ? 'default' : 'outline'}
@@ -314,6 +326,9 @@ export default function ToursSection() {
               >
                 <Icon name="Crown" size={14} className="mr-1.5" />
                 Премиум (от 150К)
+                <Badge variant="secondary" className="ml-2 bg-white/20 text-inherit">
+                  {tourStats.premium}
+                </Badge>
               </Button>
             </div>
           </div>
