@@ -8,18 +8,15 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center animate-fade-in">
           <div className="mb-8 flex justify-center">
-            <div className="relative w-48 h-48 animate-float">
+            <div className="relative animate-float">
               <img 
-                src="/img/ba1adb08-b692-455f-9800-71be9436d24a.jpg" 
+                src="/img/8cca68ee-013b-4080-8459-d6ba015ad7ef.jpg" 
                 alt="OliTravel Logo" 
-                className="w-full h-full object-contain drop-shadow-2xl"
+                className="h-32 md:h-40 object-contain drop-shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl animate-pulse"></div>
             </div>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary via-yellow-500 to-secondary bg-clip-text text-transparent leading-tight">
-            Откройте своё путешествие
-          </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-10">
             Откройте мир вместе с OliTravel — туры из Санкт-Петербурга по лучшим ценам
           </p>

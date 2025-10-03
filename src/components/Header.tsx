@@ -11,10 +11,7 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 animate-fade-in">
-            <img src="/img/ba1adb08-b692-455f-9800-71be9436d24a.jpg" alt="OliTravel" className="h-12 w-12 object-contain" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              OliTravel
-            </span>
+            <img src="/img/8cca68ee-013b-4080-8459-d6ba015ad7ef.jpg" alt="OliTravel" className="h-14 object-contain" />
           </div>
           
           <nav className="hidden lg:flex items-center gap-2">

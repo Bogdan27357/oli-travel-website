@@ -7,10 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/img/ba1adb08-b692-455f-9800-71be9436d24a.jpg" alt="OliTravel" className="h-10 w-10 object-contain" />
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                OliTravel
-              </span>
+              <img src="/img/8cca68ee-013b-4080-8459-d6ba015ad7ef.jpg" alt="OliTravel" className="h-12 object-contain" />
             </div>
             <p className="text-gray-400 text-sm">
               Туры из Санкт-Петербурга по всему миру
