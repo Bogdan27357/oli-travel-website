@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -75,6 +76,25 @@ const hotels = [
 ];
 
 export default function HotelsSection() {
+  const [selectedCountry, setSelectedCountry] = useState('Все страны');
+  const [priceRange, setPriceRange] = useState('Все цены');
+
+  const countries = ['Все страны', 'Турция', 'ОАЭ', 'Таиланд', 'Египет', 'Мальдивы', 'Вьетнам', 'Шри-Ланка', 'Индонезия', 'Марокко', 'Греция', 'Испания'];
+  
+  const priceRanges = [
+    { label: 'Все цены', min: 0, max: Infinity },
+    { label: 'До 50,000₽', min: 0, max: 50000 },
+    { label: '50,000₽ - 100,000₽', min: 50000, max: 100000 },
+    { label: 'От 100,000₽', min: 100000, max: Infinity }
+  ];
+
+  const filteredHotels = hotels.filter(hotel => {
+    const countryMatch = selectedCountry === 'Все страны' || hotel.location.includes(selectedCountry);
+    const selectedPriceRange = priceRanges.find(r => r.label === priceRange);
+    const priceMatch = selectedPriceRange && hotel.price >= selectedPriceRange.min && hotel.price <= selectedPriceRange.max;
+    return countryMatch && priceMatch;
+  });
+
   return (
     <section id="hotels" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
@@ -85,8 +105,56 @@ export default function HotelsSection() {
           <p className="text-gray-600 text-lg">Проверенные отели с высоким рейтингом</p>
         </div>
 
+        <div className="mb-8 flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-2">
+            <span className="text-sm font-medium text-gray-600 flex items-center gap-2 px-3 py-2">
+              <Icon name="Globe" size={16} />
+              Страна:
+            </span>
+            {countries.map(country => (
+              <button
+                key={country}
+                onClick={() => setSelectedCountry(country)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCountry === country
+                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary'
+                }`}
+              >
+                {country}
+              </button>
+            ))}
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            <span className="text-sm font-medium text-gray-600 flex items-center gap-2 px-3 py-2">
+              <Icon name="Wallet" size={16} />
+              Цена:
+            </span>
+            {priceRanges.map(range => (
+              <button
+                key={range.label}
+                onClick={() => setPriceRange(range.label)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  priceRange === range.label
+                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary'
+                }`}
+              >
+                {range.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-6 text-center">
+          <p className="text-gray-600">
+            Найдено отелей: <span className="font-bold text-primary">{filteredHotels.length}</span>
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hotels.map((hotel, idx) => (
+          {filteredHotels.map((hotel, idx) => (
             <Card 
               key={hotel.id} 
               className="overflow-hidden group cursor-pointer border-0 shadow-lg hover:shadow-2xl transition-all duration-500 animate-scale-in"
