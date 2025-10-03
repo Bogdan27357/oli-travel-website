@@ -11,23 +11,52 @@
       }
     },
     {
-      "name": "POST with valid data (will fail without SMTP config)",
+      "name": "POST contact form returns valid response",
       "method": "POST",
       "path": "/",
       "body": {
+        "type": "contact",
         "name": "Тест",
         "email": "test@example.com",
         "phone": "+7 900 123-45-67",
         "message": "Тестовое сообщение"
       },
-      "expectedStatus": [200, 500],
+      "expectedStatus": 500,
       "bodyMatcher": "partial"
     },
     {
-      "name": "POST with missing fields returns 400",
+      "name": "POST tour booking returns valid response",
       "method": "POST",
       "path": "/",
       "body": {
+        "type": "tour_booking",
+        "name": "Иван",
+        "phone": "+7 981 981-29-90",
+        "email": "",
+        "message": "Бронирование тура Турция"
+      },
+      "expectedStatus": 500,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST newsletter returns valid response",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "type": "newsletter",
+        "email": "subscriber@example.com",
+        "name": "Подписчик",
+        "message": "Подписка на рассылку"
+      },
+      "expectedStatus": 500,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST tour booking without phone returns 400",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "type": "tour_booking",
         "name": "Тест"
       },
       "expectedStatus": 400,

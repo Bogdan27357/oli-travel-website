@@ -15,6 +15,7 @@ import ReviewsSection from '@/components/ReviewsSection';
 import PromotionsSection from '@/components/PromotionsSection';
 import ContactForm from '@/components/ContactForm';
 import ContactsSection from '@/components/ContactsSection';
+import Newsletter from '@/components/Newsletter';
 import ChatWidget from '@/components/ChatWidget';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -48,6 +49,7 @@ const Index = () => {
         <AboutSection />
         <ReviewsSection />
         <PromotionsSection />
+        <Newsletter />
         <ContactForm />
         <ContactsSection />
       </main>

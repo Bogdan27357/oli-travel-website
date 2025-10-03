@@ -19,7 +19,6 @@ export interface Tour {
 }
 
 export const allTours: Tour[] = [
-  // ТУРЦИЯ - прямые рейсы из СПб
   {
     id: 1,
     title: 'Турция, Анталья',
@@ -34,19 +33,18 @@ export const allTours: Tour[] = [
     gallery_images: [
       '/img/d6aee9c8-d587-44cb-8417-1122d3c6ae83.jpg',
       '/img/7d898576-ea3f-4ba9-8c2b-36e80be9cbc5.jpg',
-      '/img/1c024df3-2ee8-4b43-9528-33526262a529.jpg',
-      '/img/50038d85-a120-4a0c-bc35-b2c48fb0e1af.jpg',
-      '/img/55ecbade-801f-4e7f-af4d-eda85c348d92.jpg'
+      '/img/1c024df3-2ee8-4b43-9528-33526262a529.jpg'
     ],
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct',
-    description: 'Роскошный пляжный отдых в лучшем отеле Белека',
+    description: 'Роскошный пляжный отдых в лучшем отеле Белека с белоснежным песком',
     program: [
-      'День 1-7: Отдых на пляже с белым песком и системой Ultra All Inclusive',
-      'Ежедневно: Аквапарк, анимация, детский клуб, спортивные активности',
-      'Опционально: Рафтинг в каньоне Кёпрюлю, экскурсия в Памуккале',
-      'Опционально: Прогулка на яхте, дайвинг, параглайдинг'
+      'День 1: Прилет в Анталию, трансфер в отель Белек, размещение, знакомство с территорией',
+      'День 2-6: Отдых на пляже с белым песком, Ultra All Inclusive, анимация, аквапарк',
+      'День 3: Опционально - рафтинг в каньоне Кёпрюлю или экскурсия в Памуккале',
+      'День 5: Опционально - прогулка на яхте вдоль побережья',
+      'День 7: Свободный день, трансфер в аэропорт, вылет домой'
     ],
     whyChoose: [
       'Отель премиум-класса с собственным пляжем',
@@ -68,7 +66,21 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Отдых в Кемере на берегу Средиземного моря с видом на Таврские горы',
+    program: [
+      'День 1: Прилет в Анталию, трансфер в Кемер (1 час), размещение в отеле',
+      'День 2-8: Пляжный отдых, Ultra All Inclusive, водные развлечения, аквапарк',
+      'День 4: Опционально - экскурсия в древний город Фаселис и канатная дорога Тахталы',
+      'День 6: Опционально - яхт-тур к бухте Клеопатры с купанием',
+      'День 10: Свободное время, трансфер в аэропорт, вылет'
+    ],
+    whyChoose: [
+      'Живописные горы и чистейшее море',
+      'Современный аквапарк на территории',
+      'Близость к историческим местам',
+      'Прямой перелет из СПб'
+    ]
   },
   {
     id: 3,
@@ -83,25 +95,22 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Древний город с античными руинами и современными отелями',
+    program: [
+      'День 1: Прилет в Анталию, трансфер в Сиде (1,5 часа), заселение',
+      'День 2-6: Пляжный отдых, система все включено, анимация',
+      'День 3: Прогулка по старому городу Сиде, античный амфитеатр и храм Аполлона',
+      'День 5: Опционально - экскурсия к водопаду Манавгат',
+      'День 8: Свободный день, трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Сочетание пляжного отдыха и истории',
+      'Песчаные пляжи',
+      'Близость к античным достопримечательностям',
+      'Отличное соотношение цены и качества'
+    ]
   },
-  {
-    id: 4,
-    title: 'Турция, Алания',
-    country: 'Турция',
-    city: 'Алания',
-    hotel: 'Delphin Deluxe Resort',
-    stars: 5,
-    duration: '9 ночей',
-    dates: '15-24 октября 2025',
-    price: 92000,
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Детский клуб'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-
-  // ЕГИПЕТ - прямые рейсы из СПб
   {
     id: 5,
     title: 'Египет, Хургада',
@@ -115,7 +124,22 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Египетский курорт на Красном море с лучшими коралловыми рифами',
+    program: [
+      'День 1: Прилет в Хургаду, трансфер в отель, размещение',
+      'День 2-8: Пляжный отдых, снорклинг у коралловых рифов, все включено',
+      'День 3: Опционально - морская прогулка на остров Гифтун',
+      'День 5: Опционально - дайвинг с инструктором',
+      'День 7: Опционально - экскурсия в Луксор (Долина Царей, храмы)',
+      'День 10: Свободное время, трансфер в аэропорт, вылет'
+    ],
+    whyChoose: [
+      'Круглый год теплое море',
+      'Красивейшие коралловые рифы',
+      'Прямой перелет из СПб',
+      'Доступные цены'
+    ]
   },
   {
     id: 6,
@@ -130,7 +154,22 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Элитный курорт Синайского полуострова с лучшим дайвингом',
+    program: [
+      'День 1: Прилет в Шарм-эль-Шейх, трансфер в отель, заселение',
+      'День 2-7: Пляжный отдых, снорклинг, Ultra All Inclusive',
+      'День 3: Опционально - дайвинг в Национальном парке Рас-Мохаммед',
+      'День 5: Опционально - экскурсия в монастырь Святой Екатерины и гора Моисея',
+      'День 6: Опционально - поездка в цветной каньон',
+      'День 9: Трансфер в аэропорт, вылет'
+    ],
+    whyChoose: [
+      'Лучшее место для дайвинга в Египте',
+      'Отель премиум-класса Rixos',
+      'Национальный парк Рас-Мохаммед рядом',
+      'Безвизовый въезд'
+    ]
   },
   {
     id: 7,
@@ -145,10 +184,23 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Уединенный курорт для дайверов и любителей спокойного отдыха',
+    program: [
+      'День 1: Прилет в Марса-Алам, трансфер в отель',
+      'День 2-9: Пляжный отдых, дайвинг, снорклинг с черепахами и дельфинами',
+      'День 4: Погружение к коралловым садам Эльфинстоун',
+      'День 6: Опционально - встреча с дюгонями (морскими коровами)',
+      'День 8: Опционально - поездка в Луксор',
+      'День 11: Трансфер в аэропорт, вылет'
+    ],
+    whyChoose: [
+      'Уникальная подводная жизнь',
+      'Возможность увидеть дюгоней',
+      'Малолюдные пляжи',
+      'Отличные условия для дайвинга'
+    ]
   },
-
-  // ОАЭ - прямые рейсы из СПб
   {
     id: 8,
     title: 'ОАЭ, Дубай',
@@ -162,7 +214,22 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', '5 экскурсий', 'Прямой перелет', 'Трансфер'],
     category: 'excursion',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Город будущего с небоскребами, торговыми центрами и пляжами',
+    program: [
+      'День 1: Прилет в Дубай, размещение в отеле в центре города',
+      'День 2: Обзорная экскурсия - Бурдж Халифа, Дубай Молл, поющие фонтаны',
+      'День 3: Сафари по пустыне на джипах с ужином в бедуинском лагере',
+      'День 4: Старый Дубай - район Дейра, рынок золота, музей, лодка абра',
+      'День 5: Пальма Джумейра, Атлантис, аквапарк Aquaventure',
+      'День 6: Свободный день - шопинг, пляж, трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Самый высокий небоскреб в мире',
+      'Лучший шопинг на Ближнем Востоке',
+      'Невероятная архитектура',
+      'Насыщенная экскурсионная программа'
+    ]
   },
   {
     id: 9,
@@ -177,7 +244,23 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Экскурсии', 'Прямой перелет', 'Трансфер'],
     category: 'excursion',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Столица ОАЭ с мечетью шейха Зайда и Лувром',
+    program: [
+      'День 1: Прилет в Абу-Даби, размещение в отеле',
+      'День 2: Мечеть шейха Зайда (одна из крупнейших в мире)',
+      'День 3: Лувр Абу-Даби, набережная Корниш',
+      'День 4: Остров Яс - Ferrari World или Warner Bros World',
+      'День 5: Поездка в оазис Аль-Айн, форт и сады',
+      'День 6: Экскурсия в Дубай (1,5 часа)',
+      'День 7: Свободный день, трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Грандиозная мечеть шейха Зайда',
+      'Единственный Лувр на Ближнем Востоке',
+      'Тематические парки мирового уровня',
+      'Более спокойная атмосфера чем в Дубае'
+    ]
   },
   {
     id: 10,
@@ -192,57 +275,23 @@ export const allTours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
-    fromSpb: 'direct'
+    fromSpb: 'direct',
+    description: 'Спокойный пляжный эмират с горами и пустыней',
+    program: [
+      'День 1: Прилет в Дубай, трансфер в Рас-аль-Хайму (1 час), заселение',
+      'День 2-6: Пляжный отдых, система все включено',
+      'День 3: Опционально - зиплайн Jebel Jais (самый длинный в мире)',
+      'День 5: Опционально - экскурсия в Дубай',
+      'День 7: Свободный день на пляже',
+      'День 8: Трансфер в аэропорт Дубая, вылет'
+    ],
+    whyChoose: [
+      'Спокойный пляжный отдых без суеты',
+      'Самый длинный зиплайн в мире',
+      'Дешевле чем Дубай',
+      'Близость к горам'
+    ]
   },
-
-  // ТАИЛАНД - с пересадкой
-  {
-    id: 11,
-    title: 'Таиланд, Пхукет',
-    country: 'Таиланд',
-    city: 'Пхукет',
-    hotel: 'Novotel Phuket Resort',
-    stars: 4,
-    duration: '12 ночей',
-    dates: '3-15 октября 2025',
-    price: 145000,
-    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 12,
-    title: 'Таиланд, Паттайя',
-    country: 'Таиланд',
-    city: 'Паттайя',
-    hotel: 'Centara Grand Mirage Beach Resort',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '7-18 октября 2025',
-    price: 158000,
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Аквапарк'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 13,
-    title: 'Таиланд, Краби',
-    country: 'Таиланд',
-    city: 'Краби',
-    hotel: 'Centara Grand Beach Resort',
-    stars: 5,
-    duration: '13 ночей',
-    dates: '10-23 октября 2025',
-    price: 168000,
-    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-
-  // АРМЕНИЯ - с пересадкой
   {
     id: 14,
     title: 'Армения, Ереван',
@@ -271,291 +320,165 @@ export const allTours: Tour[] = [
       'День 6: Свободное время, шопинг, трансфер в аэропорт'
     ],
     whyChoose: [
-      'Проверенный отель с высоким рейтингом',
-      'Вылет из Санкт-Петербурга',
-      'Полный пакет услуг включен',
-      'Гарантия лучшей цены'
+      'Древняя христианская культура',
+      'Вкуснейшая национальная кухня',
+      'Доступные цены',
+      'Прямой перелет из СПб'
     ]
   },
-
-  // МАЛЬДИВЫ - с пересадкой
   {
     id: 15,
-    title: 'Мальдивы, Атолл Мале',
-    country: 'Мальдивы',
-    city: 'Атолл Мале',
-    hotel: 'Paradise Island Resort',
+    title: 'Турция, Бодрум',
+    country: 'Турция',
+    city: 'Бодрум',
+    hotel: 'Lujo Hotel Bodrum',
     stars: 5,
-    duration: '10 ночей',
-    dates: '5-15 ноября 2025',
-    price: 315000,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Дайвинг'],
-    category: 'exotic',
-    fromSpb: 'transfer'
+    duration: '8 ночей',
+    dates: '11-19 октября 2025',
+    price: 115000,
+    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop&q=80',
+    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Элитный курорт Эгейского моря с белыми домиками и яхтами',
+    program: [
+      'День 1: Прилет в Бодрум, размещение в отеле',
+      'День 2-6: Пляжный отдых на Эгейском море, система все включено',
+      'День 3: Прогулка по Бодруму, крепость святого Петра, амфитеатр',
+      'День 5: Опционально - яхт-тур по греческим островам',
+      'День 7: Спа-день в отеле',
+      'День 8: Трансфер в аэропорт, вылет'
+    ],
+    whyChoose: [
+      'Эгейское море с прозрачной водой',
+      'Близость к греческим островам',
+      'Атмосфера европейского курорта',
+      'Роскошные яхты и марины'
+    ]
   },
-  {
-    id: 15,
-    title: 'Мальдивы, Атолл Ари',
-    country: 'Мальдивы',
-    city: 'Атолл Ари',
-    hotel: 'Sun Island Resort & Spa',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '10-21 ноября 2025',
-    price: 345000,
-    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Спа'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ВЬЕТНАМ - с пересадкой
   {
     id: 16,
-    title: 'Вьетнам, Нячанг',
-    country: 'Вьетнам',
-    city: 'Нячанг',
-    hotel: 'Vinpearl Resort & Spa',
+    title: 'Турция, Мармарис',
+    country: 'Турция',
+    city: 'Мармарис',
+    hotel: 'Grand Yazici Club Marmaris Palace',
     stars: 5,
-    duration: '11 ночей',
-    dates: '14-25 октября 2025',
-    price: 162000,
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
+    duration: '10 ночей',
+    dates: '13-23 октября 2025',
+    price: 98000,
+    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop&q=80',
+    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
     category: 'beach',
-    fromSpb: 'transfer'
+    fromSpb: 'direct',
+    description: 'Живописный курорт в бухте с яхтенной мариной',
+    program: [
+      'День 1: Прилет в Даламан, трансфер в Мармарис, заселение',
+      'День 2-8: Пляжный отдых, Ultra All Inclusive, аквапарк, водные виды спорта',
+      'День 4: Опционально - остров Родос (Греция) на пароме',
+      'День 6: Опционально - джип-сафари по горам',
+      'День 9: Прогулка по набережной Мармариса',
+      'День 10: Трансфер в аэропорт Даламана'
+    ],
+    whyChoose: [
+      'Красивейшая бухта',
+      'Возможность съездить в Грецию',
+      'Яхтенная марина',
+      'Низкие цены'
+    ]
   },
   {
     id: 17,
-    title: 'Вьетнам, Фукуок',
-    country: 'Вьетнам',
-    city: 'Фукуок',
-    hotel: 'Premier Village Phu Quoc Resort',
+    title: 'Турция, Алания',
+    country: 'Турция',
+    city: 'Алания',
+    hotel: 'Delphin Deluxe Resort',
     stars: 5,
-    duration: '12 ночей',
-    dates: '16-28 октября 2025',
-    price: 178000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
+    duration: '9 ночей',
+    dates: '15-24 октября 2025',
+    price: 92000,
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&auto=format&fit=crop&q=80',
+    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Детский клуб'],
     category: 'beach',
-    fromSpb: 'transfer'
+    fromSpb: 'direct',
+    description: 'Семейный курорт с замком и пещерами',
+    program: [
+      'День 1: Прилет в Газипашу, трансфер в Аланию, размещение',
+      'День 2-7: Пляжный отдых, Ultra All Inclusive, детский клуб',
+      'День 3: Экскурсия в крепость Аланьи и Красную башню',
+      'День 5: Опционально - пещера Дамлаташ и пляж Клеопатры',
+      'День 6: Опционально - каньон Сападере с водопадами',
+      'День 9: Трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Идеально для семей с детьми',
+      'Исторические достопримечательности',
+      'Красивые пещеры и каньоны',
+      'Демократичные цены'
+    ]
   },
   {
     id: 18,
-    title: 'Вьетнам, Дананг',
-    country: 'Вьетнам',
-    city: 'Дананг',
-    hotel: 'Fusion Maia Resort',
+    title: 'Египет, Сома Бэй',
+    country: 'Египет',
+    city: 'Сома Бэй',
+    hotel: 'The Cascades Golf Resort',
     stars: 5,
     duration: '10 ночей',
-    dates: '25 октября - 4 ноября 2025',
-    price: 155000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Спа'],
+    dates: '21-31 октября 2025',
+    price: 128000,
+    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop&q=80',
+    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Гольф', 'Кайтсерфинг'],
     category: 'beach',
-    fromSpb: 'transfer'
+    fromSpb: 'direct',
+    description: 'Элитный курорт для гольфа и кайтсерфинга',
+    program: [
+      'День 1: Прилет в Хургаду, трансфер в Сома Бэй (40 минут)',
+      'День 2-8: Пляжный отдых, гольф, кайтсерфинг, все включено',
+      'День 3-7: Гольф-курс 18 лунок (для любителей гольфа)',
+      'День 4-6: Обучение кайтсерфингу (опционально)',
+      'День 9: Спа и талассотерапия',
+      'День 10: Трансфер в аэропорт Хургады'
+    ],
+    whyChoose: [
+      'Лучшее место для кайтсерфинга в Египте',
+      'Профессиональное поле для гольфа',
+      'Эксклюзивный курорт',
+      'Постоянный ветер для водных видов спорта'
+    ]
   },
-
-  // СЕЙШЕЛЫ - с пересадкой
   {
     id: 19,
-    title: 'Сейшелы, о. Маэ',
-    country: 'Сейшелы',
-    city: 'о. Маэ',
-    hotel: 'Berjaya Beau Vallon Bay',
-    stars: 4,
-    duration: '12 ночей',
-    dates: '15-27 ноября 2025',
-    price: 385000,
-    image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'exotic',
-    fromSpb: 'transfer'
+    title: 'ОАЭ, Шарджа',
+    country: 'ОАЭ',
+    city: 'Шарджа',
+    hotel: 'Sheraton Sharjah Beach Resort',
+    stars: 5,
+    duration: '7 ночей',
+    dates: '16-23 ноября 2025',
+    price: 118000,
+    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
+    category: 'beach',
+    fromSpb: 'direct',
+    description: 'Культурная столица ОАЭ с музеями и традициями',
+    program: [
+      'День 1: Прилет в Шарджу, размещение в отеле на берегу',
+      'День 2: Обзорная экскурсия - Музей исламской цивилизации, набережная Аль-Касба',
+      'День 3: Пляжный день, отдых у бассейна',
+      'День 4: Экскурсия в Дубай (30 минут на такси)',
+      'День 5: Старый рынок Шарджи, золотой рынок',
+      'День 6: Аквариум Шарджи и Аль-Маджаз парк',
+      'День 7: Свободный день, трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Дешевле чем Дубай',
+      'Близость к Дубаю (30 минут)',
+      'Культурная программа',
+      'Семейная атмосфера (без алкоголя)'
+    ]
   },
   {
     id: 20,
-    title: 'Сейшелы, о. Праслин',
-    country: 'Сейшелы',
-    city: 'о. Праслин',
-    hotel: 'Constance Lemuria Resort',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '18-28 ноября 2025',
-    price: 425000,
-    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Спа'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ШРИ-ЛАНКА - с пересадкой
-  {
-    id: 21,
-    title: 'Шри-Ланка, Бентота',
-    country: 'Шри-Ланка',
-    city: 'Бентота',
-    hotel: 'Centara Ceysands Resort',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '20 ноября - 1 декабря 2025',
-    price: 195000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 22,
-    title: 'Шри-Ланка, Коломбо',
-    country: 'Шри-Ланка',
-    city: 'Коломбо',
-    hotel: 'Cinnamon Grand Hotel',
-    stars: 5,
-    duration: '9 ночей',
-    dates: '22 ноября - 1 декабря 2025',
-    price: 168000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ИНДОНЕЗИЯ (БАЛИ) - с пересадкой
-  {
-    id: 23,
-    title: 'Индонезия, Бали (Нуса-Дуа)',
-    country: 'Индонезия',
-    city: 'Бали',
-    hotel: 'Ayodya Resort Bali',
-    stars: 5,
-    duration: '13 ночей',
-    dates: '3-16 ноября 2025',
-    price: 245000,
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 24,
-    title: 'Индонезия, Бали (Убуд)',
-    country: 'Индонезия',
-    city: 'Бали',
-    hotel: 'Viceroy Bali',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '17-27 ноября 2025',
-    price: 225000,
-    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Йога'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // КУБА - с пересадкой
-  {
-    id: 25,
-    title: 'Куба, Варадеро',
-    country: 'Куба',
-    city: 'Варадеро',
-    hotel: 'Iberostar Selection Varadero',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '5-16 ноября 2025',
-    price: 295000,
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ДОМИНИКАНА - с пересадкой
-  {
-    id: 26,
-    title: 'Доминикана, Пунта-Кана',
-    country: 'Доминикана',
-    city: 'Пунта-Кана',
-    hotel: 'Luxury Bahia Principe Ambar',
-    stars: 5,
-    duration: '12 ночей',
-    dates: '7-19 ноября 2025',
-    price: 325000,
-    image: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // МЕКСИКА - с пересадкой
-  {
-    id: 27,
-    title: 'Мексика, Канкун',
-    country: 'Мексика',
-    city: 'Канкун',
-    hotel: 'Hyatt Ziva Cancun',
-    stars: 5,
-    duration: '12 ночей',
-    dates: '10-22 ноября 2025',
-    price: 335000,
-    image: 'https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ТАНЗАНИЯ (ЗАНЗИБАР) - с пересадкой
-  {
-    id: 28,
-    title: 'Танзания, Занзибар',
-    country: 'Танзания',
-    city: 'Занзибар',
-    hotel: 'RIU Palace Zanzibar',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '12-23 ноября 2025',
-    price: 365000,
-    image: 'https://images.unsplash.com/photo-1568454537842-d933259bb258?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // РОССИЯ - СОЧИ (прямые рейсы)
-  {
-    id: 29,
-    title: 'Россия, Сочи (Адлер)',
-    country: 'Россия',
-    city: 'Сочи',
-    hotel: 'Radisson Blu Resort & Congress Centre',
-    stars: 5,
-    duration: '7 ночей',
-    dates: '4-11 октября 2025',
-    price: 78000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 30,
-    title: 'Россия, Сочи (Красная Поляна)',
-    country: 'Россия',
-    city: 'Сочи',
-    hotel: 'Radisson Rosa Khutor',
-    stars: 5,
-    duration: '5 ночей',
-    dates: '8-13 октября 2025',
-    price: 68000,
-    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Канатная дорога'],
-    category: 'excursion',
-    fromSpb: 'direct'
-  },
-
-  // РОССИЯ - КРЫМ (прямые рейсы)
-  {
-    id: 31,
     title: 'Россия, Крым (Ялта)',
     country: 'Россия',
     city: 'Крым',
@@ -568,61 +491,54 @@ export const allTours: Tour[] = [
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'direct',
-    description: 'Роскошный отдых на берегу Черного моря с полным спектром услуг'
+    description: 'Роскошный отдых на Южном берегу Крыма',
+    program: [
+      'День 1: Прилет в Симферополь, трансфер в Ялту',
+      'День 2-6: Отдых на пляже, система все включено, спа-процедуры',
+      'День 3: Экскурсия в Ласточкино гнездо и Ливадийский дворец',
+      'День 5: Опционально - Никитский ботанический сад',
+      'День 7: Прогулка по набережной Ялты',
+      'День 8: Трансфер в аэропорт Симферополя'
+    ],
+    whyChoose: [
+      'Лучший отель Крыма',
+      'Целебный воздух',
+      'Дворцы и парки',
+      'Все включено'
+    ]
   },
   {
-    id: 32,
-    title: 'Россия, Крым (Алушта)',
+    id: 21,
+    title: 'Россия, Сочи (Адлер)',
     country: 'Россия',
-    city: 'Крым',
-    hotel: 'Santa Barbara Resort',
-    stars: 4,
+    city: 'Сочи',
+    hotel: 'Radisson Blu Resort & Congress Centre',
+    stars: 5,
     duration: '7 ночей',
-    dates: '12-19 октября 2025',
-    price: 62000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер'],
+    dates: '4-11 октября 2025',
+    price: 78000,
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
+    includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct',
-    description: 'Семейный отдых в тихом уголке южного побережья Крыма'
+    description: 'Черноморский курорт с субтропическим климатом',
+    program: [
+      'День 1: Прилет в Сочи (Адлер), размещение в отеле',
+      'День 2-5: Пляжный отдых, завтраки в отеле',
+      'День 3: Экскурсия в Олимпийский парк и поющие фонтаны',
+      'День 4: Опционально - Скайпарк с мостом и zipline',
+      'День 6: Опционально - Красная Поляна и водопады',
+      'День 7: Трансфер в аэропорт'
+    ],
+    whyChoose: [
+      'Не нужен загранпаспорт',
+      'Теплое море до октября',
+      'Олимпийские объекты',
+      'Горы рядом'
+    ]
   },
   {
-    id: 33,
-    title: 'Россия, Крым (Судак)',
-    country: 'Россия',
-    city: 'Крым',
-    hotel: 'Sudak Deluxe Hotel & Spa',
-    stars: 4,
-    duration: '9 ночей',
-    dates: '14-23 октября 2025',
-    price: 58000,
-    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Исторический город с древней крепостью и прекрасными пляжами'
-  },
-
-  // РОССИЯ - КАЛИНИНГРАД (прямые рейсы)
-  {
-    id: 34,
-    title: 'Россия, Калининград (Светлогорск)',
-    country: 'Россия',
-    city: 'Калининград',
-    hotel: 'Морской клуб',
-    stars: 4,
-    duration: '6 ночей',
-    dates: '16-22 октября 2025',
-    price: 48000,
-    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-
-  // АБХАЗИЯ (прямые рейсы)
-  {
-    id: 35,
+    id: 22,
     title: 'Абхазия, Гагра',
     country: 'Абхазия',
     city: 'Гагра',
@@ -635,813 +551,20 @@ export const allTours: Tour[] = [
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct',
-    description: 'Живописный курорт с субтропическим климатом и чистейшим морем'
-  },
-  {
-    id: 36,
-    title: 'Абхазия, Пицунда',
-    country: 'Абхазия',
-    city: 'Пицунда',
-    hotel: 'Amra Park Hotel',
-    stars: 4,
-    duration: '10 ночей',
-    dates: '5-15 октября 2025',
-    price: 68000,
-    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Знаменитый курорт с реликтовой сосновой рощей у моря'
-  },
-
-  // АРМЕНИЯ (прямые рейсы)
-  {
-    id: 37,
-    title: 'Армения, Ереван',
-    country: 'Армения',
-    city: 'Ереван',
-    hotel: 'Armenia Marriott Hotel Yerevan',
-    stars: 5,
-    duration: '6 ночей',
-    dates: '18-24 октября 2025',
-    price: 72000,
-    image: 'https://images.unsplash.com/photo-1564089514214-edc789b8f9bb?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Древний город с богатой историей, монастыри, музеи и гастрономия'
-  },
-  {
-    id: 38,
-    title: 'Армения, озеро Севан',
-    country: 'Армения',
-    city: 'Севан',
-    hotel: 'Best Western Bohemian Resort',
-    stars: 4,
-    duration: '7 ночей',
-    dates: '20-27 октября 2025',
-    price: 65000,
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Высокогорное озеро с кристально чистой водой и древними монастырями'
-  },
-
-  // УЗБЕКИСТАН (прямые рейсы)
-  {
-    id: 39,
-    title: 'Узбекистан, Самарканд',
-    country: 'Узбекистан',
-    city: 'Самарканд',
-    hotel: 'Registan Plaza Hotel',
-    stars: 4,
-    duration: '6 ночей',
-    dates: '22-28 октября 2025',
-    price: 58000,
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct'
-  },
-  {
-    id: 40,
-    title: 'Узбекистан, Бухара',
-    country: 'Узбекистан',
-    city: 'Бухара',
-    hotel: 'Zargaron Plaza Hotel',
-    stars: 4,
-    duration: '5 ночей',
-    dates: '24-29 октября 2025',
-    price: 52000,
-    image: 'https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct'
-  },
-
-  // КАЗАХСТАН (прямые рейсы)
-  {
-    id: 41,
-    title: 'Казахстан, Алматы',
-    country: 'Казахстан',
-    city: 'Алматы',
-    hotel: 'Rixos Almaty',
-    stars: 5,
-    duration: '5 ночей',
-    dates: '26-31 октября 2025',
-    price: 68000,
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct'
-  },
-
-  // КИРГИЗИЯ (с пересадкой)
-  {
-    id: 42,
-    title: 'Киргизия, озеро Иссык-Куль',
-    country: 'Киргизия',
-    city: 'Иссык-Куль',
-    hotel: 'Radisson Hotel Issyk-Kul',
-    stars: 4,
-    duration: '8 ночей',
-    dates: '28 октября - 5 ноября 2025',
-    price: 55000,
-    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-
-  // АЗЕРБАЙДЖАН (прямые рейсы)
-  {
-    id: 43,
-    title: 'Азербайджан, Баку',
-    country: 'Азербайджан',
-    city: 'Баку',
-    hotel: 'Fairmont Baku',
-    stars: 5,
-    duration: '5 ночей',
-    dates: '3-8 ноября 2025',
-    price: 75000,
-    image: 'https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Современная столица с Пламенными башнями, Старым городом и набережной'
-  },
-
-  // ИРАН (с пересадкой)
-  {
-    id: 44,
-    title: 'Иран, Тегеран',
-    country: 'Иран',
-    city: 'Тегеран',
-    hotel: 'Espinas Palace Hotel',
-    stars: 5,
-    duration: '7 ночей',
-    dates: '14-21 ноября 2025',
-    price: 82000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'transfer'
-  },
-
-  // КИТАЙ (с пересадкой через Ташкент/Дубай)
-  {
-    id: 45,
-    title: 'Китай, о. Хайнань',
-    country: 'Китай',
-    city: 'Хайнань',
-    hotel: 'Mangrove Tree Resort',
-    stars: 5,
-    duration: '12 ночей',
-    dates: '5-17 декабря 2025',
-    price: 185000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ОТЕЛИ ТУРЦИИ
-  {
-    id: 46,
-    title: 'Турция, Анталья (Лара)',
-    country: 'Турция',
-    city: 'Анталья',
-    hotel: 'Delphin Palace',
-    stars: 5,
-    duration: '7 ночей',
-    dates: '7-14 октября 2025',
-    price: 102000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк', 'Детский клуб'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 47,
-    title: 'Турция, Белек',
-    country: 'Турция',
-    city: 'Белек',
-    hotel: 'Regnum Carya Golf & Spa Resort',
-    stars: 5,
-    duration: '9 ночей',
-    dates: '9-18 октября 2025',
-    price: 125000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Гольф'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 48,
-    title: 'Турция, Бодрум',
-    country: 'Турция',
-    city: 'Бодрум',
-    hotel: 'Lujo Hotel Bodrum',
-    stars: 5,
-    duration: '8 ночей',
-    dates: '11-19 октября 2025',
-    price: 115000,
-    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 49,
-    title: 'Турция, Мармарис',
-    country: 'Турция',
-    city: 'Мармарис',
-    hotel: 'Grand Yazici Club Marmaris Palace',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '13-23 октября 2025',
-    price: 98000,
-    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 50,
-    title: 'Турция, Фетхие',
-    country: 'Турция',
-    city: 'Фетхие',
-    hotel: 'Rixos Premium Gocek',
-    stars: 5,
-    duration: '7 ночей',
-    dates: '17-24 октября 2025',
-    price: 118000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Яхтинг'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ОТЕЛИ ЕГИПТА
-  {
-    id: 51,
-    title: 'Египет, Хургада (Макади)',
-    country: 'Египет',
-    city: 'Хургада',
-    hotel: 'Maxx Royal Makadi Bay',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '19-30 октября 2025',
-    price: 135000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
-    includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 52,
-    title: 'Египет, Сома Бэй',
-    country: 'Египет',
-    city: 'Сома Бэй',
-    hotel: 'The Cascades Golf Resort',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '21-31 октября 2025',
-    price: 128000,
-    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Гольф', 'Кайтсерфинг'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 53,
-    title: 'Египет, Эль-Гуна',
-    country: 'Египет',
-    city: 'Эль-Гуна',
-    hotel: 'Steigenberger Golf Resort',
-    stars: 5,
-    duration: '9 ночей',
-    dates: '23 октября - 1 ноября 2025',
-    price: 122000,
-    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Гольф'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ОАЭ
-  {
-    id: 54,
-    title: 'ОАЭ, Шарджа',
-    country: 'ОАЭ',
-    city: 'Шарджа',
-    hotel: 'Sheraton Sharjah Beach Resort',
-    stars: 5,
-    duration: '7 ночей',
-    dates: '16-23 ноября 2025',
-    price: 118000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 55,
-    title: 'ОАЭ, Аджман',
-    country: 'ОАЭ',
-    city: 'Аджман',
-    hotel: 'Fairmont Ajman',
-    stars: 5,
-    duration: '6 ночей',
-    dates: '10-16 декабря 2025',
-    price: 138000,
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Спа'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ТАИЛАНД
-  {
-    id: 56,
-    title: 'Таиланд, Самуи',
-    country: 'Таиланд',
-    city: 'Самуи',
-    hotel: 'InterContinental Koh Samui Resort',
-    stars: 5,
-    duration: '12 ночей',
-    dates: '5-17 октября 2025',
-    price: 172000,
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Спа'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 57,
-    title: 'Таиланд, Хуа Хин',
-    country: 'Таиланд',
-    city: 'Хуа Хин',
-    hotel: 'Centara Grand Beach Resort & Villas',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '9-19 октября 2025',
-    price: 152000,
-    image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Гольф'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ МАЛЬДИВЫ
-  {
-    id: 58,
-    title: 'Мальдивы, Атолл Баа',
-    country: 'Мальдивы',
-    city: 'Атолл Баа',
-    hotel: 'Finolhu Baa Atoll Maldives',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '24 ноября - 4 декабря 2025',
-    price: 395000,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Снорклинг'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 59,
-    title: 'Мальдивы, Атолл Лавияни',
-    country: 'Мальдивы',
-    city: 'Атолл Лавияни',
-    hotel: 'Atmosphere Kanifushi Maldives',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '26 ноября - 7 декабря 2025',
-    price: 415000,
-    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop&q=80',
-    includes: ['Премиум All Inclusive', 'Перелет с пересадкой', 'Гидросамолет', 'Дайвинг'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ РОССИЯ
-  {
-    id: 60,
-    title: 'Россия, Сочи (Имеретинская бухта)',
-    country: 'Россия',
-    city: 'Сочи',
-    hotel: 'Bogatyr Hotel',
-    stars: 4,
-    duration: '6 ночей',
-    dates: '6-12 октября 2025',
-    price: 58000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Олимпийский парк'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 61,
-    title: 'Россия, Крым (Севастополь)',
-    country: 'Россия',
-    city: 'Крым',
-    hotel: 'Aquamarine Resort & SPA',
-    stars: 5,
-    duration: '8 ночей',
-    dates: '8-16 октября 2025',
-    price: 72000,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'beach',
-    description: 'Город-герой с морскими памятниками и красивейшими бухтами',
-    fromSpb: 'direct'
-  },
-  {
-    id: 62,
-    title: 'Россия, Крым (Коктебель)',
-    country: 'Россия',
-    city: 'Крым',
-    hotel: 'Коктебель Палас',
-    stars: 4,
-    duration: '10 ночей',
-    dates: '10-20 октября 2025',
-    price: 65000,
-    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Винный тур'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Знаменитый курорт с винными погребами Массандры и джаз-фестивалями'
-  },
-  {
-    id: 63,
-    title: 'Россия, Калининград (Зеленоградск)',
-    country: 'Россия',
-    city: 'Калининград',
-    hotel: 'Grand Palace Boutique Hotel',
-    stars: 4,
-    duration: '7 ночей',
-    dates: '12-19 октября 2025',
-    price: 52000,
-    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'beach',
-    fromSpb: 'direct'
-  },
-  {
-    id: 64,
-    title: 'Россия, Сочи (Роза Хутор)',
-    country: 'Россия',
-    city: 'Сочи',
-    hotel: 'Rosa Ski Inn',
-    stars: 4,
-    duration: '5 ночей',
-    dates: '12-17 декабря 2025',
-    price: 85000,
-    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Ски-пасс 3 дня'],
-    category: 'ski',
-    fromSpb: 'direct'
-  },
-  {
-    id: 65,
-    title: 'Россия, Сочи (Горки Город)',
-    country: 'Россия',
-    city: 'Сочи',
-    hotel: 'Novotel Resort Krasnaya Polyana Sochi',
-    stars: 4,
-    duration: '6 ночей',
-    dates: '15-21 декабря 2025',
-    price: 78000,
-    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Ски-пасс'],
-    category: 'ski',
-    fromSpb: 'direct'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ АБХАЗИЯ
-  {
-    id: 66,
-    title: 'Абхазия, Новый Афон',
-    country: 'Абхазия',
-    city: 'Новый Афон',
-    hotel: 'Гагрипш',
-    stars: 3,
-    duration: '8 ночей',
-    dates: '7-15 октября 2025',
-    price: 48000,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Древние монастыри, карстовая пещера и целебный воздух горных лесов'
-  },
-  {
-    id: 67,
-    title: 'Абхазия, Сухум',
-    country: 'Абхазия',
-    city: 'Сухум',
-    hotel: 'Alex Beach Hotel',
-    stars: 4,
-    duration: '9 ночей',
-    dates: '9-18 октября 2025',
-    price: 55000,
-    image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Столица Абхазии с ботаническим садом, набережной и историческими памятниками'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ВЬЕТНАМ
-  {
-    id: 68,
-    title: 'Вьетнам, Хойан',
-    country: 'Вьетнам',
-    city: 'Хойан',
-    hotel: 'Four Seasons Resort The Nam Hai',
-    stars: 5,
-    duration: '10 ночей',
-    dates: '11-21 октября 2025',
-    price: 185000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Велоэкскурсия'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-  {
-    id: 69,
-    title: 'Вьетнам, Муйне',
-    country: 'Вьетнам',
-    city: 'Муйне',
-    hotel: 'Anantara Mui Ne Resort',
-    stars: 5,
-    duration: '11 ночей',
-    dates: '13-24 октября 2025',
-    price: 168000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Кайтсерфинг'],
-    category: 'beach',
-    fromSpb: 'transfer'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ШРИ-ЛАНКА
-  {
-    id: 70,
-    title: 'Шри-Ланка, Негомбо',
-    country: 'Шри-Ланка',
-    city: 'Негомбо',
-    hotel: 'Jetwing Blue',
-    stars: 4,
-    duration: '9 ночей',
-    dates: '3-12 декабря 2025',
-    price: 148000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Рыбалка'],
-    category: 'exotic',
-    fromSpb: 'transfer'
-  },
-
-  // ДОПОЛНИТЕЛЬНЫЕ ТУРЫ ПО РОССИИ
-  {
-    id: 71,
-    title: 'Россия, Казань',
-    country: 'Россия',
-    city: 'Казань',
-    hotel: 'Корстон Тауэр',
-    stars: 5,
-    duration: '5 ночей',
-    dates: '12-17 октября 2025',
-    price: 42000,
-    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия в Кремль'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Столица Татарстана с белокаменным Кремлем, мечетью Кул-Шариф и национальной кухней'
-  },
-  {
-    id: 72,
-    title: 'Россия, Карелия (Петрозаводск)',
-    country: 'Россия',
-    city: 'Петрозаводск',
-    hotel: 'Фрегат',
-    stars: 4,
-    duration: '6 ночей',
-    dates: '14-20 октября 2025',
-    price: 38000,
-    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Кижи', 'Валаам'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Карельская природа, онежские шхеры, деревянное зодчество острова Кижи'
-  },
-  {
-    id: 73,
-    title: 'Россия, Кавказские Минеральные Воды',
-    country: 'Россия',
-    city: 'Кисловодск',
-    hotel: 'Гранд Отель Видгоф',
-    stars: 4,
-    duration: '10 ночей',
-    dates: '5-15 октября 2025',
-    price: 65000,
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Лечение'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Санаторно-курортное лечение, минеральные источники, горный воздух'
-  },
-  {
-    id: 74,
-    title: 'Россия, Алтай (Белокуриха)',
-    country: 'Россия',
-    city: 'Белокуриха',
-    hotel: 'Беловодье',
-    stars: 4,
-    duration: '8 ночей',
-    dates: '16-24 октября 2025',
-    price: 58000,
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Радоновые ванны'],
-    category: 'excursion',
-    fromSpb: 'transfer',
-    description: 'Алтайский курорт с целебным горным воздухом и радоновыми источниками'
-  },
-  {
-    id: 75,
-    title: 'Россия, Байкал (Иркутск)',
-    country: 'Россия',
-    city: 'Иркутск',
-    hotel: 'Courtyard by Marriott',
-    stars: 4,
-    duration: '7 ночей',
-    dates: '18-25 октября 2025',
-    price: 68000,
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия на Байкал'],
-    category: 'excursion',
-    fromSpb: 'transfer',
-    description: 'Священное озеро Байкал, остров Ольхон, шаманские места силы'
-  },
-  {
-    id: 76,
-    title: 'Россия, Владивосток',
-    country: 'Россия',
-    city: 'Владивосток',
-    hotel: 'Hyundai by Lotte Hotel',
-    stars: 5,
-    duration: '6 ночей',
-    dates: '20-26 октября 2025',
-    price: 72000,
-    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
-    category: 'excursion',
-    fromSpb: 'transfer',
-    description: 'Дальневосточная столица с видами на Японское море и вантовыми мостами'
-  },
-  {
-    id: 77,
-    title: 'Россия, Камчатка (Петропавловск-Камчатский)',
-    country: 'Россия',
-    city: 'Камчатка',
-    hotel: 'Петропавловск',
-    stars: 4,
-    duration: '8 ночей',
-    dates: '22-30 октября 2025',
-    price: 125000,
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Долина гейзеров'],
-    category: 'excursion',
-    fromSpb: 'transfer',
-    description: 'Вулканы, гейзеры, медведи, рыбалка на краю света'
-  },
-  {
-    id: 78,
-    title: 'Россия, Крым (Феодосия)',
-    country: 'Россия',
-    city: 'Крым',
-    hotel: 'Алые Паруса',
-    stars: 4,
-    duration: '8 ночей',
-    dates: '11-19 октября 2025',
-    price: 54000,
-    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
-    includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Галерея Айвазовского'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Город-курорт с золотыми пляжами и картинной галереей Айвазовского'
-  },
-  {
-    id: 79,
-    title: 'Россия, Крым (Евпатория)',
-    country: 'Россия',
-    city: 'Крым',
-    hotel: 'Вилла Елена',
-    stars: 4,
-    duration: '10 ночей',
-    dates: '13-23 октября 2025',
-    price: 56000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Грязелечение'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Семейный курорт с мелководными пляжами и целебными грязями'
-  },
-  {
-    id: 80,
-    title: 'Россия, Анапа',
-    country: 'Россия',
-    city: 'Анапа',
-    hotel: 'Довиль',
-    stars: 4,
-    duration: '7 ночей',
-    dates: '4-11 октября 2025',
-    price: 48000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Детская здравница России с песчаными пляжами и винными турами'
-  },
-  {
-    id: 81,
-    title: 'Россия, Геленджик',
-    country: 'Россия',
-    city: 'Геленджик',
-    hotel: 'Приморье Grand Resort',
-    stars: 5,
-    duration: '9 ночей',
-    dates: '6-15 октября 2025',
-    price: 72000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
-    includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
-    category: 'beach',
-    fromSpb: 'direct',
-    description: 'Курорт в живописной бухте с набережной, аквапарками и сафари-парком'
-  },
-  {
-    id: 82,
-    title: 'Россия, Москва',
-    country: 'Россия',
-    city: 'Москва',
-    hotel: 'Хилтон Москва Ленинградская',
-    stars: 5,
-    duration: '4 ночи',
-    dates: '14-18 октября 2025',
-    price: 38000,
-    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия по Кремлю'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Столица России с Красной площадью, Кремлем, музеями мирового уровня'
-  },
-  {
-    id: 83,
-    title: 'Россия, Великий Новгород',
-    country: 'Россия',
-    city: 'Великий Новгород',
-    hotel: 'Интурист',
-    stars: 3,
-    duration: '3 ночи',
-    dates: '16-19 октября 2025',
-    price: 18000,
-    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Трансфер на автобусе', 'Экскурсия в Кремль'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Древнейший город Руси с новгородским Кремлем и Софийским собором'
-  },
-  {
-    id: 84,
-    title: 'Россия, Псков',
-    country: 'Россия',
-    city: 'Псков',
-    hotel: 'Рижская',
-    stars: 3,
-    duration: '3 ночи',
-    dates: '18-21 октября 2025',
-    price: 16000,
-    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Трансфер на автобусе', 'Изборск', 'Печоры'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Древний пограничный город с мощным Кремлем и Псково-Печерским монастырем'
-  },
-  {
-    id: 85,
-    title: 'Россия, Выборг',
-    country: 'Россия',
-    city: 'Выборг',
-    hotel: 'Атлантик',
-    stars: 3,
-    duration: '2 ночи',
-    dates: '20-22 октября 2025',
-    price: 12000,
-    image: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800&auto=format&fit=crop&q=80',
-    includes: ['Завтраки', 'Трансфер на автобусе', 'Выборгский замок'],
-    category: 'excursion',
-    fromSpb: 'direct',
-    description: 'Средневековый город с шведским замком, брусчатыми улочками и кренделями'
+    description: 'Живописный курорт с субтропическим климатом',
+    program: [
+      'День 1: Прилет в Сочи, трансфер в Гагру (1,5 часа)',
+      'День 2-5: Пляжный отдых, полупансион',
+      'День 3: Экскурсия в Новый Афон (монастырь и пещера)',
+      'День 4: Прогулка по Приморскому парку и колоннаде Гагры',
+      'День 6: Опционально - озеро Рица и Голубое озеро',
+      'День 7: Трансфер в Сочи, вылет'
+    ],
+    whyChoose: [
+      'Низкие цены',
+      'Красивейшая природа',
+      'Целебный воздух',
+      'Озеро Рица рядом'
+    ]
   }
 ];

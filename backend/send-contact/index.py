@@ -39,20 +39,42 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     body_data = json.loads(event.get('body', '{}'))
     
+    request_type = body_data.get('type', 'contact')
     name = body_data.get('name', '')
     email = body_data.get('email', '')
     phone = body_data.get('phone', '')
     message = body_data.get('message', '')
     
-    if not all([name, email, message]):
-        return {
-            'statusCode': 400,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps({'error': 'Заполните все обязательные поля'})
-        }
+    if request_type == 'tour_booking':
+        if not name or not phone:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Заполните имя и телефон'})
+            }
+    elif request_type == 'newsletter':
+        if not email:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Введите email'})
+            }
+    else:
+        if not all([name, email, message]):
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Заполните все обязательные поля'})
+            }
     
     smtp_host = os.environ.get('SMTP_HOST')
     smtp_port = int(os.environ.get('SMTP_PORT', '587'))
@@ -71,10 +93,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = f'Новая заявка с сайта от {name}'
+    
+    if request_type == 'tour_booking':
+        subject = f'🏖️ Бронирование тура от {name}'
+    elif request_type == 'newsletter':
+        subject = f'📧 Новая подписка: {email}'
+    else:
+        subject = f'Новая заявка с сайта от {name}'
+    
+    msg['Subject'] = subject
     msg['From'] = smtp_user
     msg['To'] = contact_email
-    msg['Reply-To'] = email
+    if email:
+        msg['Reply-To'] = email
     
     html_content = f'''
     <html>

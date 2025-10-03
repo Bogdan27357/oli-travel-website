@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { Tour } from '@/data/tours';
 import { useToast } from '@/hooks/use-toast';
+
+const BACKEND_URL = 'https://functions.poehali.dev/dea48100-ddb2-4f0d-8e5f-770296090960';
 
 interface TourDetailModalProps {
   tour: Tour | null;
@@ -14,15 +18,66 @@ interface TourDetailModalProps {
 
 const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
   const { toast } = useToast();
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: ''
+  });
 
   if (!tour) return null;
 
-  const handleBook = () => {
-    toast({
-      title: "Заявка принята! 🎉",
-      description: `Менеджер свяжется с вами для бронирования тура "${tour.title}"`,
-    });
-    onClose();
+  const handleBook = async () => {
+    if (!formData.name || !formData.phone) {
+      toast({
+        title: "Ошибка",
+        description: "Заполните имя и телефон",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          type: 'tour_booking',
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || 'не указан',
+          message: `Заявка на бронирование тура: ${tour.title}\nОтель: ${tour.hotel} ${tour.stars}⭐\nДаты: ${tour.dates}\nЦена: ${tour.price.toLocaleString('ru-RU')} ₽`
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: "✅ Заявка отправлена!",
+          description: `Менеджер свяжется с вами для бронирования тура "${tour.title}"`,
+          className: "bg-green-50 border-green-500"
+        });
+        setFormData({ name: '', phone: '', email: '' });
+        setShowBookingForm(false);
+        setTimeout(() => onClose(), 1500);
+      } else {
+        throw new Error(data.error || 'Ошибка отправки');
+      }
+    } catch (error: any) {
+      toast({
+        title: "Ошибка отправки",
+        description: error.message || "Попробуйте позже или позвоните нам: +7 981 981-29-90",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getCategoryName = (category: string) => {
@@ -191,14 +246,65 @@ const TourDetailModal = ({ tour, open, onClose }: TourDetailModalProps) => {
                 <div className="text-sm opacity-90 mt-1">≈ {Math.round(tour.price / tour.duration.split(' ')[0])} ₽ за ночь</div>
               </div>
               <div className="flex flex-col gap-2">
-                <Button
-                  size="lg"
-                  className="bg-white text-primary hover:bg-gray-100 px-8"
-                  onClick={handleBook}
-                >
-                  <Icon name="Phone" size={18} className="mr-2" />
-                  Забронировать тур
-                </Button>
+                {!showBookingForm ? (
+                  <Button
+                    size="lg"
+                    className="bg-white text-primary hover:bg-gray-100 px-8"
+                    onClick={() => setShowBookingForm(true)}
+                  >
+                    <Icon name="Phone" size={18} className="mr-2" />
+                    Забронировать тур
+                  </Button>
+                ) : (
+                  <div className="bg-white p-4 rounded-lg space-y-3">
+                    <Input
+                      placeholder="Ваше имя *"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="h-11"
+                    />
+                    <Input
+                      placeholder="Телефон *"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      className="h-11"
+                    />
+                    <Input
+                      placeholder="Email (необязательно)"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      className="h-11"
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        className="flex-1 bg-primary hover:bg-primary/90"
+                        onClick={handleBook}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
+                            Отправка...
+                          </>
+                        ) : (
+                          <>
+                            <Icon name="Send" size={16} className="mr-2" />
+                            Отправить
+                          </>
+                        )}
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-primary text-primary"
+                        onClick={() => setShowBookingForm(false)}
+                      >
+                        Отмена
+                      </Button>
+                    </div>
+                  </div>
+                )}
                 {tour.program && tour.program.length > 0 && (
                   <Button
                     size="sm"
