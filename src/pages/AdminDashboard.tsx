@@ -162,9 +162,32 @@ export default function AdminDashboard() {
                 value={videoUrl}
                 onChange={(e) => setVideoUrl(e.target.value)}
               />
-              <p className="text-xs text-gray-500 mt-1">
-                Вставьте прямую ссылку на видео формата MP4
-              </p>
+              <div className="mt-2 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                <p className="text-xs text-amber-800 mb-2 font-semibold">⚠️ Важно:</p>
+                <ul className="text-xs text-amber-700 space-y-1">
+                  <li>✅ Ссылка должна заканчиваться на .mp4</li>
+                  <li>✅ Только прямая ссылка на файл</li>
+                  <li>❌ НЕ работает: YouTube, VK, облачные диски</li>
+                  <li>💡 Рекомендуем: загрузить на свой хостинг</li>
+                </ul>
+              </div>
+              {videoUrl && (
+                <div className="mt-2">
+                  <p className="text-xs font-medium text-gray-700 mb-1">Предпросмотр:</p>
+                  <video 
+                    src={videoUrl} 
+                    className="w-full max-h-32 rounded border"
+                    controls
+                    onError={() => {
+                      toast({
+                        title: '❌ Ошибка загрузки',
+                        description: 'Проверьте ссылку на видео',
+                        variant: 'destructive'
+                      });
+                    }}
+                  />
+                </div>
+              )}
             </div>
             <Button
               onClick={() => {

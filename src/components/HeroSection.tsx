@@ -160,8 +160,13 @@ export default function HeroSection() {
                   loop
                   muted
                   playsInline
+                  onError={(e) => {
+                    console.error('Video load error:', customVideoUrl);
+                    setCustomVideoUrl('');
+                  }}
                 >
                   <source src={customVideoUrl} type="video/mp4" />
+                  Ваш браузер не поддерживает видео
                 </video>
               </div>
             ) : (
@@ -258,8 +263,12 @@ export default function HeroSection() {
                       className="w-full max-h-[70vh] object-contain"
                       controls
                       autoPlay
+                      onError={(e) => {
+                        console.error('Video load error in modal:', customVideoUrl);
+                      }}
                     >
                       <source src={customVideoUrl} type="video/mp4" />
+                      Ваш браузер не поддерживает видео
                     </video>
                   ) : (
                     <div className="w-full h-[50vh] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
