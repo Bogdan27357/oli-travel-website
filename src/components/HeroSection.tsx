@@ -113,131 +113,88 @@ export default function HeroSection() {
   }, [videoUrl]);
 
   return (
-    <section id="home" className="relative py-20 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-transparent"></div>
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-        <div className="absolute top-0 right-10 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-20 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-      </div>
+    <section id="home" className="relative py-20 md:py-32 overflow-hidden min-h-screen flex items-center">
+      {/* Background Video or Slideshow */}
+      {videoUrl && isYouTubeUrl(videoUrl) && getYouTubeEmbedUrl(videoUrl) ? (
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <iframe
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77777778vh] h-[56.25vw] min-h-full min-w-full"
+            src={getYouTubeEmbedUrl(videoUrl)}
+            title="Background video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ border: 'none', pointerEvents: 'none' }}
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+      ) : videoUrl ? (
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <video 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            onError={() => {
+              console.error('Video load error:', videoUrl);
+              setVideoUrl('');
+            }}
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+      ) : (
+        <div className="absolute inset-0 w-full h-full">
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
+            </div>
+          ))}
+          {musicUrl && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMusic();
+              }}
+              className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
+            >
+              <Icon 
+                name={musicPlaying ? 'Volume2' : 'VolumeX'} 
+                size={20} 
+                className={musicPlaying ? 'text-primary' : 'text-gray-400'}
+              />
+            </button>
+          )}
+        </div>
+      )}
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <div className="mb-8">
-            <div className="inline-block mb-4 px-6 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
+            <div className="inline-block mb-4 px-6 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
               <span className="text-sm font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 🌍 Более 70 направлений по всему миру
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight">
-              <span className="bg-gradient-to-r from-primary via-yellow-500 to-secondary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-shift">
+              <span className="text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                 OliTravel
               </span>
             </h1>
             <div className="h-1 w-48 mx-auto bg-gradient-to-r from-primary via-yellow-500 to-secondary rounded-full animate-pulse"></div>
           </div>
           
-          <p className="text-xl md:text-2xl text-gray-700 mb-6 font-medium">
+          <p className="text-xl md:text-2xl text-white mb-6 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Откройте мир вместе с нами — туры из Санкт-Петербурга по лучшим ценам
           </p>
           
-          <p className="text-base md:text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
             Прямые рейсы и с пересадками • Рассрочка 0% • Гарантия лучшей цены
           </p>
-          
-          {/* Video or Slideshow */}
-          <div className="mb-6 md:mb-8 relative group">
-            {videoUrl && isYouTubeUrl(videoUrl) && getYouTubeEmbedUrl(videoUrl) ? (
-              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto bg-black">
-                <iframe
-                  className="w-full aspect-video min-h-[300px] md:min-h-[400px]"
-                  src={getYouTubeEmbedUrl(videoUrl)}
-                  title="YouTube video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ) : videoUrl ? (
-              <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-                <video 
-                  className="w-full max-h-[500px] object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  onError={() => {
-                    console.error('Video load error:', videoUrl);
-                    setVideoUrl('');
-                  }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Ваш браузер не поддерживает видео
-                </video>
-              </div>
-            ) : (
-              <>
-                {musicUrl && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMusic();
-                    }}
-                    className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
-                  >
-                    <Icon 
-                      name={musicPlaying ? 'Volume2' : 'VolumeX'} 
-                      size={20} 
-                      className={musicPlaying ? 'text-primary' : 'text-gray-400'}
-                    />
-                  </button>
-                )}
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[450px]">
-                  {slides.map((slide, index) => (
-                    <div
-                      key={index}
-                      className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      {slide.type === 'hero' ? (
-                        <div className="w-full h-full relative">
-                          <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <>
-                          <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                                <Icon name={slide.icon as any} size={24} />
-                              </div>
-                              <h3 className="text-2xl font-bold">{slide.title}</h3>
-                            </div>
-                            <p className="text-lg opacity-90">{slide.description}</p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  ))}
-                  
-                  {/* Slide indicators */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                    {slides.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentSlide(index);
-                        }}
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          currentSlide === index ? 'bg-white w-8' : 'bg-white/50'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
 
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up mb-8" style={{ animationDelay: '200ms' }}>
             <Button 
@@ -249,7 +206,7 @@ export default function HeroSection() {
               Подобрать тур
             </Button>
             <a href="tel:+79819812990">
-              <Button size="lg" variant="outline" className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all duration-300 hover:scale-110 text-lg px-8 py-6 font-semibold">
+              <Button size="lg" className="bg-white/90 backdrop-blur-sm text-primary hover:bg-white border-2 border-white transition-all duration-300 hover:scale-110 text-lg px-8 py-6 font-semibold">
                 <Icon name="Phone" className="mr-2" size={20} />
                 Позвонить
               </Button>
@@ -257,18 +214,18 @@ export default function HeroSection() {
           </div>
           
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <Icon name="Shield" size={16} className="text-green-600" />
-              <span>Надёжная компания</span>
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <Icon name="Shield" size={16} className="text-green-400" />
+              <span className="text-white font-medium">Надёжная компания</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Icon name="Star" size={16} className="text-yellow-500" />
-              <span>2000+ отзывов</span>
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <Icon name="Star" size={16} className="text-yellow-400" />
+              <span className="text-white font-medium">2000+ отзывов</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Icon name="Award" size={16} className="text-blue-600" />
-              <span>15 лет опыта</span>
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <Icon name="Award" size={16} className="text-blue-400" />
+              <span className="text-white font-medium">15 лет опыта</span>
             </div>
           </div>
         </div>
