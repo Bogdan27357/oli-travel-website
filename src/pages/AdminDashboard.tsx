@@ -15,6 +15,7 @@ export default function AdminDashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
+  const [musicUrl, setMusicUrl] = useState(localStorage.getItem('hero_music_url') || '');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -98,7 +99,7 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -193,6 +194,61 @@ export default function AdminDashboard() {
               >
                 <Icon name="Trash2" size={16} className="mr-2" />
                 Удалить видео
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Icon name="Music" size={24} className="text-primary" />
+              Фоновая музыка
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 block">
+                URL музыки (MP3)
+              </label>
+              <Input
+                type="url"
+                placeholder="https://example.com/music.mp3"
+                value={musicUrl}
+                onChange={(e) => setMusicUrl(e.target.value)}
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Вставьте прямую ссылку на аудио файл MP3
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                localStorage.setItem('hero_music_url', musicUrl);
+                toast({
+                  title: '✅ Музыка сохранена',
+                  description: 'Обновите главную страницу чтобы услышать музыку'
+                });
+              }}
+              className="w-full"
+            >
+              <Icon name="Save" size={16} className="mr-2" />
+              Сохранить музыку
+            </Button>
+            {musicUrl && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setMusicUrl('');
+                  localStorage.removeItem('hero_music_url');
+                  toast({
+                    title: '🗑️ Музыка удалена',
+                    description: 'Слайд-шоу будет без звука'
+                  });
+                }}
+                className="w-full"
+              >
+                <Icon name="Trash2" size={16} className="mr-2" />
+                Удалить музыку
               </Button>
             )}
           </CardContent>

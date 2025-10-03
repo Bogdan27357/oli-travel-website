@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const slides = [
   {
@@ -43,6 +43,28 @@ export default function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [customVideoUrl, setCustomVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const musicUrl = localStorage.getItem('hero_music_url') || '';
+
+  useEffect(() => {
+    if (musicUrl && !audioRef.current) {
+      audioRef.current = new Audio(musicUrl);
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.3;
+    }
+  }, [musicUrl]);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    
+    if (musicPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(err => console.log('Audio play failed:', err));
+    }
+    setMusicPlaying(!musicPlaying);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -87,6 +109,21 @@ export default function HeroSection() {
           
           {/* Slideshow */}
           <div className="mb-8 relative group cursor-pointer" onClick={() => setShowVideo(true)}>
+            {musicUrl && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMusic();
+                }}
+                className="absolute top-4 right-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg"
+              >
+                <Icon 
+                  name={musicPlaying ? 'Volume2' : 'VolumeX'} 
+                  size={20} 
+                  className={musicPlaying ? 'text-primary' : 'text-gray-400'}
+                />
+              </button>
+            )}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto h-[350px]">
               {slides.map((slide, index) => (
                 <div
