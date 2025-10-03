@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import BookingModal from './BookingModal';
 
 const tourCategories = [
   { id: 1, name: 'Пляжный отдых', duration: '7-14 дней', price: 35000, icon: 'Waves' },
@@ -143,6 +144,25 @@ const tourExamples = {
 
 export default function ToursSection() {
   const [selectedCategory, setSelectedCategory] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState<{
+    title: string;
+    hotel: string;
+    duration: string;
+    dates: string;
+    price: number;
+  } | null>(null);
+
+  const handleBooking = (tour: any) => {
+    setSelectedTour({
+      title: tour.title,
+      hotel: tour.hotel,
+      duration: tour.duration,
+      dates: tour.dates,
+      price: tour.price
+    });
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="tours" className="py-20 bg-white">
@@ -231,7 +251,10 @@ export default function ToursSection() {
                         {example.price.toLocaleString()} ₽
                       </p>
                     </div>
-                    <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <Button 
+                      onClick={() => handleBooking(example)}
+                      className="bg-gradient-to-r from-primary to-secondary hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    >
                       Забронировать
                     </Button>
                   </div>
@@ -241,6 +264,12 @@ export default function ToursSection() {
           </div>
         </div>
       </div>
+
+      <BookingModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        tourData={selectedTour}
+      />
     </section>
   );
 }
