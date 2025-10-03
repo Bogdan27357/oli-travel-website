@@ -42,8 +42,8 @@ const slides = [
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
-  const [heroTitle, setHeroTitle] = useState(localStorage.getItem('hero_title') || 'Откройте мир вместе с нами');
-  const [heroSubtitle, setHeroSubtitle] = useState(localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам');
+  const [heroTitle, setHeroTitle] = useState(localStorage.getItem('hero_title') || 'Путешествия вашей мечты');
+  const [heroSubtitle, setHeroSubtitle] = useState(localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга • Прямые рейсы • Лучшие цены');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,8 +55,8 @@ export default function HeroSection() {
   useEffect(() => {
     const handleStorageChange = () => {
       const newPosition = localStorage.getItem('hero_position') || 'center';
-      const newTitle = localStorage.getItem('hero_title') || 'Откройте мир вместе с нами';
-      const newSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам';
+      const newTitle = localStorage.getItem('hero_title') || 'Путешествия вашей мечты';
+      const newSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга • Прямые рейсы • Лучшие цены';
       setHeroPosition(newPosition);
       setHeroTitle(newTitle);
       setHeroSubtitle(newSubtitle);
@@ -65,8 +65,8 @@ export default function HeroSection() {
     window.addEventListener('storage', handleStorageChange);
     const interval = setInterval(() => {
       const currentPosition = localStorage.getItem('hero_position') || 'center';
-      const currentTitle = localStorage.getItem('hero_title') || 'Откройте мир вместе с нами';
-      const currentSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам';
+      const currentTitle = localStorage.getItem('hero_title') || 'Путешествия вашей мечты';
+      const currentSubtitle = localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга • Прямые рейсы • Лучшие цены';
       if (currentPosition !== heroPosition) {
         setHeroPosition(currentPosition);
       }

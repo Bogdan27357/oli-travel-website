@@ -17,11 +17,9 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
             {[
               { id: 'home', label: 'Главная' },
               { id: 'tours', label: 'Туры' },
-              { id: 'countries', label: 'Страны' },
               { id: 'hotels', label: 'Отели' },
-              { id: 'about', label: 'О нас' },
+              { id: 'countries', label: 'Направления' },
               { id: 'reviews', label: 'Отзывы' },
-              { id: 'promotions', label: 'Акции' },
               { id: 'contacts', label: 'Контакты' }
             ].map((item, idx) => (
               <button

@@ -5,25 +5,25 @@ const stats = [
   { 
     icon: 'Users', 
     value: '10 000+', 
-    label: 'Довольных туристов',
+    label: 'Туристов отправили в путешествие',
     color: 'from-blue-500 to-blue-600'
   },
   { 
-    icon: 'Globe', 
-    value: '70+', 
-    label: 'Стран и направлений',
+    icon: 'Hotel', 
+    value: '177', 
+    label: 'Отелей в 11 странах',
     color: 'from-green-500 to-green-600'
   },
   { 
     icon: 'Calendar', 
-    value: '15', 
-    label: 'Лет на рынке',
+    value: '15 лет', 
+    label: 'Опыта с 2009 года',
     color: 'from-purple-500 to-purple-600'
   },
   { 
     icon: 'Star', 
-    value: '4.9', 
-    label: 'Средняя оценка',
+    value: '4.9/5', 
+    label: 'Рейтинг по отзывам',
     color: 'from-yellow-500 to-yellow-600'
   }
 ];

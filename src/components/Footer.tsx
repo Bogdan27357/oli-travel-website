@@ -15,12 +15,14 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Направления</h4>
+            <h4 className="font-bold mb-4">Популярные направления</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li className="hover:text-white transition-colors cursor-pointer">Турция</li>
-              <li className="hover:text-white transition-colors cursor-pointer">ОАЭ</li>
-              <li className="hover:text-white transition-colors cursor-pointer">Таиланд</li>
-              <li className="hover:text-white transition-colors cursor-pointer">Египет</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇹🇷 Турция</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇦🇪 ОАЭ</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇹🇭 Таиланд</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇪🇬 Египет</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇲🇻 Мальдивы</li>
+              <li className="hover:text-white transition-colors cursor-pointer">🇨🇳 Китай</li>
             </ul>
           </div>
           

@@ -11,7 +11,7 @@ export default function AboutSection() {
             О нас
           </h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            💥 Турагентство OliTravel
+            Ваш надёжный партнёр в мире путешествий с 2009 года
           </p>
         </div>
 
@@ -21,7 +21,7 @@ export default function AboutSection() {
               <div className="order-2 md:order-1">
                 <div className="flex items-center gap-3 mb-6">
                   <Icon name="Award" size={32} className="text-primary" />
-                  <h3 className="text-2xl font-bold">💯 12 ЛЕТ БЕЗУПРЕЧНОЙ РАБОТЫ</h3>
+                  <h3 className="text-2xl font-bold">15 лет опыта в туризме</h3>
                 </div>
                 
                 <div className="space-y-4 mb-6">

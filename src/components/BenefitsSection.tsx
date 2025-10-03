@@ -2,14 +2,12 @@ import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const benefits = [
-  { icon: 'Plane', title: 'Прямые рейсы', description: 'Из Санкт-Петербурга', color: 'from-blue-500 to-blue-600' },
-  { icon: 'BadgePercent', title: 'Лучшие цены', description: 'Гарантия возврата разницы', color: 'from-green-500 to-green-600' },
-  { icon: 'Shield', title: 'Надёжность', description: 'Официальный турагент РТО', color: 'from-purple-500 to-purple-600' },
-  { icon: 'Headphones', title: 'Поддержка 24/7', description: 'Персональный менеджер', color: 'from-orange-500 to-orange-600' },
-  { icon: 'CreditCard', title: 'Рассрочка 0%', description: 'До 12 месяцев', color: 'from-pink-500 to-pink-600' },
-  { icon: 'Globe', title: '70+ стран', description: 'Туры по всему миру', color: 'from-teal-500 to-teal-600' },
-  { icon: 'Award', title: '15 лет опыта', description: '10 000+ довольных туристов', color: 'from-yellow-500 to-yellow-600' },
-  { icon: 'Sparkles', title: 'Особые условия', description: 'Скидки постоянным клиентам', color: 'from-indigo-500 to-indigo-600' }
+  { icon: 'Plane', title: 'Прямые рейсы', description: 'Из Пулково без пересадок', color: 'from-blue-500 to-blue-600' },
+  { icon: 'BadgePercent', title: 'Лучшие цены', description: 'Вернём разницу, если найдёте дешевле', color: 'from-green-500 to-green-600' },
+  { icon: 'CreditCard', title: 'Рассрочка 0%', description: 'Без переплат до 12 месяцев', color: 'from-pink-500 to-pink-600' },
+  { icon: 'Headphones', title: 'Поддержка 24/7', description: 'ИИ-помощник + живой менеджер', color: 'from-orange-500 to-orange-600' },
+  { icon: 'Globe', title: '177 отелей', description: 'В 11 странах мира', color: 'from-teal-500 to-teal-600' },
+  { icon: 'Award', title: '15 лет опыта', description: 'С 2009 года помогаем путешествовать', color: 'from-yellow-500 to-yellow-600' }
 ];
 
 export default function BenefitsSection() {
@@ -24,7 +22,7 @@ export default function BenefitsSection() {
             Мы создаём незабываемые путешествия с заботой о каждой детали
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {benefits.map((benefit, idx) => (
             <Card 
               key={idx} 
