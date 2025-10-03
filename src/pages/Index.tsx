@@ -4,7 +4,15 @@ import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeSection, setActiveSection] = useState('home');
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const destinations = [
     {
@@ -78,6 +86,34 @@ const Index = () => {
     { icon: 'Headphones', title: 'Поддержка 24/7', description: 'Всегда на связи' }
   ];
 
+  const tours = [
+    { id: 1, name: 'Пляжный отдых', duration: '7-14 дней', price: 35000, icon: 'Waves' },
+    { id: 2, name: 'Экскурсионные туры', duration: '5-10 дней', price: 45000, icon: 'Camera' },
+    { id: 3, name: 'Горнолыжные курорты', duration: '7-10 дней', price: 55000, icon: 'Mountain' },
+    { id: 4, name: 'Экзотика', duration: '10-14 дней', price: 75000, icon: 'Palmtree' }
+  ];
+
+  const countries = [
+    { name: 'Турция', tours: 156, image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400' },
+    { name: 'ОАЭ', tours: 89, image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400' },
+    { name: 'Таиланд', tours: 112, image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=400' },
+    { name: 'Египет', tours: 134, image: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=400' },
+    { name: 'Мальдивы', tours: 67, image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400' },
+    { name: 'Греция', tours: 98, image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400' }
+  ];
+
+  const reviews = [
+    { id: 1, name: 'Анна Петрова', rating: 5, text: 'Отличный сервис! Отдохнули в Турции, все было организовано на высшем уровне.', date: '15.09.2024' },
+    { id: 2, name: 'Дмитрий Смирнов', rating: 5, text: 'Поездка в Дубай превзошла все ожидания. Спасибо команде OliTravel!', date: '10.09.2024' },
+    { id: 3, name: 'Елена Иванова', rating: 5, text: 'Прекрасный отдых на Мальдивах. Все было идеально!', date: '05.09.2024' }
+  ];
+
+  const promotions = [
+    { id: 1, title: 'Раннее бронирование', discount: '-30%', description: 'Скидка на туры летнего сезона 2025', validUntil: '31.12.2024' },
+    { id: 2, title: 'Горящие туры', discount: '-50%', description: 'Вылет в ближайшие 7 дней', validUntil: '10.10.2024' },
+    { id: 3, title: 'Семейный отдых', discount: '-20%', description: 'При бронировании для 2 взрослых + 2 детей', validUntil: '31.10.2024' }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
@@ -90,25 +126,28 @@ const Index = () => {
               </span>
             </div>
             
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-2">
               {[
-                { id: 'home', label: 'Главная', icon: 'Home' },
-                { id: 'destinations', label: 'Направления', icon: 'MapPin' },
-                { id: 'hotels', label: 'Отели', icon: 'Building2' },
-                { id: 'contacts', label: 'Контакты', icon: 'Phone' }
+                { id: 'home', label: 'Главная' },
+                { id: 'tours', label: 'Туры' },
+                { id: 'countries', label: 'Страны' },
+                { id: 'hotels', label: 'Отели' },
+                { id: 'about', label: 'О нас' },
+                { id: 'reviews', label: 'Отзывы' },
+                { id: 'promotions', label: 'Акции' },
+                { id: 'contacts', label: 'Контакты' }
               ].map((item, idx) => (
                 <button
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 animate-fade-in-up ${
-                    activeTab === item.id
-                      ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105'
-                      : 'text-gray-600 hover:text-primary hover:scale-105'
+                  onClick={() => scrollToSection(item.id)}
+                  className={`px-3 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
+                    activeSection === item.id
+                      ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                      : 'text-gray-600 hover:text-primary hover:bg-gray-100'
                   }`}
-                  style={{ animationDelay: `${idx * 100}ms` }}
+                  style={{ animationDelay: `${idx * 50}ms` }}
                 >
-                  <Icon name={item.icon as any} size={18} />
-                  <span className="font-medium">{item.label}</span>
+                  {item.label}
                 </button>
               ))}
             </nav>
@@ -121,7 +160,7 @@ const Index = () => {
       </header>
 
       <main>
-        <section className="relative py-20 md:py-32 overflow-hidden">
+        <section id="home" className="relative py-20 md:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-transparent"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
@@ -165,13 +204,74 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <section id="tours" className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Виды туров
+              </h2>
+              <p className="text-gray-600 text-lg">Выберите идеальный формат отдыха</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+              {tours.map((tour, idx) => (
+                <Card 
+                  key={tour.id} 
+                  className="p-8 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-white to-gray-50 cursor-pointer group"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                    <Icon name={tour.icon as any} size={40} className="text-white" />
+                  </div>
+                  <h3 className="font-bold text-xl mb-3">{tour.name}</h3>
+                  <p className="text-gray-500 text-sm mb-4">{tour.duration}</p>
+                  <p className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    от {tour.price.toLocaleString()} ₽
+                  </p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="countries" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Популярные страны
+              </h2>
+              <p className="text-gray-600 text-lg">Прямые рейсы из Санкт-Петербурга</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
+              {countries.map((country, idx) => (
+                <Card 
+                  key={idx} 
+                  className="overflow-hidden group cursor-pointer border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                >
+                  <div className="relative h-32 overflow-hidden">
+                    <img 
+                      src={country.image} 
+                      alt={country.name} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div className="absolute bottom-2 left-2 right-2 text-white">
+                      <h3 className="font-bold text-sm mb-0.5">{country.name}</h3>
+                      <p className="text-xs opacity-90">{country.tours} туров</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Популярные направления
               </h2>
-              <p className="text-gray-600 text-lg">Прямые рейсы из Санкт-Петербурга</p>
+              <p className="text-gray-600 text-lg">Города и курорты</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -213,9 +313,9 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section id="hotels" className="py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
+            <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Лучшие отели
               </h2>
@@ -274,7 +374,111 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-gradient-to-br from-primary via-yellow-500 to-secondary text-white relative overflow-hidden">
+        <section id="about" className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                О нас
+              </h2>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                OliTravel — ваш надежный партнер в мире путешествий с 2010 года
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <Card className="p-8 text-center border-0 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">14+</div>
+                <p className="text-gray-600 font-medium">лет на рынке</p>
+              </Card>
+              <Card className="p-8 text-center border-0 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">50K+</div>
+                <p className="text-gray-600 font-medium">довольных клиентов</p>
+              </Card>
+              <Card className="p-8 text-center border-0 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">120+</div>
+                <p className="text-gray-600 font-medium">направлений</p>
+              </Card>
+            </div>
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                Мы специализируемся на организации незабываемых путешествий из Санкт-Петербурга. 
+                Наша команда профессионалов поможет подобрать идеальный тур, учитывая все ваши пожелания и бюджет.
+              </p>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                С нами вы получаете гарантию качества, лучшие цены и круглосуточную поддержку на всех этапах путешествия.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="reviews" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Отзывы клиентов
+              </h2>
+              <p className="text-gray-600 text-lg">Что говорят о нас наши туристы</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {reviews.map((review, idx) => (
+                <Card 
+                  key={review.id} 
+                  className="p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" size={20} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 italic leading-relaxed">"{review.text}"</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <p className="font-bold text-gray-900">{review.name}</p>
+                      <p className="text-sm text-gray-500">{review.date}</p>
+                    </div>
+                    <Icon name="Quote" size={32} className="text-primary/20" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="promotions" className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Актуальные акции
+              </h2>
+              <p className="text-gray-600 text-lg">Специальные предложения для вас</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {promotions.map((promo, idx) => (
+                <Card 
+                  key={promo.id} 
+                  className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group cursor-pointer"
+                >
+                  <div className="bg-gradient-to-br from-primary to-secondary p-8 text-white text-center">
+                    <div className="text-6xl font-bold mb-2">{promo.discount}</div>
+                    <p className="text-xl font-semibold">{promo.title}</p>
+                  </div>
+                  <div className="p-6 bg-white">
+                    <p className="text-gray-600 mb-4">{promo.description}</p>
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <Icon name="Clock" size={16} />
+                      <span>Действует до {promo.validUntil}</span>
+                    </div>
+                    <Button className="w-full mt-6 bg-gradient-to-r from-primary to-secondary group-hover:shadow-xl transition-all">
+                      Подробнее
+                    </Button>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts" className="py-20 bg-gradient-to-br from-primary via-yellow-500 to-secondary text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDEzNGgxMnYxMkgzNnptNDggNDhoMTJ2MTJIODR6bTAsLTQ4aDEydjEySDg0em0tNDggMGgxMnYxMkg0OHoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
           </div>
