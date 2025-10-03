@@ -74,8 +74,8 @@ export default function Newsletter() {
         <div className="max-w-4xl mx-auto">
           {/* Заголовок с колокольчиком */}
           <div className="text-center text-white mb-8">
-            <div className="inline-flex items-center gap-3 mb-4 animate-bounce">
-              <Icon name="Bell" size={56} className="drop-shadow-lg" />
+            <div className="inline-flex items-center gap-3 mb-4">
+              <Icon name="Bell" size={56} className="drop-shadow-lg animate-wiggle" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
               🔔 Подпишитесь на рассылку горящих туров

@@ -4,10 +4,13 @@ import HeroSection from '@/components/HeroSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import HotDealsSection from '@/components/HotDealsSection';
 import TourFinderForm from '@/components/TourFinderForm';
+import TourCalendarSection from '@/components/TourCalendarSection';
 import ToursSection from '@/components/ToursSection';
 import RussiaToursSection from '@/components/RussiaToursSection';
 import PopularDestinationsSection from '@/components/PopularDestinationsSection';
+import InteractiveMapSection from '@/components/InteractiveMapSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import LoyaltyProgramSection from '@/components/LoyaltyProgramSection';
 import CountriesSection from '@/components/CountriesSection';
 import HotelsSection from '@/components/HotelsSection';
 import StatsSection from '@/components/StatsSection';
@@ -42,12 +45,15 @@ const Index = () => {
         <BenefitsSection />
         <HotDealsSection />
         <TourFinderForm />
+        <TourCalendarSection />
         <PopularDestinationsSection />
         <ToursSection />
         <RussiaToursSection />
+        <InteractiveMapSection />
         <WhyChooseUsSection />
         <HotelsSection />
         <CountriesSection />
+        <LoyaltyProgramSection />
         <ReviewsSection />
         <StatsSection />
         <TrustSignalsSection />
