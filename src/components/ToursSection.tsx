@@ -6,8 +6,10 @@ import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import BookingModal from './BookingModal';
 import TourDetailModal from './TourDetailModal';
+import TourCompareModal from './TourCompareModal';
 import { allTours, Tour } from '@/data/tours';
 
 const tourCategories = [
@@ -22,6 +24,7 @@ export default function ToursSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [selectedTourForBooking, setSelectedTourForBooking] = useState<{
     title: string;
     hotel: string;
@@ -30,6 +33,7 @@ export default function ToursSection() {
     price: number;
   } | null>(null);
   const [selectedTourForDetail, setSelectedTourForDetail] = useState<Tour | null>(null);
+  const [compareList, setCompareList] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState([0, 200000]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('popularity');
@@ -50,6 +54,22 @@ export default function ToursSection() {
     setSelectedTourForDetail(tour);
     setIsDetailModalOpen(true);
   };
+
+  const toggleCompare = (tourId: number) => {
+    setCompareList(prev => 
+      prev.includes(tourId) 
+        ? prev.filter(id => id !== tourId)
+        : [...prev, tourId]
+    );
+  };
+
+  const removeFromCompare = (tourId: number) => {
+    setCompareList(prev => prev.filter(id => id !== tourId));
+  };
+
+  const compareToursData = useMemo(() => {
+    return allTours.filter(tour => compareList.includes(tour.id));
+  }, [compareList]);
 
   const filteredTours = useMemo(() => {
     let tours = allTours;
@@ -198,10 +218,23 @@ export default function ToursSection() {
           </div>
         </div>
 
-        <div className="mb-4 text-center">
+        <div className="mb-6 flex justify-between items-center">
           <p className="text-gray-600">
             Найдено туров: <span className="font-bold text-primary">{filteredTours.length}</span>
           </p>
+          
+          {compareList.length > 0 && (
+            <Button
+              onClick={() => setIsCompareModalOpen(true)}
+              className="bg-gradient-to-r from-secondary to-primary hover:shadow-xl transition-all relative"
+            >
+              <Icon name="GitCompare" size={18} className="mr-2" />
+              Сравнить туры
+              <Badge className="ml-2 bg-white text-primary hover:bg-white">
+                {compareList.length}
+              </Badge>
+            </Button>
+          )}
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -240,10 +273,22 @@ export default function ToursSection() {
                   )}
                 </div>
 
-                <div className="absolute top-3 left-3">
+                <div className="absolute top-3 left-3 flex gap-2">
                   <Badge className="bg-primary">
                     {'⭐'.repeat(tour.stars)}
                   </Badge>
+                  <div 
+                    className="bg-white/90 backdrop-blur-sm p-2 rounded-lg cursor-pointer hover:bg-white transition-all"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleCompare(tour.id);
+                    }}
+                  >
+                    <Checkbox 
+                      checked={compareList.includes(tour.id)}
+                      className="pointer-events-none"
+                    />
+                  </div>
                 </div>
                 
                 <div className="absolute bottom-3 left-3 right-3 text-white">
@@ -302,6 +347,14 @@ export default function ToursSection() {
         tour={selectedTourForDetail}
         open={isDetailModalOpen}
         onClose={() => setIsDetailModalOpen(false)}
+      />
+
+      <TourCompareModal
+        tours={compareToursData}
+        open={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        onRemoveTour={removeFromCompare}
+        onBookTour={handleBooking}
       />
 
       <BookingModal 

@@ -12,6 +12,7 @@ import HotelsSection from '@/components/HotelsSection';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import PromotionsSection from '@/components/PromotionsSection';
+import ContactForm from '@/components/ContactForm';
 import ContactsSection from '@/components/ContactsSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -44,6 +45,7 @@ const Index = () => {
         <AboutSection />
         <ReviewsSection />
         <PromotionsSection />
+        <ContactForm />
         <ContactsSection />
       </main>
 
