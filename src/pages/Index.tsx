@@ -9,6 +9,7 @@ import ToursSection from '@/components/ToursSection';
 import CountriesSection from '@/components/CountriesSection';
 import DestinationsSection from '@/components/DestinationsSection';
 import HotelsSection from '@/components/HotelsSection';
+import StatsSection from '@/components/StatsSection';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import PromotionsSection from '@/components/PromotionsSection';
@@ -43,6 +44,7 @@ const Index = () => {
         <CountriesSection />
         <DestinationsSection />
         <HotelsSection />
+        <StatsSection />
         <AboutSection />
         <ReviewsSection />
         <PromotionsSection />

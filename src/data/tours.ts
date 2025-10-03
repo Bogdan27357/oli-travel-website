@@ -27,7 +27,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '5-12 октября 2025',
     price: 95000,
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1618767689160-da3fb810aad7?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct',
@@ -43,7 +43,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '8-18 октября 2025',
     price: 108000,
-    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
     category: 'beach',
     fromSpb: 'direct'
@@ -58,7 +58,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '12-20 октября 2025',
     price: 89000,
-    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -73,7 +73,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '15-24 октября 2025',
     price: 92000,
-    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Детский клуб'],
     category: 'beach',
     fromSpb: 'direct'
@@ -90,7 +90,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '18-28 октября 2025',
     price: 85000,
-    image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Страховка'],
     category: 'beach',
     fromSpb: 'direct'
@@ -105,7 +105,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '20-29 октября 2025',
     price: 118000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
     category: 'beach',
     fromSpb: 'direct'
@@ -120,7 +120,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '22 октября - 2 ноября 2025',
     price: 95000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
     category: 'beach',
     fromSpb: 'direct'
@@ -137,7 +137,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '5-11 ноября 2025',
     price: 125000,
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', '5 экскурсий', 'Прямой перелет', 'Трансфер'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -152,7 +152,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '8-15 ноября 2025',
     price: 142000,
-    image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Экскурсии', 'Прямой перелет', 'Трансфер'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -167,7 +167,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '12-20 ноября 2025',
     price: 135000,
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -184,7 +184,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '3-15 октября 2025',
     price: 145000,
-    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -199,7 +199,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '7-18 октября 2025',
     price: 158000,
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Аквапарк'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -214,7 +214,7 @@ export const allTours: Tour[] = [
     duration: '13 ночей',
     dates: '10-23 октября 2025',
     price: 168000,
-    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -231,7 +231,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '5-15 ноября 2025',
     price: 315000,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Дайвинг'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -246,7 +246,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '10-21 ноября 2025',
     price: 345000,
-    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Спа'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -263,7 +263,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '14-25 октября 2025',
     price: 162000,
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -278,7 +278,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '16-28 октября 2025',
     price: 178000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -293,7 +293,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '25 октября - 4 ноября 2025',
     price: 155000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -310,7 +310,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '15-27 ноября 2025',
     price: 385000,
-    image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -325,7 +325,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '18-28 ноября 2025',
     price: 425000,
-    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Спа'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -342,7 +342,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '20 ноября - 1 декабря 2025',
     price: 195000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Экскурсия'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -357,7 +357,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '22 ноября - 1 декабря 2025',
     price: 168000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -374,7 +374,7 @@ export const allTours: Tour[] = [
     duration: '13 ночей',
     dates: '3-16 ноября 2025',
     price: 245000,
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -389,7 +389,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '17-27 ноября 2025',
     price: 225000,
-    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Йога'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -406,7 +406,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '5-16 ноября 2025',
     price: 295000,
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -423,7 +423,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '7-19 ноября 2025',
     price: 325000,
-    image: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -440,7 +440,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '10-22 ноября 2025',
     price: 335000,
-    image: 'https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -457,7 +457,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '12-23 ноября 2025',
     price: 365000,
-    image: 'https://images.unsplash.com/photo-1568454537842-d933259bb258?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1568454537842-d933259bb258?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -474,7 +474,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '4-11 октября 2025',
     price: 78000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -489,7 +489,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '8-13 октября 2025',
     price: 68000,
-    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Канатная дорога'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -506,7 +506,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '10-18 октября 2025',
     price: 85000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'direct'
@@ -521,7 +521,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '12-19 октября 2025',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -536,7 +536,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '14-23 октября 2025',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1602945405853-64a0e4a98232?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602945405853-64a0e4a98232?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct'
@@ -553,7 +553,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '16-22 октября 2025',
     price: 48000,
-    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct'
@@ -570,7 +570,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '3-10 октября 2025',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct'
@@ -585,7 +585,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '5-15 октября 2025',
     price: 68000,
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -602,7 +602,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '18-24 октября 2025',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1601815801234-b4a5fb7e5097?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1601815801234-b4a5fb7e5097?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -617,7 +617,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '20-27 октября 2025',
     price: 65000,
-    image: 'https://images.unsplash.com/photo-1607827447604-8757702c0e46?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1607827447604-8757702c0e46?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -634,7 +634,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '22-28 октября 2025',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -649,7 +649,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '24-29 октября 2025',
     price: 52000,
-    image: 'https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -666,7 +666,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '26-31 октября 2025',
     price: 68000,
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -683,7 +683,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '28 октября - 5 ноября 2025',
     price: 55000,
-    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -700,7 +700,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '3-8 ноября 2025',
     price: 75000,
-    image: 'https://images.unsplash.com/photo-1581974206778-051a0b4fe1bc?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1581974206778-051a0b4fe1bc?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'direct'
@@ -717,7 +717,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '14-21 ноября 2025',
     price: 82000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
     fromSpb: 'transfer'
@@ -734,7 +734,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '5-17 декабря 2025',
     price: 185000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -751,7 +751,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '7-14 октября 2025',
     price: 102000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк', 'Детский клуб'],
     category: 'beach',
     fromSpb: 'direct'
@@ -766,7 +766,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '9-18 октября 2025',
     price: 125000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Гольф'],
     category: 'beach',
     fromSpb: 'direct'
@@ -781,7 +781,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '11-19 октября 2025',
     price: 115000,
-    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'direct'
@@ -796,7 +796,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '13-23 октября 2025',
     price: 98000,
-    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Аквапарк'],
     category: 'beach',
     fromSpb: 'direct'
@@ -811,7 +811,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '17-24 октября 2025',
     price: 118000,
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Яхтинг'],
     category: 'beach',
     fromSpb: 'direct'
@@ -828,7 +828,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '19-30 октября 2025',
     price: 135000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
     includes: ['Ultra All Inclusive', 'Прямой перелет', 'Трансфер', 'Дайвинг'],
     category: 'beach',
     fromSpb: 'direct'
@@ -843,7 +843,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '21-31 октября 2025',
     price: 128000,
-    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Гольф', 'Кайтсерфинг'],
     category: 'beach',
     fromSpb: 'direct'
@@ -858,7 +858,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '23 октября - 1 ноября 2025',
     price: 122000,
-    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Гольф'],
     category: 'beach',
     fromSpb: 'direct'
@@ -875,7 +875,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '16-23 ноября 2025',
     price: 118000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -890,7 +890,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '10-16 декабря 2025',
     price: 138000,
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'direct'
@@ -907,7 +907,7 @@ export const allTours: Tour[] = [
     duration: '12 ночей',
     dates: '5-17 октября 2025',
     price: 172000,
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Спа'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -922,7 +922,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '9-19 октября 2025',
     price: 152000,
-    image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Гольф'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -939,7 +939,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '24 ноября - 4 декабря 2025',
     price: 395000,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Перелет с пересадкой', 'Гидросамолет', 'Снорклинг'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -954,7 +954,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '26 ноября - 7 декабря 2025',
     price: 415000,
-    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop&q=80',
     includes: ['Премиум All Inclusive', 'Перелет с пересадкой', 'Гидросамолет', 'Дайвинг'],
     category: 'exotic',
     fromSpb: 'transfer'
@@ -971,7 +971,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '6-12 октября 2025',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Олимпийский парк'],
     category: 'beach',
     fromSpb: 'direct'
@@ -986,7 +986,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '8-16 октября 2025',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'direct'
@@ -1001,7 +1001,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '10-20 октября 2025',
     price: 65000,
-    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Винный тур'],
     category: 'beach',
     fromSpb: 'direct'
@@ -1016,7 +1016,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '12-19 октября 2025',
     price: 52000,
-    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'direct'
@@ -1031,7 +1031,7 @@ export const allTours: Tour[] = [
     duration: '5 ночей',
     dates: '12-17 декабря 2025',
     price: 85000,
-    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Ски-пасс 3 дня'],
     category: 'ski',
     fromSpb: 'direct'
@@ -1046,7 +1046,7 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '15-21 декабря 2025',
     price: 78000,
-    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Ски-пасс'],
     category: 'ski',
     fromSpb: 'direct'
@@ -1063,7 +1063,7 @@ export const allTours: Tour[] = [
     duration: '8 ночей',
     dates: '7-15 октября 2025',
     price: 48000,
-    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'beach',
     fromSpb: 'direct'
@@ -1078,7 +1078,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '9-18 октября 2025',
     price: 55000,
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop&q=80',
     includes: ['Все включено', 'Прямой перелет', 'Трансфер'],
     category: 'beach',
     fromSpb: 'direct'
@@ -1095,7 +1095,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '11-21 октября 2025',
     price: 185000,
-    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Велоэкскурсия'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -1110,7 +1110,7 @@ export const allTours: Tour[] = [
     duration: '11 ночей',
     dates: '13-24 октября 2025',
     price: 168000,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Перелет с пересадкой', 'Трансфер', 'Кайтсерфинг'],
     category: 'beach',
     fromSpb: 'transfer'
@@ -1127,7 +1127,7 @@ export const allTours: Tour[] = [
     duration: '9 ночей',
     dates: '3-12 декабря 2025',
     price: 148000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80',
     includes: ['Завтраки', 'Перелет с пересадкой', 'Трансфер', 'Рыбалка'],
     category: 'exotic',
     fromSpb: 'transfer'
