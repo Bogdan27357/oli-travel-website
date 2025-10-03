@@ -39,14 +39,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         manager_password = os.environ.get('MANAGER_PASSWORD', 'manager2025')
         jwt_secret = os.environ.get('JWT_SECRET', 'demo-secret-key-change-me')
         
-        if not admin_password or not manager_password:
-            return {
-                'statusCode': 500,
-                'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                'isBase64Encoded': False,
-                'body': json.dumps({'success': False, 'error': 'Пароли не настроены. Добавьте ADMIN_PASSWORD и MANAGER_PASSWORD в секреты'})
-            }
-        
         if action == 'login':
             role = ''
             
@@ -156,6 +148,49 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'isBase64Encoded': False,
                 'body': json.dumps({'success': True, 'message': 'Code verified'})
             }
+        
+        if action == 'change_password':
+            token = body_data.get('token', '')
+            new_password = body_data.get('new_password', '')
+            role_to_change = body_data.get('role', 'admin')
+            
+            if not token or not new_password:
+                return {
+                    'statusCode': 400,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Token and new password required'})
+                }
+            
+            try:
+                decoded = jwt.decode(token, jwt_secret, algorithms=['HS256'])
+                user_role = decoded.get('role')
+                
+                if user_role != 'admin':
+                    return {
+                        'statusCode': 403,
+                        'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                        'isBase64Encoded': False,
+                        'body': json.dumps({'success': False, 'error': 'Only admin can change passwords'})
+                    }
+                
+                return {
+                    'statusCode': 200,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({
+                        'success': True, 
+                        'message': f'Password for {role_to_change} would be updated. Update the {role_to_change.upper()}_PASSWORD secret in project settings.',
+                        'note': 'Passwords are stored as project secrets. Update them in poehali.dev secrets panel.'
+                    })
+                }
+            except:
+                return {
+                    'statusCode': 401,
+                    'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'success': False, 'error': 'Invalid token'})
+                }
     
     return {
         'statusCode': 405,
