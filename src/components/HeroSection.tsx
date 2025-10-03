@@ -42,11 +42,20 @@ export default function HeroSection() {
           {/* Video preview */}
           <div className="mb-8 relative group cursor-pointer" onClick={() => setShowVideo(true)}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-3xl mx-auto">
-              <img 
-                src="/img/496b4f04-d693-4e43-b4c3-526b487a4c42.jpg" 
-                alt="OliTravel Welcome" 
-                className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              <video 
+                className="w-full h-[300px] object-cover"
+                poster="/img/496b4f04-d693-4e43-b4c3-526b487a4c42.jpg"
+                muted
+                loop
+                playsInline
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => {
+                  e.currentTarget.pause();
+                  e.currentTarget.currentTime = 0;
+                }}
+              >
+                <source src="https://cdn.pixabay.com/video/2022/05/10/116827-709619015_large.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-all">
                 <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Icon name="Play" size={40} className="text-primary ml-1" />
@@ -62,43 +71,52 @@ export default function HeroSection() {
           {/* Video Modal */}
           {showVideo && (
             <div 
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
               onClick={() => setShowVideo(false)}
             >
-              <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+              <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
                 <button 
                   onClick={() => setShowVideo(false)}
-                  className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                  className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
                 >
                   <Icon name="X" size={32} />
                 </button>
-                <div className="bg-white rounded-2xl p-8">
-                  <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    Добро пожаловать в OliTravel!
-                  </h2>
-                  <div className="space-y-4 text-left text-gray-700">
-                    <p className="text-lg">
-                      🌴 <strong>Мы - ваши эксперты по путешествиям!</strong> С 2009 года помогаем тысячам туристов находить идеальные туры по всему миру.
-                    </p>
-                    <p>
-                      ✈️ <strong>Прямые перелёты из СПб</strong> - никаких утомительных пересадок! Вылетайте комфортно и прибывайте отдохнувшими.
-                    </p>
-                    <p>
-                      💰 <strong>Рассрочка 0%</strong> - путешествуйте сейчас, платите потом! Без переплат и скрытых комиссий.
-                    </p>
-                    <p>
-                      🏆 <strong>Гарантия лучшей цены</strong> - нашли дешевле? Мы вернём разницу или сделаем лучшее предложение!
-                    </p>
-                    <p>
-                      🎯 <strong>Индивидуальный подход</strong> - наши менеджеры подберут тур именно под ваши пожелания и бюджет.
-                    </p>
-                    <div className="pt-4 border-t mt-6">
-                      <p className="text-center text-xl font-semibold text-primary">
-                        📞 Позвоните нам: <a href="tel:+79819812990" className="underline hover:text-secondary transition-colors">+7 (981) 981-29-90</a>
+                <div className="bg-black rounded-2xl overflow-hidden">
+                  <video 
+                    className="w-full max-h-[70vh] object-contain"
+                    controls
+                    autoPlay
+                  >
+                    <source src="https://cdn.pixabay.com/video/2022/05/10/116827-709619015_large.mp4" type="video/mp4" />
+                  </video>
+                  <div className="bg-white p-6">
+                    <h2 className="text-2xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      Добро пожаловать в OliTravel!
+                    </h2>
+                    <div className="space-y-3 text-left text-gray-700">
+                      <p className="text-lg">
+                        🌴 <strong>Мы - ваши эксперты по путешествиям!</strong> С 2009 года помогаем тысячам туристов находить идеальные туры по всему миру.
                       </p>
-                      <p className="text-center text-sm text-gray-600 mt-2">
-                        Или напишите в чат - мы онлайн и готовы помочь! 💬
+                      <p>
+                        ✈️ <strong>Прямые перелёты и с пересадками из СПб</strong> - выбирайте удобный вариант! Прямые рейсы для максимального комфорта или с пересадками для экономии.
                       </p>
+                      <p>
+                        💰 <strong>Рассрочка 0%</strong> - путешествуйте сейчас, платите потом! Без переплат и скрытых комиссий.
+                      </p>
+                      <p>
+                        🏆 <strong>Гарантия лучшей цены</strong> - нашли дешевле? Мы вернём разницу или сделаем лучшее предложение!
+                      </p>
+                      <p>
+                        🎯 <strong>Индивидуальный подход</strong> - наши менеджеры подберут тур именно под ваши пожелания и бюджет.
+                      </p>
+                      <div className="pt-4 border-t mt-4">
+                        <p className="text-center text-xl font-semibold text-primary">
+                          📞 Позвоните нам: <a href="tel:+79819812990" className="underline hover:text-secondary transition-colors">+7 (981) 981-29-90</a>
+                        </p>
+                        <p className="text-center text-sm text-gray-600 mt-2">
+                          Или напишите в чат - мы онлайн и готовы помочь! 💬
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
