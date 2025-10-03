@@ -81,6 +81,26 @@ export default function ChatWidget() {
       if (data.success && data.session_id) {
         setSessionId(data.session_id);
         setIsStarted(true);
+        
+        // Автоматическое приветствие
+        setTimeout(async () => {
+          try {
+            await fetch(CHAT_API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'send_message',
+                session_id: data.session_id,
+                sender_type: 'manager',
+                sender_name: 'OliTravel',
+                message: `Здравствуйте, ${userName}! 👋\n\nДобро пожаловать в OliTravel! Мы рады видеть вас!\n\nНаш менеджер уже готов помочь вам с:\n✈️ Подбором идеального тура\n🏖️ Выбором отеля и курорта\n💰 Расчётом стоимости и рассрочкой\n📋 Оформлением документов\n\nЗадайте ваш вопрос, и мы ответим в течение 1-2 минут!`
+              })
+            });
+          } catch (error) {
+            console.error('Auto-greeting error:', error);
+          }
+        }, 500);
+        
         toast({
           title: '✅ Чат начат!',
           description: 'Менеджер скоро ответит вам',

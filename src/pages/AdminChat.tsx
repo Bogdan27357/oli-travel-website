@@ -166,6 +166,14 @@ export default function AdminChat() {
   if (!managerName || !localStorage.getItem('manager_name')) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center p-4">
+        <div className="absolute top-4 left-4">
+          <a href="/">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Icon name="ArrowLeft" size={16} />
+              На главную
+            </Button>
+          </a>
+        </div>
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle className="text-center text-2xl flex items-center justify-center gap-2">
