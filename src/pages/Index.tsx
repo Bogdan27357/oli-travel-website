@@ -34,7 +34,6 @@ const Index = () => {
         <HeroSection />
         <BenefitsSection />
         <HotDealsSection />
-        <PopularDestinationsSection />
         <ToursSection />
         <Suspense fallback={<div className="h-32" />}>
           <WhyChooseUsSection />

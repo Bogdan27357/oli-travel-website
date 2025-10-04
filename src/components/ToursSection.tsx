@@ -17,7 +17,10 @@ const countryTabs = [
   { id: 'uae', name: 'ОАЭ', icon: 'MapPin', country: 'ОАЭ' },
   { id: 'russia', name: 'Россия', icon: 'MapPin', country: 'Россия' },
   { id: 'abkhazia', name: 'Абхазия', icon: 'MapPin', country: 'Абхазия' },
-  { id: 'armenia', name: 'Армения', icon: 'MapPin', country: 'Армения' }
+  { id: 'armenia', name: 'Армения', icon: 'MapPin', country: 'Армения' },
+  { id: 'thailand', name: 'Таиланд', icon: 'MapPin', country: 'Таиланд' },
+  { id: 'maldives', name: 'Мальдивы', icon: 'MapPin', country: 'Мальдивы' },
+  { id: 'exotic', name: 'Экзотика', icon: 'Palmtree', country: 'exotic' }
 ];
 
 export default function ToursSection() {

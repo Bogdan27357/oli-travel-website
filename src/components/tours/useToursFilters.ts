@@ -22,7 +22,11 @@ export function useToursFilters({
     let tours = allTours;
     
     if (country) {
-      tours = tours.filter(tour => tour.country === country);
+      if (country === 'exotic') {
+        tours = tours.filter(tour => tour.category === 'exotic');
+      } else {
+        tours = tours.filter(tour => tour.country === country);
+      }
     }
 
     tours = tours.filter(tour => {

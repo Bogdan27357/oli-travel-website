@@ -6,7 +6,7 @@ const benefits = [
   { icon: 'BadgePercent', title: 'Лучшие цены', description: 'Вернём разницу, если найдёте дешевле', color: 'from-green-500 to-green-600' },
   { icon: 'CreditCard', title: 'Рассрочка 0%', description: 'Без переплат до 12 месяцев', color: 'from-pink-500 to-pink-600' },
   { icon: 'Headphones', title: 'Поддержка 24/7', description: 'ИИ-помощник + живой менеджер', color: 'from-orange-500 to-orange-600' },
-  { icon: 'Globe', title: '177 отелей', description: 'В 11 странах мира', color: 'from-teal-500 to-teal-600' },
+  { icon: 'Globe', title: '200+ отелей', description: 'В 15+ странах мира', color: 'from-teal-500 to-teal-600' },
   { icon: 'Award', title: '15 лет опыта', description: 'С 2009 года помогаем путешествовать', color: 'from-yellow-500 to-yellow-600' }
 ];
 
