@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { adminAPI } from '@/lib/admin-api';
 import { useToast } from '@/hooks/use-toast';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -15,11 +16,20 @@ export default function AdminDashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState(localStorage.getItem('hero_video_url') || '');
-  const [musicUrl, setMusicUrl] = useState(localStorage.getItem('hero_music_url') || '');
   const [heroPosition, setHeroPosition] = useState(localStorage.getItem('hero_position') || 'center');
   const [heroTitle, setHeroTitle] = useState(localStorage.getItem('hero_title') || 'Откройте мир вместе с нами');
   const [heroSubtitle, setHeroSubtitle] = useState(localStorage.getItem('hero_subtitle') || 'Туры из Санкт-Петербурга по лучшим ценам');
   const { toast } = useToast();
+  
+  const chartData = [
+    { day: 'Пн', заявки: 2 },
+    { day: 'Вт', заявки: 5 },
+    { day: 'Ср', заявки: 3 },
+    { day: 'Чт', заявки: 8 },
+    { day: 'Пт', заявки: 6 },
+    { day: 'Сб', заявки: 4 },
+    { day: 'Вс', заявки: 1 }
+  ];
 
   useEffect(() => {
     const defaultVideoUrl = 'https://youtube.com/shorts/KIB0PwVua0w';
@@ -88,64 +98,81 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-4 md:space-y-6 p-4 md:p-0">
+    <div className="space-y-4 p-4 md:p-0">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">Панель управления</h1>
-        <p className="text-sm md:text-base text-gray-600">Обзор системы управления сайтом</p>
+        <h1 className="text-2xl font-bold mb-1">Панель управления</h1>
+        <p className="text-sm text-gray-600">Обзор системы</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {statCards.map((stat) => (
           <Card key={stat.title} className="overflow-hidden">
-            <CardHeader className={`bg-gradient-to-r ${stat.color} text-white pb-2`}>
-              <Icon name={stat.icon as any} size={24} className="md:w-8 md:h-8" />
+            <CardHeader className={`bg-gradient-to-r ${stat.color} text-white pb-2 pt-3`}>
+              <Icon name={stat.icon as any} size={20} />
             </CardHeader>
-            <CardContent className="pt-3 md:pt-4">
-              <div className="text-2xl md:text-3xl font-bold mb-1">{stat.value}</div>
-              <div className="text-xs md:text-sm text-gray-600">{stat.title}</div>
+            <CardContent className="pt-3">
+              <div className="text-2xl font-bold mb-1">{stat.value}</div>
+              <div className="text-xs text-gray-600">{stat.title}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base flex items-center gap-2">
+            <Icon name="TrendingUp" size={20} className="text-primary" />
+            Активность за неделю
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={chartData}>
+              <XAxis dataKey="day" tick={{ fontSize: 12 }} />
+              <YAxis tick={{ fontSize: 12 }} />
+              <Tooltip />
+              <Line type="monotone" dataKey="заявки" stroke="#3b82f6" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Icon name="Activity" size={24} className="text-primary" />
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Icon name="Activity" size={20} className="text-primary" />
               Быстрые действия
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 md:space-y-3">
-            <a href="/admin/tours" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-2 md:gap-3">
-                <Icon name="Plus" size={18} className="text-primary md:w-5 md:h-5" />
+          <CardContent className="space-y-2">
+            <a href="/admin/tours" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2">
+                <Icon name="Plus" size={16} className="text-primary" />
                 <div>
-                  <div className="text-sm md:text-base font-semibold">Добавить тур</div>
-                  <div className="text-xs md:text-sm text-gray-600">Новое предложение</div>
+                  <div className="text-sm font-semibold">Добавить тур</div>
+                  <div className="text-xs text-gray-600">Новое предложение</div>
                 </div>
               </div>
             </a>
             
-            <a href="/admin/submissions" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-2 md:gap-3">
-                <Icon name="Mail" size={18} className="text-primary md:w-5 md:h-5" />
+            <a href="/admin/submissions" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2">
+                <Icon name="Mail" size={16} className="text-primary" />
                 <div>
-                  <div className="text-sm md:text-base font-semibold">Заявки</div>
-                  <div className="text-xs md:text-sm text-gray-600">Обработать запросы</div>
+                  <div className="text-sm font-semibold">Заявки</div>
+                  <div className="text-xs text-gray-600">Обработать запросы</div>
                 </div>
               </div>
             </a>
 
-            <a href="/admin/reviews" className="block p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="flex items-center gap-2 md:gap-3">
-                <Icon name="CheckCircle" size={18} className="text-primary md:w-5 md:h-5" />
+            <a href="/admin/reviews" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-center gap-2">
+                <Icon name="CheckCircle" size={16} className="text-primary" />
                 <div>
-                  <div className="text-sm md:text-base font-semibold">Модерация</div>
-                  <div className="text-xs md:text-sm text-gray-600">
-                    {stats.pendingReviews > 0 
-                      ? `${stats.pendingReviews} отзывов` 
-                      : 'Все проверены'}
+                  <div className="text-sm font-semibold">Модерация</div>
+                  <div className="text-xs text-gray-600">
+                    {stats.pendingReviews > 0 ? `${stats.pendingReviews} отзывов` : 'Все проверены'}
                   </div>
                 </div>
               </div>
@@ -154,17 +181,14 @@ export default function AdminDashboard() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Icon name="Video" size={24} className="text-primary" />
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Icon name="Video" size={20} className="text-primary" />
               Видео на главной
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 md:space-y-4">
+          <CardContent className="space-y-3">
             <div>
-              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
-                YouTube ссылка
-              </label>
               <Input
                 type="url"
                 placeholder="youtube.com/shorts/..."
@@ -172,156 +196,68 @@ export default function AdminDashboard() {
                 onChange={(e) => setVideoUrl(e.target.value)}
                 className="text-sm"
               />
-              <div className="mt-2 p-2 md:p-3 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-xs text-green-800 mb-1 font-semibold">✅ Поддержка:</p>
-                <ul className="text-xs text-green-700 space-y-0.5">
-                  <li>🎬 YouTube видео</li>
-                  <li>📱 YouTube Shorts</li>
-                </ul>
-              </div>
             </div>
-            <Button
-              onClick={() => {
-                localStorage.setItem('hero_video_url', videoUrl);
-                toast({
-                  title: '✅ Видео сохранено',
-                  description: 'Обновите главную страницу'
-                });
-              }}
-              className="w-full text-sm"
-            >
-              <Icon name="Save" size={14} className="mr-2" />
-              Сохранить видео
-            </Button>
-            {videoUrl && (
+            <div className="flex gap-2">
               <Button
-                variant="outline"
                 onClick={() => {
-                  setVideoUrl('');
-                  localStorage.removeItem('hero_video_url');
-                  toast({
-                    title: '🗑️ Видео удалено',
-                    description: 'Будет слайд-шоу'
-                  });
+                  localStorage.setItem('hero_video_url', videoUrl);
+                  toast({ title: '✅ Сохранено' });
                 }}
-                className="w-full text-sm"
+                className="flex-1 text-sm h-9"
               >
-                <Icon name="Trash2" size={14} className="mr-2" />
-                Удалить
+                <Icon name="Save" size={14} className="mr-1" />
+                Сохранить
               </Button>
-            )}
+              {videoUrl && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setVideoUrl('');
+                    localStorage.removeItem('hero_video_url');
+                    toast({ title: '🗑️ Удалено' });
+                  }}
+                  className="text-sm h-9"
+                >
+                  <Icon name="Trash2" size={14} />
+                </Button>
+              )}
+            </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-base md:text-lg">
-              <Icon name="Layout" size={20} className="text-primary md:w-6 md:h-6" />
-              Положение текста
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Icon name="Type" size={20} className="text-primary" />
+              Текст главной
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 md:space-y-4">
-            <div>
-              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
-                Выберите расположение
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                <button
-                  onClick={() => setHeroPosition('top')}
-                  className={`p-3 rounded-lg border-2 transition-all ${
-                    heroPosition === 'top' 
-                      ? 'border-primary bg-primary/10' 
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <Icon name="ArrowUp" size={20} className="mx-auto mb-1" />
-                  <div className="text-xs font-medium">Верх</div>
-                </button>
-                <button
-                  onClick={() => setHeroPosition('center')}
-                  className={`p-3 rounded-lg border-2 transition-all ${
-                    heroPosition === 'center' 
-                      ? 'border-primary bg-primary/10' 
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <Icon name="Minus" size={20} className="mx-auto mb-1" />
-                  <div className="text-xs font-medium">Центр</div>
-                </button>
-                <button
-                  onClick={() => setHeroPosition('bottom')}
-                  className={`p-3 rounded-lg border-2 transition-all ${
-                    heroPosition === 'bottom' 
-                      ? 'border-primary bg-primary/10' 
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <Icon name="ArrowDown" size={20} className="mx-auto mb-1" />
-                  <div className="text-xs font-medium">Низ</div>
-                </button>
-              </div>
-            </div>
-            <Button
-              onClick={() => {
-                localStorage.setItem('hero_position', heroPosition);
-                toast({
-                  title: '✅ Положение сохранено',
-                  description: 'Обновите главную страницу'
-                });
-              }}
-              className="w-full text-sm"
-            >
-              <Icon name="Save" size={14} className="mr-2" />
-              Сохранить
-            </Button>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Icon name="Type" size={24} className="text-primary" />
-              Текст на главной
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 md:space-y-4">
-            <div>
-              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
-                Главный лозунг
-              </label>
-              <Input
-                type="text"
-                placeholder="Откройте мир вместе с нами"
-                value={heroTitle}
-                onChange={(e) => setHeroTitle(e.target.value)}
-                className="text-sm"
-              />
-            </div>
-            <div>
-              <label className="text-xs md:text-sm font-medium text-gray-700 mb-2 block">
-                Подзаголовок
-              </label>
-              <Input
-                type="text"
-                placeholder="Туры из Санкт-Петербурга по лучшим ценам"
-                value={heroSubtitle}
-                onChange={(e) => setHeroSubtitle(e.target.value)}
-                className="text-sm"
-              />
-            </div>
+          <CardContent className="space-y-3">
+            <Input
+              type="text"
+              placeholder="Главный лозунг"
+              value={heroTitle}
+              onChange={(e) => setHeroTitle(e.target.value)}
+              className="text-sm"
+            />
+            <Input
+              type="text"
+              placeholder="Подзаголовок"
+              value={heroSubtitle}
+              onChange={(e) => setHeroSubtitle(e.target.value)}
+              className="text-sm"
+            />
             <Button
               onClick={() => {
                 localStorage.setItem('hero_title', heroTitle);
                 localStorage.setItem('hero_subtitle', heroSubtitle);
-                toast({
-                  title: '✅ Текст сохранён',
-                  description: 'Обновите главную страницу'
-                });
+                localStorage.setItem('hero_position', heroPosition);
+                toast({ title: '✅ Сохранено' });
               }}
-              className="w-full text-sm"
+              className="w-full text-sm h-9"
             >
-              <Icon name="Save" size={14} className="mr-2" />
-              Сохранить текст
+              <Icon name="Save" size={14} className="mr-1" />
+              Сохранить
             </Button>
           </CardContent>
         </Card>

@@ -1,29 +1,19 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import HotDealsSection from '@/components/HotDealsSection';
-import TourFinderForm from '@/components/TourFinderForm';
-import TourCalendarSection from '@/components/TourCalendarSection';
 import ToursSection from '@/components/ToursSection';
-import RussiaToursSection from '@/components/RussiaToursSection';
 import PopularDestinationsSection from '@/components/PopularDestinationsSection';
-import InteractiveMapSection from '@/components/InteractiveMapSection';
-import WhyChooseUsSection from '@/components/WhyChooseUsSection';
-import LoyaltyProgramSection from '@/components/LoyaltyProgramSection';
-import CountriesSection from '@/components/CountriesSection';
-import HotelsSection from '@/components/HotelsSection';
-import StatsSection from '@/components/StatsSection';
-import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
-import FAQSection from '@/components/FAQSection';
-import TrustSignalsSection from '@/components/TrustSignalsSection';
 import ContactForm from '@/components/ContactForm';
-import Newsletter from '@/components/Newsletter';
 import ChatWidget from '@/components/ChatWidget';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import QuickContactButton from '@/components/QuickContactButton';
+
+const FAQSection = lazy(() => import('@/components/FAQSection'));
+const WhyChooseUsSection = lazy(() => import('@/components/WhyChooseUsSection'));
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -44,23 +34,16 @@ const Index = () => {
         <HeroSection />
         <BenefitsSection />
         <HotDealsSection />
-        <TourFinderForm />
-        <TourCalendarSection />
         <PopularDestinationsSection />
         <ToursSection />
-        <RussiaToursSection />
-        <InteractiveMapSection />
-        <WhyChooseUsSection />
-        <HotelsSection />
-        <CountriesSection />
-        <LoyaltyProgramSection />
+        <Suspense fallback={<div className="h-32" />}>
+          <WhyChooseUsSection />
+        </Suspense>
         <ReviewsSection />
-        <StatsSection />
-        <TrustSignalsSection />
-        <FAQSection />
-        <AboutSection />
+        <Suspense fallback={<div className="h-32" />}>
+          <FAQSection />
+        </Suspense>
         <ContactForm />
-        <Newsletter />
       </main>
 
       <Footer />
