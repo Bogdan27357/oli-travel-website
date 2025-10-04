@@ -1,6 +1,23 @@
 import Icon from '@/components/ui/icon';
 
 export default function Footer() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const filterTours = (country: string) => {
+    scrollToSection('tours');
+    setTimeout(() => {
+      const countryButton = document.querySelector(`[data-country="${country}"]`) as HTMLButtonElement;
+      if (countryButton) {
+        countryButton.click();
+      }
+    }, 500);
+  };
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
@@ -17,22 +34,22 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Популярные направления</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li className="hover:text-white transition-colors cursor-pointer">🇹🇷 Турция</li>
-              <li className="hover:text-white transition-colors cursor-pointer">🇦🇪 ОАЭ</li>
-              <li className="hover:text-white transition-colors cursor-pointer">🇹🇭 Таиланд</li>
-              <li className="hover:text-white transition-colors cursor-pointer">🇪🇬 Египет</li>
-              <li className="hover:text-white transition-colors cursor-pointer">🇲🇻 Мальдивы</li>
-              <li className="hover:text-white transition-colors cursor-pointer">🇨🇳 Китай</li>
+              <li onClick={() => filterTours('Турция')} className="hover:text-white transition-colors cursor-pointer">🇹🇷 Турция</li>
+              <li onClick={() => filterTours('ОАЭ')} className="hover:text-white transition-colors cursor-pointer">🇦🇪 ОАЭ</li>
+              <li onClick={() => filterTours('Таиланд')} className="hover:text-white transition-colors cursor-pointer">🇹🇭 Таиланд</li>
+              <li onClick={() => filterTours('Египет')} className="hover:text-white transition-colors cursor-pointer">🇪🇬 Египет</li>
+              <li onClick={() => filterTours('Мальдивы')} className="hover:text-white transition-colors cursor-pointer">🇲🇻 Мальдивы</li>
+              <li onClick={() => scrollToSection('tours')} className="hover:text-white transition-colors cursor-pointer">🌍 Все туры</li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-bold mb-4">Компания</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li className="hover:text-white transition-colors cursor-pointer">О нас</li>
-              <li className="hover:text-white transition-colors cursor-pointer">Контакты</li>
-              <li className="hover:text-white transition-colors cursor-pointer">Отзывы</li>
-              <li className="hover:text-white transition-colors cursor-pointer">Вакансии</li>
+              <li onClick={() => scrollToSection('why-choose-us')} className="hover:text-white transition-colors cursor-pointer">О нас</li>
+              <li onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors cursor-pointer">Контакты</li>
+              <li onClick={() => scrollToSection('reviews')} className="hover:text-white transition-colors cursor-pointer">Отзывы</li>
+              <li onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors cursor-pointer">Связаться</li>
             </ul>
           </div>
           

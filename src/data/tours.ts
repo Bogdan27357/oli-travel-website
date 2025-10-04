@@ -303,10 +303,11 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '18-24 октября 2025',
     price: 72000,
-    image: '/img/3bc6a16a-d306-40b2-8ca5-7e3602dd4678.jpg',
+    image: 'https://images.unsplash.com/photo-1598120410135-f7d500419f3e?w=800&auto=format&fit=crop&q=80',
     gallery_images: [
-      '/img/d6aee9c8-d587-44cb-8417-1122d3c6ae83.jpg',
-      '/img/7d898576-ea3f-4ba9-8c2b-36e80be9cbc5.jpg'
+      'https://images.unsplash.com/photo-1598120410135-f7d500419f3e?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1575486272636-b5a4b43e8a01?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1607016284318-ea8c935e3c35?w=800&auto=format&fit=crop&q=80'
     ],
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',

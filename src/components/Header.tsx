@@ -21,16 +21,15 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
             
             <nav className="hidden lg:flex items-center gap-2">
               {[
-                { id: 'home', label: 'Главная' },
-                { id: 'tours', label: 'Заграница' },
-                { id: 'russia', label: 'Россия' },
-                { id: 'hotels', label: 'Отели' },
-                { id: 'reviews', label: 'Отзывы' },
-                { id: 'contacts', label: 'Контакты' }
+                { id: 'home', label: 'Главная', section: 'home' },
+                { id: 'tours', label: 'Туры', section: 'tours' },
+                { id: 'hot-deals', label: 'Акции', section: 'hot-deals' },
+                { id: 'reviews', label: 'Отзывы', section: 'reviews' },
+                { id: 'contact', label: 'Контакты', section: 'contact' }
               ].map((item, idx) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => scrollToSection(item.section)}
                   className={`px-3 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
                     activeSection === item.id
                       ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'

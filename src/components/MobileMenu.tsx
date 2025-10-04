@@ -9,19 +9,18 @@ interface MobileMenuProps {
 }
 
 const menuItems = [
-  { id: 'home', label: 'Главная', icon: 'Home' },
-  { id: 'tours', label: 'Туры заграница', icon: 'Plane' },
-  { id: 'russia', label: 'Россия', icon: 'MapPin' },
-  { id: 'hotels', label: 'Отели', icon: 'Building2' },
-  { id: 'reviews', label: 'Отзывы', icon: 'Star' },
-  { id: 'contacts', label: 'Контакты', icon: 'Phone' }
+  { id: 'home', label: 'Главная', icon: 'Home', section: 'home' },
+  { id: 'tours', label: 'Туры', icon: 'Plane', section: 'tours' },
+  { id: 'hot-deals', label: 'Акции', icon: 'Flame', section: 'hot-deals' },
+  { id: 'reviews', label: 'Отзывы', icon: 'Star', section: 'reviews' },
+  { id: 'contact', label: 'Контакты', icon: 'Phone', section: 'contact' }
 ];
 
 const quickActions = [
-  { icon: 'Phone', label: 'Позвонить', action: 'tel:+78123456789', color: 'from-green-500 to-emerald-600' },
-  { icon: 'MessageCircle', label: 'WhatsApp', action: 'https://wa.me/78123456789', color: 'from-green-600 to-teal-600' },
-  { icon: 'Send', label: 'Telegram', action: 'https://t.me/olitravel', color: 'from-blue-500 to-cyan-600' },
-  { icon: 'Mail', label: 'Email', action: 'mailto:info@olitravel.ru', color: 'from-orange-500 to-red-600' }
+  { icon: 'Phone', label: 'Позвонить', action: 'tel:+79819812990', color: 'from-green-500 to-emerald-600' },
+  { icon: 'MessageCircle', label: 'WhatsApp', action: 'https://wa.me/79819812990', color: 'from-green-600 to-teal-600' },
+  { icon: 'Send', label: 'Telegram', action: 'https://t.me/olitravel_spb', color: 'from-blue-500 to-cyan-600' },
+  { icon: 'Mail', label: 'Email', action: 'mailto:info@oli-travel.ru', color: 'from-orange-500 to-red-600' }
 ];
 
 export default function MobileMenu({ isOpen, onClose, activeSection, scrollToSection }: MobileMenuProps) {
@@ -37,8 +36,8 @@ export default function MobileMenu({ isOpen, onClose, activeSection, scrollToSec
     }
   }, [isOpen]);
 
-  const handleItemClick = (sectionId: string) => {
-    scrollToSection(sectionId);
+  const handleItemClick = (section: string) => {
+    scrollToSection(section);
     onClose();
   };
 
@@ -99,7 +98,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection, scrollToSec
               {menuItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => handleItemClick(item.id)}
+                  onClick={() => handleItemClick(item.section)}
                   className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${
                     activeSection === item.id
                       ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105'
@@ -181,7 +180,10 @@ export default function MobileMenu({ isOpen, onClose, activeSection, scrollToSec
                 <p className="text-sm opacity-90">Скидки до 50%</p>
               </div>
             </div>
-            <button className="w-full bg-white text-orange-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+            <button 
+              onClick={() => handleItemClick('hot-deals')}
+              className="w-full bg-white text-orange-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+            >
               Смотреть акции
             </button>
           </div>

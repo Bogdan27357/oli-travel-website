@@ -72,6 +72,7 @@ export default function ToursTabs({
               <TabsTrigger 
                 key={tab.id} 
                 value={tab.id}
+                data-country={tab.country || 'all'}
                 className="flex-shrink-0 px-3 md:px-4 py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white data-[state=active]:shadow-md hover:scale-105 whitespace-nowrap"
               >
                 <Icon name={tab.icon as any} size={14} className="mr-1.5 flex-shrink-0" />
