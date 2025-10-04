@@ -7,6 +7,7 @@ export const adminAuth = {
     try {
       const response = await fetch(ADMIN_AUTH_URL, {
         method: 'POST',
+        mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'login', password })
       });
@@ -32,6 +33,7 @@ export const adminAuth = {
     try {
       const response = await fetch(ADMIN_AUTH_URL, {
         method: 'POST',
+        mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'verify', token })
       });
