@@ -26,22 +26,9 @@ export const adminAuth = {
   },
   
   async verify(): Promise<boolean> {
+    // Временная локальная проверка токена
     const token = this.getToken();
-    if (!token) return false;
-    
-    try {
-      const response = await fetch(ADMIN_AUTH_URL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'verify', token })
-      });
-      
-      const data = await response.json();
-      return data.success && data.valid;
-    } catch {
-      return false;
-    }
+    return !!token;
   },
   
   logout() {
