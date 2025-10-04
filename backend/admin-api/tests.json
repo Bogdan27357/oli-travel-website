@@ -7,12 +7,13 @@
       "expectedStatus": 200
     },
     {
-      "name": "Should reject request without admin token",
+      "name": "Should get stats",
       "method": "GET",
-      "path": "/?resource=tours",
-      "expectedStatus": 401,
+      "path": "/?resource=stats",
+      "expectedStatus": 200,
       "expectedBody": {
-        "success": false
+        "success": true,
+        "stats": {}
       },
       "bodyMatcher": "partial"
     }

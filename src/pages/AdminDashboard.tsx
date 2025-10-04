@@ -32,18 +32,16 @@ export default function AdminDashboard() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const [submissionsData, toursData, reviewsData] = await Promise.all([
-          adminAPI.submissions.list('all', 1, 0),
-          adminAPI.tours.list(1, 0),
-          adminAPI.reviews.list('all', 1, 0)
-        ]);
-
-        setStats({
-          submissions: submissionsData.total || 0,
-          tours: toursData.total || 0,
-          reviews: reviewsData.total || 0,
-          pendingReviews: reviewsData.pending || 0
-        });
+        const data = await adminAPI.stats.get();
+        
+        if (data.success && data.stats) {
+          setStats({
+            submissions: data.stats.contacts?.total || 0,
+            tours: data.stats.tours?.total || 0,
+            reviews: data.stats.reviews?.total || 0,
+            pendingReviews: data.stats.reviews?.pending || 0
+          });
+        }
       } catch (error) {
         console.error('Error loading stats:', error);
       } finally {

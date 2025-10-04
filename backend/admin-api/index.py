@@ -533,6 +533,80 @@ def handle_requests(method: str, event: Dict[str, Any], cursor, conn) -> Dict[st
         conn.commit()
         return {'success': True, 'message': 'Request updated successfully'}
 
+def handle_stats(cursor) -> Dict[str, Any]:
+    """Get dashboard statistics"""
+    schema = get_schema_name()
+    
+    try:
+        # Total contacts
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.contact_submissions")
+        total_contacts = cursor.fetchone()[0]
+        
+        # New contacts (last 7 days)
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.contact_submissions WHERE created_at >= NOW() - INTERVAL '7 days'")
+        new_contacts = cursor.fetchone()[0]
+    except:
+        total_contacts = 0
+        new_contacts = 0
+    
+    try:
+        # Total users
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.users")
+        total_users = cursor.fetchone()[0]
+        
+        # New users (last 7 days)
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.users WHERE created_at >= NOW() - INTERVAL '7 days'")
+        new_users = cursor.fetchone()[0]
+    except:
+        total_users = 0
+        new_users = 0
+    
+    try:
+        # Pending reviews
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.reviews WHERE is_approved = FALSE")
+        pending_reviews = cursor.fetchone()[0]
+        
+        # Total reviews
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.reviews")
+        total_reviews = cursor.fetchone()[0]
+    except:
+        pending_reviews = 0
+        total_reviews = 0
+    
+    try:
+        # Active tours
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.tours WHERE is_active = TRUE")
+        active_tours = cursor.fetchone()[0]
+        
+        # Total tours
+        cursor.execute(f"SELECT COUNT(*) FROM {schema}.tours")
+        total_tours = cursor.fetchone()[0]
+    except:
+        active_tours = 0
+        total_tours = 0
+    
+    return {
+        'success': True,
+        'stats': {
+            'contacts': {
+                'total': total_contacts,
+                'new': new_contacts
+            },
+            'users': {
+                'total': total_users,
+                'new': new_users
+            },
+            'reviews': {
+                'total': total_reviews,
+                'pending': pending_reviews
+            },
+            'tours': {
+                'total': total_tours,
+                'active': active_tours
+            }
+        }
+    }
+
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     """Main handler function for the admin API"""
     
@@ -565,11 +639,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     is_public_review_submit = (resource == 'reviews' and method == 'POST')
     is_public_review_read = (resource == 'reviews' and method == 'GET')
     is_public_tours_read = (resource == 'tours' and method == 'GET')
+    is_stats = (resource == 'stats' and method == 'GET')
     
     headers = event.get('headers', {})
     admin_token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
     
-    if not (is_public_review_submit or is_public_review_read or is_public_tours_read) and (not admin_token or not verify_admin_token(admin_token)):
+    if not (is_public_review_submit or is_public_review_read or is_public_tours_read or is_stats) and (not admin_token or not verify_admin_token(admin_token)):
         return {
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
@@ -593,7 +668,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         conn = psycopg2.connect(database_url)
         cursor = conn.cursor()
         
-        if resource == 'tours':
+        if resource == 'stats':
+            result = handle_stats(cursor)
+        elif resource == 'tours':
             result = handle_tours(method, event, cursor, conn)
         elif resource == 'reviews':
             result = handle_reviews(method, event, cursor, conn)

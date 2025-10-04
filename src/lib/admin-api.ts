@@ -33,6 +33,15 @@ async function apiCall(resource: string, method: string, params?: any, body?: an
 }
 
 export const adminAPI = {
+  stats: {
+    async get() {
+      const url = new URL(ADMIN_API_URL);
+      url.searchParams.set('resource', 'stats');
+      const response = await fetch(url.toString());
+      return response.json();
+    }
+  },
+  
   submissions: {
     async list(status = 'all', limit = 100, offset = 0) {
       return apiCall('submissions', 'GET', { status, limit, offset });
