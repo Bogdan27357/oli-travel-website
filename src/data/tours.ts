@@ -303,11 +303,11 @@ export const allTours: Tour[] = [
     duration: '6 ночей',
     dates: '18-24 октября 2025',
     price: 72000,
-    image: 'https://images.unsplash.com/photo-1598120410135-f7d500419f3e?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1594922009922-001255302385?w=800&auto=format&fit=crop&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1598120410135-f7d500419f3e?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1575486272636-b5a4b43e8a01?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1607016284318-ea8c935e3c35?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1594922009922-001255302385?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1623006602092-c58e7632a259?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&auto=format&fit=crop&q=80'
     ],
     includes: ['Завтраки', 'Прямой перелет', 'Трансфер', 'Экскурсии'],
     category: 'excursion',
@@ -549,7 +549,7 @@ export const allTours: Tour[] = [
     duration: '7 ночей',
     dates: '3-10 октября 2025',
     price: 62000,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80',
     includes: ['Полупансион', 'Прямой перелет', 'Трансфер', 'Экскурсия'],
     category: 'beach',
     fromSpb: 'direct',
@@ -827,7 +827,7 @@ export const allTours: Tour[] = [
     duration: '10 ночей',
     dates: '6-16 октября 2025',
     price: 58000,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&auto=format&fit=crop&q=80',
     includes: ['Полный пансион', 'Прямой перелет', 'Трансфер', 'Лечебные процедуры'],
     category: 'beach',
     fromSpb: 'direct',
