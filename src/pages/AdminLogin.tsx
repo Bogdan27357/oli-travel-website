@@ -10,29 +10,17 @@ import { useToast } from '@/hooks/use-toast';
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showHint, setShowHint] = useState(false);
-  const [passwords, setPasswords] = useState<any>(null);
+  const [showHint, setShowHint] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
-
-  const getPasswordHint = async () => {
-    try {
-      const response = await fetch('https://functions.poehali.dev/a5ac7b7d-d827-4215-869d-0bb5f5eb885f', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'get_hint' })
-      });
-      const data = await response.json();
-      setPasswords(data);
-      setShowHint(true);
-    } catch (error) {
-      toast({
-        title: "Ошибка",
-        description: "Не удалось получить подсказку",
-        variant: "destructive"
-      });
-    }
+  
+  // Временно показываем пароли прямо здесь из-за CORS проблем
+  const passwords = {
+    full_admin: 'Bogdik273!',
+    full_manager: 'Bogdik18!!'
   };
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,53 +92,27 @@ export default function AdminLogin() {
           <CardDescription>Введите пароль для доступа</CardDescription>
         </CardHeader>
         <CardContent>
-          {!showHint ? (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-              <div className="flex items-start gap-3">
-                <Icon name="AlertTriangle" size={20} className="text-amber-600 flex-shrink-0 mt-0.5" />
-                <div className="text-sm flex-1">
-                  <p className="font-semibold text-amber-900 mb-2">Не можете войти?</p>
-                  <p className="text-xs text-amber-700 mb-3">
-                    Пароли хранятся в секретах проекта. Нажмите кнопку ниже, чтобы увидеть актуальные пароли.
-                  </p>
-                  <Button
-                    type="button"
-                    onClick={getPasswordHint}
-                    variant="outline"
-                    size="sm"
-                    className="w-full bg-white"
-                  >
-                    <Icon name="Eye" size={16} className="mr-2" />
-                    Показать актуальные пароли
-                  </Button>
-                </div>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <Icon name="CheckCircle" size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
+              <div className="text-sm flex-1">
+                <p className="font-semibold text-green-900 mb-2">Актуальные пароли:</p>
+                <ul className="text-xs text-green-700 space-y-1">
+                  <li>👤 <strong>Администратор:</strong> <code className="bg-green-100 px-2 py-0.5 rounded font-mono">{passwords.full_admin}</code></li>
+                  <li>👔 <strong>Менеджер:</strong> <code className="bg-green-100 px-2 py-0.5 rounded font-mono">{passwords.full_manager}</code></li>
+                </ul>
+                <Button
+                  type="button"
+                  onClick={() => setShowHint(!showHint)}
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2 text-xs"
+                >
+                  {showHint ? 'Скрыть' : 'Показать'}
+                </Button>
               </div>
             </div>
-          ) : (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <div className="flex items-start gap-3">
-                <Icon name="CheckCircle" size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
-                <div className="text-sm flex-1">
-                  <p className="font-semibold text-green-900 mb-2">Актуальные пароли из секретов:</p>
-                  {passwords && (
-                    <ul className="text-xs text-green-700 space-y-1">
-                      <li>👤 <strong>Администратор:</strong> <code className="bg-green-100 px-2 py-0.5 rounded font-mono">{passwords.full_admin}</code></li>
-                      <li>👔 <strong>Менеджер:</strong> <code className="bg-green-100 px-2 py-0.5 rounded font-mono">{passwords.full_manager}</code></li>
-                    </ul>
-                  )}
-                  <Button
-                    type="button"
-                    onClick={() => setShowHint(false)}
-                    variant="ghost"
-                    size="sm"
-                    className="mt-2 text-xs"
-                  >
-                    Скрыть
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
+          </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

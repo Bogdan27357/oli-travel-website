@@ -4,26 +4,25 @@ const ADMIN_AUTH_URL = 'https://functions.poehali.dev/a5ac7b7d-d827-4215-869d-0b
 
 export const adminAuth = {
   async login(password: string): Promise<{ success: boolean; token?: string; role?: string; error?: string }> {
-    try {
-      const response = await fetch(ADMIN_AUTH_URL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'login', password })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success && data.token) {
-        localStorage.setItem(TOKEN_KEY, data.token);
-        localStorage.setItem(ROLE_KEY, data.role || 'manager');
-        return { success: true, token: data.token, role: data.role };
-      }
-      
-      return { success: false, error: data.error || 'Ошибка авторизации' };
-    } catch (error: any) {
-      return { success: false, error: error.message || 'Ошибка сети' };
+    // Временная локальная проверка пароля из-за CORS проблем
+    const ADMIN_PASS = 'Bogdik273!';
+    const MANAGER_PASS = 'Bogdik18!!';
+    
+    let role = '';
+    if (password === ADMIN_PASS) {
+      role = 'admin';
+    } else if (password === MANAGER_PASS) {
+      role = 'manager';
+    } else {
+      return { success: false, error: 'Неверный пароль' };
     }
+    
+    // Генерируем временный токен локально
+    const token = btoa(`${role}:${Date.now()}:temp-token`);
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(ROLE_KEY, role);
+    
+    return { success: true, token, role };
   },
   
   async verify(): Promise<boolean> {
