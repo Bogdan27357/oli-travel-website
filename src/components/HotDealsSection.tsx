@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { hotDeals } from '@/data/hotDeals';
 import { useToast } from '@/hooks/use-toast';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const HotDealsSection = () => {
   const { toast } = useToast();
@@ -97,7 +98,7 @@ const HotDealsSection = () => {
           {filteredDeals.map((deal) => (
             <Card key={deal.id} className="group hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-red-100">
               <div className="relative">
-                <img 
+                <OptimizedImage
                   src={deal.image} 
                   alt={deal.title}
                   className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"

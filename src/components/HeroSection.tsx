@@ -99,7 +99,13 @@ export default function HeroSection() {
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
           >
-            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+            <img 
+              src={slide.image} 
+              alt={slide.title} 
+              className="w-full h-full object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
           </div>
         ))}

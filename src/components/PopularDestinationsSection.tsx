@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/icon';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const destinations = [
   {
@@ -88,10 +89,11 @@ export default function PopularDestinationsSection() {
             >
               {/* Изображение */}
               <div className="relative h-64 overflow-hidden">
-                <img
+                <OptimizedImage
                   src={dest.image}
                   alt={dest.city}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  priority={index < 3}
                 />
                 {/* Градиент оверлей */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

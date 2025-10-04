@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tour } from '@/data/tours';
 import { useState } from 'react';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface TourCardProps {
   tour: Tour;
@@ -46,10 +47,11 @@ export default function TourCard({
       onClick={() => onTourClick(tour)}
     >
       <div className="relative h-40 overflow-hidden">
-        <img 
+        <OptimizedImage
           src={galleryImages[currentImageIndex]} 
           alt={tour.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          priority={index < 4}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
         
